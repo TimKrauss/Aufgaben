@@ -3,15 +3,12 @@ package de.krauss;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class FileManagerTest
 {
-	private FileManager fileManager;
-	private Logger logger = Logger.getLogger(Launcher.class);
 	private Car car;
 	private ArrayList<Car> list;
 	private Reservierung RES;
@@ -22,7 +19,6 @@ public class FileManagerTest
 	@Before
 	public void init()
 	{
-		fileManager = new FileManager(logger);
 		car = new Car();
 		car.setF_Name(NAME);
 		car.setF_Marke(MARKE);
@@ -30,14 +26,12 @@ public class FileManagerTest
 		car.setCAR_ID(CAR_ID);
 
 		RES = new Reservierung(new Date(), new Date());
-		RES.setID(CAR_ID);
+		RES.setCarID(CAR_ID);
 	}
 
 	@Test
 	public void test()
 	{
-		fileManager.safeCarToDB(car);
-		list = fileManager.loadDatabase();
 
 		Car c = list.get(list.size() - 1);
 
@@ -45,9 +39,5 @@ public class FileManagerTest
 		Assert.assertEquals(MARKE, c.getF_Marke());
 		Assert.assertEquals((int) Tacho, (int) car.getF_Tacho());
 
-		Assert.assertTrue(fileManager.uploadRes(RES));
-		Assert.assertTrue(fileManager.deleteReservierung(RES));
-
-		Assert.assertTrue(fileManager.delDatabase(CAR_ID));
 	}
 }

@@ -7,11 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.TimeZone;
 
 import javax.activity.InvalidActivityException;
@@ -37,12 +34,12 @@ public class Launcher extends Application implements Serializable
 	@XmlElement(name = "carlist")
 	private CarList carlist;
 	static Logger logger = Logger.getLogger(Launcher.class);
-	private FileManager fm;
+	// private FileManager fm;
 	public static final String HOME_DIR = System.getProperty("user.home") + "/Desktop/Cars/";
 	private Searcher searcher;
-	private static BufferedReader userReader;
 	private MainFrameController controller;
 	private Thread userReaderThread;
+	private OracleDataBase orcb = new OracleDataBase(logger);
 
 	/**
 	 * Kümmert sich um die Eingabe des User in der Konsole
@@ -117,7 +114,7 @@ public class Launcher extends Application implements Serializable
 					logger.fatal(e.getMessage());
 				}
 			}
-			fm.delDatabase(id);
+			orcb.deleteCarFromDatabase(id);
 			syncDatabase();
 			standardCall();
 			break;
@@ -189,7 +186,6 @@ public class Launcher extends Application implements Serializable
 	BufferedReader createReader(Reader in)
 	{
 		BufferedReader r = new BufferedReader(in);
-		userReader = r;
 		return r;
 	}
 
@@ -286,7 +282,7 @@ public class Launcher extends Application implements Serializable
 			}
 		}
 
-		fm.deleteReservierung(dCar.getReservs().get(resvNummerChoosen));
+		orcb.deleteReservierung(dCar.getReservs().get(resvNummerChoosen));
 
 		dCar.getReservs().remove(resvNummerChoosen);
 		logger.info("Die Reservierung wurde gelöscht");
@@ -301,122 +297,40 @@ public class Launcher extends Application implements Serializable
 	 */
 	public boolean reservieren(BufferedReader reader)
 	{
-		Reservierung r = new Reservierung();
-		Car resCar = new Car();
-
 		listCars();
-
+		Car resCar = new Car();
 		while (true)
 		{
 
-			try
+			logger.info("Welches Auto wollen sie Reservieren? (1 - " + carlist.getList().size() + ")");
+			while (true)
 			{
-				logger.info("Welches Auto wollen sie Reservieren? (1 - " + carlist.getList().size() + ")");
-				while (true)
+				try
 				{
-					try
-					{
-						resCar = carlist.getList().get((Integer.parseInt(reader.readLine()) - 1));
-						break;
-					} catch (Exception e)
-					{
-						logger.warn("Bitte eine vorhandene Zahl angeben!");
-						return false;
-					}
-
+					resCar = carlist.getList().get((Integer.parseInt(reader.readLine()) - 1));
+					break;
+				} catch (Exception e)
+				{
+					logger.warn("Bitte eine vorhandene Zahl angeben!");
 				}
 
-				logger.info("Wann soll die Reservierung starten? (tt.MM.yyyy HH:mm)");
+			}
 
-				while (true)
-				{
-					Date start = enterDate(reader);
-					if (resCar.isReservedOn(start))
-					{
-						logger.error("Auto zu der Zeit leider reserviert....");
-						logger.info("Bitte wählen sie ein anderes Datum");
-					} else
-					{
-						r.setResStart(start);
-						break;
-					}
-				}
+			Reservierung r = Reservierung.createReservierung(reader, resCar);
 
-				logger.info("Wann soll die Reservierung enden? (tt.MM.yyyy HH:mm)");
-
-				while (true)
-				{
-					Date stop = enterDate(reader);
-					if (resCar.isReservedOn(stop))
-					{
-						logger.error("Auto zu der Zeit leider reserviert....");
-						logger.info("Bitte wählen sie ein anderes Datum");
-					} else if (r.getResStart().after(stop))
-					{
-						logger.info("Ungültiger Zeitraum! (Startdatum ist nach Stopdatum)");
-					} else
-					{
-						r.setResStop(stop);
-						break;
-					}
-				}
-				r.setID(resCar.getCAR_ID());
+			if (!Utilities.isCarAvaible(r.getResStart(), r.getResStop(), resCar))
+			{
+				logger.error("Auto zu der Zeit leider reserviert....");
+				logger.info("Bitte wählen sie ein anderes Datum");
+			} else
+			{
+				r.setRES_ID(-1);
 				resCar.addResv(r);
-				fm.uploadRes(r);
+				orcb.uploadRes(r);
 				logger.info("Reserviert!");
-
-				// logger.info("Vorhandene Autos aus einer TXT-Datei einlesen? (load)");
 				return true;
-			} catch (NumberFormatException e)
-			{
-				logger.error("Bitte geben sie eine vorhandene Zahl ein! " + e.getMessage());
 			}
 		}
-	}
-
-	/**
-	 * Sorgt für eine fehlerfreie Eingabe eines Datums
-	 * 
-	 * @param reader Der Reader mit welchen die Usereingaben gelesen werden können
-	 * @return Das Datum welches der User eingegeben hat
-	 */
-	public Date enterDate(BufferedReader reader)
-	{
-		while (true)
-		{
-			try
-			{
-				String s = reader.readLine();
-
-				DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-				df.setLenient(false);
-
-				df.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"));
-
-				Date f = df.parse(s);
-
-				if (f.before(new Date()))
-				{
-					logger.info("Kein Datum in der Vergangenheit bitte!");
-				} else
-				{
-					return f;
-				}
-
-			} catch (ParseException e)
-			{
-				logger.info("Bitte geben sie ein gültiges Datum ein! (dd.MM.yyyy HH:mm)");
-			} catch (IOException e)
-			{
-				logger.fatal("Fehler beim Lesen der User-Eingabe");
-			} catch (NullPointerException e)
-			{
-				logger.fatal(e.getMessage());
-				return null;
-			}
-
-		}
-
 	}
 
 	/**
@@ -424,14 +338,11 @@ public class Launcher extends Application implements Serializable
 	 */
 	public void listCars()
 	{
-		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy (HH:mm)");
 		int num = 1;
 		int rnum = 1;
 
 		logger.info("Anzahl an Autos: " + carlist.getList().size());
 		logger.info("--------------------------------------");
-
-		sdf.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"));
 
 		for (Car c : carlist.getList())
 		{
@@ -448,8 +359,8 @@ public class Launcher extends Application implements Serializable
 				logger.info("Reservierungen:");
 				for (Reservierung r : c.getReservs())
 				{
-					logger.info("[" + rnum + "] " + sdf.format(r.getResStart()) + " -------> "
-							+ sdf.format(r.getResStop()));
+					logger.info("[" + rnum + "] " + Utilities.format(r.getResStart()) + " -------> "
+							+ Utilities.format(r.getResStop()));
 					rnum++;
 				}
 				rnum = 1;
@@ -483,11 +394,11 @@ public class Launcher extends Application implements Serializable
 			newCar.setF_Marke(r.readLine());
 			logger.info("Fahrzeugmarke --> " + newCar.getF_Marke());
 
-			newCar.setF_Tacho(addTacho(r));
+			newCar.setF_Tacho(Utilities.addTacho(r));
 			logger.info("Kilometer: " + newCar.getF_Tacho());
 
 			carlist.getList().add(newCar);
-			fm.safeCarToDB(newCar);
+			orcb.addCar(newCar);
 			syncDatabase();
 			controller.setList(carlist.getList());
 			System.err.println("Auto hinzugefügt!");
@@ -503,58 +414,12 @@ public class Launcher extends Application implements Serializable
 	}
 
 	/**
-	 * Sorgt für eine Fehlerfreie Eingabe des Tachostandes
-	 * 
-	 * @param r Der Reader mit welchen die Usereingaben gelesen werden können
-	 * @return Den Tachostand als Double
-	 */
-	private int addTacho(BufferedReader r)
-	{
-		logger.info("Wie viele Kilometer hat das Auto auf dem Buckel?");
-
-		int kilo;
-
-		while (true)
-		{
-			try
-			{
-
-				String line = r.readLine();
-				if (line == null)
-				{
-					logger.fatal("Keine Zeile mehr zu lesen");
-					System.exit(1);
-				}
-
-				kilo = Integer.parseInt(line);
-				return kilo;
-			} catch (NumberFormatException e)
-			{
-				logger.info("Bitte gib eine gültige Kilometerzahl ein!");
-			} catch (IOException e)
-			{
-				logger.fatal("Fehler beim Lesen der User-Eigabe");
-			}
-		}
-
-	}
-
-	/**
 	 * Ersetzt die lokale Liste durch eine neu eingelesene aus der Datenbank
 	 */
 	private boolean syncDatabase()
 	{
-		carlist.setCars(fm.loadDatabase());
+		carlist.setCars(orcb.loadDatabase());
 		return true;
-	}
-
-	/**
-	 * 
-	 * @return Den Leser, zum lesen der Usereingabe
-	 */
-	public BufferedReader getUserReader()
-	{
-		return userReader;
 	}
 
 	public void startReaderThread()
@@ -564,14 +429,14 @@ public class Launcher extends Application implements Serializable
 			@Override
 			public void run()
 			{
-				userReader = createReader(new InputStreamReader(System.in));
 				logger.info("Hallo Lieber Kunde!");
 				logger.info("Möchten sie ein Auto anlegen? (ja oder nein");
 				logger.info("Oder bereits hinzugefügte Autos ansehen? (list)");
 
+				BufferedReader reader = createReader(new InputStreamReader(System.in));
 				while (true)
 				{
-					handleUserInpunt(getUserReader());
+					handleUserInpunt(reader);
 				}
 			}
 		});
@@ -582,11 +447,10 @@ public class Launcher extends Application implements Serializable
 	public void start(Stage primaryStage) throws Exception
 	{
 
-		fm = new FileManager(logger);
 		searcher = new Searcher(logger);
 		carlist = new CarList();
 
-		carlist.setCars(fm.loadDatabase());
+		carlist.setCars(orcb.loadDatabase());
 
 		// START WINDOW
 
@@ -604,9 +468,9 @@ public class Launcher extends Application implements Serializable
 		AnchorPane pane = loader.load(fis);
 		primaryStage.setScene(new Scene(pane));
 		controller = loader.getController();
-		controller.setDatenbankStatus(true, fm.getDataBaseUser());
+		controller.setDatenbankStatus(true, orcb.getDataBaseUser());
 		controller.setCarlist(carlist);
-		controller.setFileManager(fm);
+		controller.setOracleDataBase(orcb);
 		primaryStage.setTitle("Fuhrpark");
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>()
 		{
@@ -625,10 +489,4 @@ public class Launcher extends Application implements Serializable
 		fis.close();
 		startReaderThread();
 	}
-
-	public void setController(MainFrameController mainFrameController)
-	{
-		controller = mainFrameController;
-	}
-
 }

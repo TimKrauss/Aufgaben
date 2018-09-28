@@ -1,7 +1,10 @@
 package de.krauss;
 
+import java.io.BufferedReader;
 import java.io.Serializable;
 import java.util.Date;
+
+import org.apache.log4j.Logger;
 
 public class Reservierung implements Serializable
 {
@@ -9,9 +12,11 @@ public class Reservierung implements Serializable
 	/**
 	 * Log4j logger
 	 */
+	private static Logger logger = Logger.getLogger("Reservierung");
 	private static final long serialVersionUID = 13273646095955764L;
 	private Date resStart, resStop;
-	private int ID;
+	private int CAR_ID;
+	private int RES_ID;
 
 	/**
 	 * Erzeugt eine neue Reservierug
@@ -61,6 +66,30 @@ public class Reservierung implements Serializable
 		return resStop;
 	}
 
+	public static Reservierung createReservierung(BufferedReader reader, Car resCar)
+	{
+		Date start = null;
+		Date stop = null;
+
+		while (true)
+		{
+
+			logger.info("Wann soll die Reservierung starten? (tt.MM.yyyy HH:mm)");
+
+			start = Utilities.enterDate(reader);
+
+			logger.info("Wann soll die Reservierung enden? (tt.MM.yyyy HH:mm)");
+
+			stop = Utilities.enterDate(reader);
+			Reservierung r = new Reservierung(start, stop);
+			r.setCarID(resCar.getCAR_ID());
+			r.setRES_ID(-1);
+			return r;
+
+		}
+
+	}
+
 	/**
 	 * 
 	 * @param resStop Setzt das Datum an welchem die Reservierung stopt
@@ -70,24 +99,23 @@ public class Reservierung implements Serializable
 		this.resStop = resStop;
 	}
 
-	/**
-	 * 
-	 * @param f Das Datum welches überprüft werden soll
-	 * @return True wenn das Fahrzeug zu der Zeit reserviert ist
-	 */
-	public boolean isReserved(Date f)
+	public int getCarID()
 	{
-		// TODO FIX NEEDED
-		return true;
+		return CAR_ID;
 	}
 
-	public int getID()
+	public void setCarID(int iD)
 	{
-		return ID;
+		CAR_ID = iD;
 	}
 
-	public void setID(int iD)
+	public int getRES_ID()
 	{
-		ID = iD;
+		return RES_ID;
+	}
+
+	public void setRES_ID(int rES_ID)
+	{
+		RES_ID = rES_ID;
 	}
 }

@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 import de.krauss.Car;
 import de.krauss.CarList;
-import de.krauss.FileManager;
+import de.krauss.OracleDataBase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,7 +17,7 @@ public class AddCarController
 	@FXML
 	private TextField txtf_Name, txtf_Marke, txtf_Tacho;
 
-	private FileManager fm;
+	private OracleDataBase orcb;
 	private CarList carlist;
 
 	@FXML
@@ -66,7 +66,7 @@ public class AddCarController
 					c.setF_Marke(marke);
 					c.setF_Tacho(int_Tacho);
 
-					fm.safeCarToDB(c);
+					orcb.addCar(c);
 					carlist.addCar(c);
 					con.setList(carlist.getList());
 					((Node) (event.getSource())).getScene().getWindow().hide();
@@ -82,14 +82,9 @@ public class AddCarController
 		});
 	}
 
-	/**
-	 * Setzt den Filemanger
-	 * 
-	 * @param fm Der neue Filemanager
-	 */
-	public void setFm(FileManager fm)
+	public void setOracleDataBase(OracleDataBase c)
 	{
-		this.fm = fm;
+		orcb = c;
 	}
 
 	/**

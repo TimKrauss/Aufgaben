@@ -10,7 +10,6 @@ import de.krauss.handler.DumpFileHandler;
 import de.krauss.handler.FileHandler;
 import de.krauss.handler.JAXBFileHandler;
 import de.krauss.handler.JSonFileHandler;
-import de.krauss.handler.OracleDataBase;
 import de.krauss.handler.TxtFileHandler;
 import de.krauss.handler.XStreamFileHandler;
 
@@ -30,7 +29,6 @@ public class FileManager implements Serializable
 	private TxtFileHandler txtFileHandler;
 	private XStreamFileHandler xStreamFileHandler;
 	private JSonFileHandler jSonFileHandler;
-	private OracleDataBase orcb;
 	private ArrayList<FileHandler> handlerList;
 
 	/**
@@ -99,7 +97,6 @@ public class FileManager implements Serializable
 	 */
 	public FileManager(Logger l)
 	{
-		orcb = new OracleDataBase(l);
 		handlerList = new ArrayList<>();
 
 		dumpFileHandler = new DumpFileHandler();
@@ -115,103 +112,4 @@ public class FileManager implements Serializable
 		handlerList.add(txtFileHandler);
 
 	}
-
-	/**
-	 * 
-	 * @return Den Handler für Dumpfiles
-	 */
-	public DumpFileHandler getDumpFileHandler()
-	{
-		return dumpFileHandler;
-	}
-
-	/**
-	 * 
-	 * @return Den Handler für JAXB-Files
-	 */
-	public JAXBFileHandler getJaxbFileHandler()
-	{
-		return jaxbFileHandler;
-	}
-
-	/**
-	 * 
-	 * @return Den Handler für Txt-Files
-	 */
-	public TxtFileHandler getTxtFileHandler()
-	{
-		return txtFileHandler;
-	}
-
-	/**
-	 * 
-	 * @return Den Handler für XML-Files
-	 */
-	public XStreamFileHandler getxStreamFileHandler()
-	{
-		return xStreamFileHandler;
-	}
-
-	/**
-	 * Fügt ein Auto der Datenbank hinzu
-	 * 
-	 * @param car Auto welches in der Datenbank gespeichert werden soll
-	 */
-	public void safeCarToDB(Car car)
-	{
-		orcb.addCar(car);
-	}
-
-	/**
-	 * Lädt alle Autos samt Reservierungen aus der Datenbank ein
-	 * 
-	 * @return Die Arraylist beinhaltet die Autos mit Reservierungen aus der
-	 *         Datenbank
-	 */
-	public ArrayList<Car> loadDatabase()
-	{
-		return orcb.loadDatabase();
-	}
-
-	/**
-	 * Löscht ein Auto samt Reservierungen aus der Datenbank
-	 * 
-	 * @param id Die ID des Autos welches gelöscht werden soll
-	 * @return Ob das löschen aus der Datembank erfolgreich war
-	 */
-	public boolean delDatabase(int id)
-	{
-		orcb.deleteCarFromDatabase(id);
-		return true;
-	}
-
-	/**
-	 * Fügt der Datenbank eine Reservierung hinzu
-	 * 
-	 * @param r Reservierung welche hinzugefügt werden soll
-	 * @return Ob das hochladen funktioniert hat
-	 */
-	public boolean uploadRes(Reservierung r)
-	{
-		orcb.uploadRes(r);
-		return true;
-	}
-
-	/**
-	 * Löscht eine Reservierung aus der Datenbank
-	 * 
-	 * @param del Die zu löschende Reservierung
-	 * @return Ob das Löschen funktioniert hat
-	 */
-	public boolean deleteReservierung(Reservierung del)
-	{
-		orcb.deleteReservierung(del);
-		return true;
-	}
-
-	public String getDataBaseUser()
-	{
-		return orcb.getDataBaseUser();
-	}
-
 }

@@ -4,12 +4,10 @@ import java.io.BufferedReader;
 import java.io.StringReader;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import de.krauss.gfx.MainFrameController;
-import de.krauss.handler.OracleDataBase;
 
 public class LauncherTest
 {
@@ -37,7 +35,6 @@ public class LauncherTest
 		launcher.start(null);
 		MainFrameController c = new MainFrameController();
 		c.setModeJUnit();
-		launcher.setController(c);
 
 //		Auflisten
 		st = new StringBuilder();
@@ -91,7 +88,6 @@ public class LauncherTest
 		launcher.handleUserInpunt(reader);
 
 //		getReader
-		Assert.assertEquals(reader, launcher.getUserReader());
 
 //		Suchen
 		st = new StringBuilder();
@@ -172,7 +168,6 @@ public class LauncherTest
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);
-		Assert.assertNull(launcher.enterDate(reader));
 	}
 
 }

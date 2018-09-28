@@ -7,8 +7,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.krauss.handler.OracleDataBase;
-
 public class OracleDataBaseTest
 {
 	private OracleDataBase orb;
@@ -31,7 +29,7 @@ public class OracleDataBaseTest
 		res = new Reservierung();
 		res.setResStart(new Date());
 		res.setResStop(new Date());
-		res.setID(CAR_ID);
+		res.setCarID(CAR_ID);
 	}
 
 	@Test

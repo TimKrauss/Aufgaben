@@ -12,8 +12,8 @@ import org.apache.log4j.Logger;
 
 import de.krauss.Car;
 import de.krauss.CarList;
-import de.krauss.FileManager;
 import de.krauss.Launcher;
+import de.krauss.OracleDataBase;
 import de.krauss.Reservierung;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -48,18 +48,9 @@ public class MainFrameController
 	private ComboBox<String> combo_Res;
 
 	private CarList carlist;
-	private FileManager fm;
+	private OracleDataBase orcb;
 	private Logger logger = Logger.getLogger("MainFrameController");
 	private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy (HH:mm)");
-
-	/**
-	 * 
-	 * @param m Setzt den FileManager
-	 */
-	public void setFileManager(FileManager m)
-	{
-		fm = m;
-	}
 
 	/**
 	 * 
@@ -88,6 +79,11 @@ public class MainFrameController
 			label_User.setTextFill(Color.RED);
 			label_User.setText("Kein User");
 		}
+	}
+
+	public void setOracleDataBase(OracleDataBase c)
+	{
+		orcb = c;
 	}
 
 	/**
@@ -174,10 +170,10 @@ public class MainFrameController
 				Car selCar = carlist.getCar(list_Autos.getSelectionModel().getSelectedIndex());
 				Reservierung r = selCar.getReservs().get(combo_Res.getSelectionModel().getSelectedIndex());
 
-				fm.deleteReservierung(r);
+				orcb.deleteReservierung(r);
 				selCar.getReservs().remove(r);
 
-				carlist.setCars(fm.loadDatabase());
+				carlist.setCars(orcb.loadDatabase());
 				setList(carlist.getList());
 			}
 		});
@@ -223,9 +219,9 @@ public class MainFrameController
 		try
 		{
 			Car c = carlist.getCar(list_Autos.getSelectionModel().getSelectedIndex());
-			r.setID(c.getCAR_ID());
+			r.setCarID(c.getCAR_ID());
 			c.addResv(r);
-			fm.uploadRes(r);
+			orcb.uploadRes(r);
 		} catch (Exception e)
 		{
 			System.out.println("Kein Auto ausgewählt");
@@ -247,9 +243,8 @@ public class MainFrameController
 			AddCarController controll = loader.getController();
 
 			controll.setCarlist(carlist);
-			controll.setFm(fm);
 			controll.addListenerToButton(this);
-
+			controll.setOracleDataBase(orcb);
 			Stage stage = new Stage();
 			stage.setTitle("Auto hinzufügen");
 			stage.setAlwaysOnTop(true);
@@ -285,7 +280,7 @@ public class MainFrameController
 		{
 			carlist.getList().remove(list_Autos.getSelectionModel().getSelectedIndex());
 			list_Autos.getSelectionModel().clearSelection();
-			fm.delDatabase(c.getCAR_ID());
+			orcb.deleteCarFromDatabase(c.getCAR_ID());
 			setList(carlist.getList());
 		}
 

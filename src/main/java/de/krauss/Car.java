@@ -2,7 +2,6 @@ package de.krauss;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.xml.bind.annotation.XmlElement;
 
@@ -89,24 +88,6 @@ public class Car implements Serializable
 	public void addResv(Reservierung r)
 	{
 		resv.add(r);
-	}
-
-	/**
-	 * 
-	 * @param f Datum welches überprüft werden soll
-	 * @return Gibt true zurück falls das Fahrzeug zu der Zeit reserviert ist
-	 */
-	public boolean isReservedOn(Date f)
-	{
-		for (Reservierung r : resv)
-		{
-			if (r.isReserved(f))
-			{
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	/**

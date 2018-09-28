@@ -41,9 +41,6 @@ public class CarTest
 		resv.add(reservierung);
 		Assert.assertEquals(resv, car.getReservs());
 
-		Assert.assertTrue(car.isReservedOn(start));
-		Assert.assertTrue(car.isReservedOn(stop));
-
 		car.setCAR_ID(CAR_ID);
 		Assert.assertEquals(CAR_ID, car.getCAR_ID());
 
