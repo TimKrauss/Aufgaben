@@ -26,7 +26,8 @@ public class Reservierung implements Serializable
 	}
 
 	/**
-	 * Erzeugt eine neue Reservierung
+	 * Erzeugt eine neue Reservierung und man setzt das Start, sowie StopDatum erst
+	 * am Ende
 	 */
 	public Reservierung()
 	{

@@ -4,6 +4,8 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.krauss.search.Searcher;
+
 public class SearcherTest
 {
 	private Searcher searcher;

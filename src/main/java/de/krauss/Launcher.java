@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlElement;
 import org.apache.log4j.Logger;
 
 import de.krauss.gfx.MainFrameController;
+import de.krauss.search.Searcher;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
