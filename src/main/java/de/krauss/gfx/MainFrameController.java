@@ -91,6 +91,13 @@ public class MainFrameController
 	 */
 	public void init()
 	{
+		initList();
+		initCombo();
+		initReslöschen();
+	}
+
+	private void initList()
+	{
 		list_Autos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>()
 		{
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
@@ -142,7 +149,29 @@ public class MainFrameController
 				btn_Reservieren.setDisable(false);
 			}
 		});
+	}
 
+	private void initReslöschen()
+	{
+		btn_Reslöschen.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent event)
+			{
+				Car selCar = carlist.getCar(list_Autos.getSelectionModel().getSelectedIndex());
+				Reservierung r = selCar.getReservs().get(combo_Res.getSelectionModel().getSelectedIndex());
+
+				orcb.deleteReservierung(r);
+				selCar.getReservs().remove(r);
+
+				carlist.setCars(orcb.loadDatabase());
+				setList(carlist.getList());
+			}
+		});
+	}
+
+	private void initCombo()
+	{
 		combo_Res.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>()
 		{
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
@@ -159,22 +188,6 @@ public class MainFrameController
 				Reservierung r = c.getReservs().get(opt);
 				lbl_Res_start.setText(format.format(r.getResStart()));
 				lbl_Res_stop.setText(format.format(r.getResStop()));
-			}
-		});
-
-		btn_Reslöschen.setOnAction(new EventHandler<ActionEvent>()
-		{
-			@Override
-			public void handle(ActionEvent event)
-			{
-				Car selCar = carlist.getCar(list_Autos.getSelectionModel().getSelectedIndex());
-				Reservierung r = selCar.getReservs().get(combo_Res.getSelectionModel().getSelectedIndex());
-
-				orcb.deleteReservierung(r);
-				selCar.getReservs().remove(r);
-
-				carlist.setCars(orcb.loadDatabase());
-				setList(carlist.getList());
 			}
 		});
 	}
@@ -306,23 +319,6 @@ public class MainFrameController
 		{
 			logger.warn("Auto hinzugefügt, dennoch falscher Thread (" + e.getMessage() + ")");
 		}
-	}
-
-	public void setModeJUnit()
-	{
-		btn_Hinzufügen = new Button();
-		btn_Löschen = new Button();
-		btn_Reservieren = new Button();
-		btn_Reslöschen = new Button();
-
-		label_Marke = new Label();
-		label_Name = new Label();
-		label_Tachostand = new Label();
-		lbl_Res_start = new Label();
-		lbl_Res_stop = new Label();
-
-		list_Autos = new ListView<String>();
-
 	}
 
 	public Car getSelectedCar()

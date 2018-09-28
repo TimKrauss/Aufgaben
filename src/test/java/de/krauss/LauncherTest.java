@@ -7,8 +7,6 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.krauss.gfx.MainFrameController;
-
 public class LauncherTest
 {
 	private Launcher launcher;
@@ -33,9 +31,6 @@ public class LauncherTest
 		StringBuilder st = new StringBuilder();
 		StringReader stri = null;
 		launcher.start(null);
-		MainFrameController c = new MainFrameController();
-		c.setModeJUnit();
-
 //		Auflisten
 		st = new StringBuilder();
 		st.append("list\n");

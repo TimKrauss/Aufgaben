@@ -124,4 +124,29 @@ public class Utilities
 		return sdf.format(d);
 	}
 
+	public static Car chooseCarFromList(CarList carlist, BufferedReader reader)
+	{
+		while (true)
+		{
+			try
+			{
+
+				int choo = Integer.parseInt(reader.readLine());
+				if (choo > carlist.getList().size())
+				{
+					new Exception();
+				}
+
+				return carlist.getList().get(choo - 1);
+
+			} catch (NumberFormatException e)
+			{
+				logger.warn("Bitte eine gültige Zahl eingeben");
+			} catch (IOException e)
+			{
+				logger.fatal(e.getMessage());
+			}
+		}
+	}
+
 }

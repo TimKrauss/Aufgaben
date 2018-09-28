@@ -91,30 +91,7 @@ public class Launcher extends Application implements Serializable
 			}
 
 			logger.info("Welches Auto soll gelöscht werden?");
-			int id = 0;
-			while (true)
-			{
-				try
-				{
-
-					int choo = Integer.parseInt(reader.readLine());
-					if (choo > carlist.getList().size())
-					{
-						new Exception();
-					}
-
-					id = carlist.getList().get(choo - 1).getCAR_ID();
-					break;
-
-				} catch (NumberFormatException e)
-				{
-					logger.warn("Bitte eine gültige Zahl eingeben");
-				} catch (IOException e)
-				{
-					logger.fatal(e.getMessage());
-				}
-			}
-			orcb.deleteCarFromDatabase(id);
+			orcb.deleteCarFromDatabase(Utilities.chooseCarFromList(carlist, reader).getCAR_ID());
 			syncDatabase();
 			standardCall();
 			break;
@@ -183,7 +160,7 @@ public class Launcher extends Application implements Serializable
 
 	}
 
-	BufferedReader createReader(Reader in)
+	public BufferedReader createReader(Reader in)
 	{
 		BufferedReader r = new BufferedReader(in);
 		return r;

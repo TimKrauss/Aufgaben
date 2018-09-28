@@ -76,13 +76,6 @@ public class OracleDataBase
 
 	public boolean deleteCarFromDatabase(int id)
 	{
-		// String query = "SELECT * FROM Autos ORDER BY id";
-		//
-		// Statement smt = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
-		// ResultSet.CONCUR_READ_ONLY);
-		// ResultSet rset = smt.executeQuery(query);
-		//
-
 		try
 		{
 			Statement rsvdel = connection.createStatement();
