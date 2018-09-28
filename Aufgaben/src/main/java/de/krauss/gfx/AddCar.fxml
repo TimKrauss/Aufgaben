@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="271.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.krauss.gfx.AddCarController">
+   <children>
+      <TextField fx:id="txtf_Name" layoutX="103.0" layoutY="60.0" prefHeight="31.0" prefWidth="154.0" style="-fx-background-color: grey;">
+         <font>
+            <Font name="Arial Italic" size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtf_Marke" layoutX="103.0" layoutY="123.0" prefHeight="31.0" prefWidth="154.0" style="-fx-background-color: grey;">
+         <font>
+            <Font name="Arial Italic" size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtf_Tacho" layoutX="136.0" layoutY="185.0" prefHeight="31.0" prefWidth="121.0" style="-fx-background-color: grey;">
+         <font>
+            <Font name="Arial Italic" size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="14.0" layoutY="60.0" prefHeight="31.0" prefWidth="71.0" text="Name:" textFill="#ff8c00">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="123.0" prefHeight="31.0" prefWidth="71.0" text="Marke:" textFill="#ff8c00">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="185.0" prefHeight="31.0" prefWidth="112.0" text="Tachostand:" textFill="#ff8c00">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_Add" layoutX="67.0" layoutY="243.0" mnemonicParsing="false"  prefHeight="51.0" prefWidth="138.0" style="-fx-background-color: grey;" text="Hinzufügen" textFill="#ff8400">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="38.0" layoutY="14.0" prefHeight="34.0" prefWidth="204.0" text="Auto hinzufügen" textFill="DARKORANGE">
+         <font>
+            <Font name="System Bold Italic" size="23.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
