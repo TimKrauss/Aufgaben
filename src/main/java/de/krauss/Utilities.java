@@ -20,6 +20,7 @@ public class Utilities
 	 * 
 	 * @param start_Date Anfang der neuen Reservierung
 	 * @param stop_Date  Ende der neuen Reservierung
+	 * @param c          Das Auto welches zu der Zeit frei seien soll
 	 * @return Ob die Pflanze zu der Zeit schon reserviert ist
 	 */
 	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car c)
