@@ -40,6 +40,7 @@ public class Launcher extends Application implements Serializable
 	private MainFrameController controller;
 	private Thread userReaderThread;
 	private OracleDataBase orcb = new OracleDataBase(logger);
+	private FileManager fm;
 
 	/**
 	 * Kümmert sich um die Eingabe des User in der Konsole
@@ -407,7 +408,7 @@ public class Launcher extends Application implements Serializable
 			public void run()
 			{
 				logger.info("Hallo Lieber Kunde!");
-				logger.info("Möchten sie ein Auto anlegen? (ja oder nein");
+				logger.info("Möchten sie ein Auto anlegen? (ja oder nein)");
 				logger.info("Oder bereits hinzugefügte Autos ansehen? (list)");
 
 				BufferedReader reader = createReader(new InputStreamReader(System.in));
@@ -423,7 +424,7 @@ public class Launcher extends Application implements Serializable
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
-
+		fm = new FileManager(logger);
 		searcher = new Searcher(logger);
 		carlist = new CarList();
 
@@ -448,6 +449,7 @@ public class Launcher extends Application implements Serializable
 		controller.setDatenbankStatus(true, orcb.getDataBaseUser());
 		controller.setCarlist(carlist);
 		controller.setOracleDataBase(orcb);
+		controller.setFileManager(fm);
 		primaryStage.setTitle("Fuhrpark");
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>()
 		{

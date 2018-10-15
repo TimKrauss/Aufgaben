@@ -61,15 +61,14 @@ public class XStreamFileHandler extends FileHandler
 	public void safe(CarList cars, File f)
 	{
 		String xml = xs.toXML(cars.getList());
-		File chooFile = f;
 		if (f == null)
 		{
-			chooFile = getDefaultFile();
+			f = getDefaultFile();
 		}
 
 		try
 		{
-			PrintWriter wr = new PrintWriter(new FileWriter(chooFile));
+			PrintWriter wr = new PrintWriter(new FileWriter(f));
 			BufferedReader reader = new BufferedReader(new StringReader(xml));
 
 			String line = "";

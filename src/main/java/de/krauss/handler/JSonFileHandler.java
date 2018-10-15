@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringReader;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -23,10 +24,7 @@ public class JSonFileHandler extends FileHandler
 
 	public JSonFileHandler()
 	{
-		GsonBuilder builder = new GsonBuilder();
-		builder.setPrettyPrinting();
-
-		gson = builder.create();
+		gson = new GsonBuilder().setPrettyPrinting().create();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -75,13 +73,26 @@ public class JSonFileHandler extends FileHandler
 		try
 		{
 			PrintWriter wr = new PrintWriter(safeFile);
-			wr.println(gson.toJson(cars.getList(), ArrayList.class));
+
+			String line = "";
+
+			BufferedReader reader = new BufferedReader(new StringReader(gson.toJson(cars)));
+
+			while ((line = reader.readLine()) != null)
+			{
+				wr.println(line);
+			}
+
 			wr.flush();
 			wr.close();
 
 		} catch (FileNotFoundException e)
 		{
 			logger.fatal(e.getMessage());
+		} catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}

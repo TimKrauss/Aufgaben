@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 
 import de.krauss.Car;
 import de.krauss.CarList;
+import de.krauss.FileManager;
 import de.krauss.Launcher;
 import de.krauss.OracleDataBase;
 import de.krauss.Reservierung;
@@ -51,6 +52,7 @@ public class MainFrameController
 	private OracleDataBase orcb;
 	private Logger logger = Logger.getLogger("MainFrameController");
 	private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy (HH:mm)");
+	private FileManager fm;
 
 	/**
 	 * 
@@ -98,7 +100,7 @@ public class MainFrameController
 			Stage stage = new Stage();
 
 			controll.setStage(stage);
-			controll.init();
+			controll.init(fm);
 			controll.setCarlist(carlist);
 
 			stage.setTitle("Autos exportieren");
@@ -110,6 +112,11 @@ public class MainFrameController
 		{
 			e.printStackTrace();
 		}
+	}
+
+	public void setFileManager(FileManager m)
+	{
+		fm = m;
 	}
 
 	public void setOracleDataBase(OracleDataBase c)

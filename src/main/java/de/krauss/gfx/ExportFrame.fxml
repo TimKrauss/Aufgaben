@@ -41,7 +41,7 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btn_fileChooser" layoutX="219.0" layoutY="19.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="139.0" style="-fx-background-color: grey;" text="Speicherort auswählen" textFill="#ffaa00">
+      <Button fx:id="btn_fileChooser" layoutX="210.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: grey;" text="Speicherort auswählen" textFill="#ffaa00">
          <font>
             <Font name="System Italic" size="11.0" />
          </font>
@@ -52,5 +52,6 @@
             <Font name="System Italic" size="15.0" />
          </font>
       </Label>
+      <Label fx:id="lbl_Pfad" layoutX="196.0" layoutY="9.0" prefHeight="28.0" prefWidth="195.0" textFill="#ffaa00" />
    </children>
 </AnchorPane>

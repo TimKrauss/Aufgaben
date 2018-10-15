@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import de.krauss.handler.DumpFileHandler;
-import de.krauss.handler.FileHandler;
 import de.krauss.handler.JAXBFileHandler;
 import de.krauss.handler.JSonFileHandler;
 import de.krauss.handler.TxtFileHandler;
@@ -29,7 +28,7 @@ public class FileManager implements Serializable
 	private TxtFileHandler txtFileHandler;
 	private XStreamFileHandler xStreamFileHandler;
 	private JSonFileHandler jSonFileHandler;
-	private ArrayList<FileHandler> handlerList;
+	private Logger logger;
 
 	/**
 	 * 
@@ -90,6 +89,31 @@ public class FileManager implements Serializable
 		}
 	}
 
+	public void safe(CarList cars, int option, File f)
+	{
+		switch (option)
+		{
+		case DUMP_FILE:
+			dumpFileHandler.safe(cars, f);
+			break;
+		case JAXB_FILE:
+			jaxbFileHandler.safe(cars, f);
+			break;
+		case TXT_FILE:
+			txtFileHandler.safe(cars, f);
+			break;
+		case XSTREAM_FILE:
+			xStreamFileHandler.safe(cars, f);
+			break;
+		case JSON_FILE:
+			jSonFileHandler.safe(cars, f);
+			break;
+		default:
+			logger.warn("Fahrzeuge speichern wurde abgebrochen");
+			return;
+		}
+	}
+
 	/**
 	 * Konstruktor zur Initalisierung der Handler
 	 * 
@@ -97,19 +121,13 @@ public class FileManager implements Serializable
 	 */
 	public FileManager(Logger l)
 	{
-		handlerList = new ArrayList<>();
+		logger = l;
 
 		dumpFileHandler = new DumpFileHandler();
 		jaxbFileHandler = new JAXBFileHandler();
 		txtFileHandler = new TxtFileHandler();
 		xStreamFileHandler = new XStreamFileHandler();
 		jSonFileHandler = new JSonFileHandler();
-
-		handlerList.add(dumpFileHandler);
-		handlerList.add(jSonFileHandler);
-		handlerList.add(jaxbFileHandler);
-		handlerList.add(xStreamFileHandler);
-		handlerList.add(txtFileHandler);
 
 	}
 }

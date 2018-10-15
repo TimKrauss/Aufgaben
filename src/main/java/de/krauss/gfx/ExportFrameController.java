@@ -3,15 +3,13 @@ package de.krauss.gfx;
 import java.io.File;
 
 import de.krauss.CarList;
-import de.krauss.handler.DumpFileHandler;
-import de.krauss.handler.JSonFileHandler;
-import de.krauss.handler.TxtFileHandler;
-import de.krauss.handler.XStreamFileHandler;
+import de.krauss.FileManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -27,48 +25,51 @@ public class ExportFrameController
 	@FXML
 	private TextField txtf_Name;
 
-	private Stage stage;
-	private File expoDir;
-	private CarList carlist;
+	@FXML
+	private Label lbl_Pfad;
 
-	private DumpFileHandler dumpFile;
-	private JSonFileHandler jsonFile;
-	private TxtFileHandler txtFile;
-	private XStreamFileHandler xStreamFile;
+	private Stage stage;
+	private File expoDir = new File(System.getProperty("user.home") + "/Desktop/");
+	private CarList carlist;
+	private FileManager fm;
 
 	@FXML
 	public void exportieren()
 	{
 //
+		String fName = txtf_Name.getText();
 
-		if (expoDir == null)
+		if (expoDir == null || fName.equals(" +"))
 		{
 			return;
 		}
 
-		String fName = txtf_Name.getText();
-
 		if (check_Dump.isSelected())
 		{
-			dumpFile.safe(carlist, new File(expoDir.getAbsolutePath() + "/" + fName + ".DUMP"));
+			fm.safe(carlist, FileManager.DUMP_FILE, new File(expoDir.getAbsolutePath() + "/" + fName + ".DUMP"));
 		}
 		if (check_JSon.isSelected())
 		{
-			jsonFile.safe(carlist, new File(expoDir.getAbsolutePath() + "/" + fName + ".json"));
+			fm.safe(carlist, FileManager.JSON_FILE, new File(expoDir.getAbsolutePath() + "/" + fName + ".json"));
 		}
 		if (check_Txt.isSelected())
 		{
-			txtFile.safe(carlist, new File(expoDir.getAbsolutePath() + "/" + fName + ".txt"));
+			fm.safe(carlist, FileManager.TXT_FILE, new File(expoDir.getAbsolutePath() + "/" + fName + ".txt"));
 		}
 		if (check_XML.isSelected())
 		{
-			xStreamFile.safe(carlist, new File(expoDir.getAbsolutePath() + "/" + fName + ".xml"));
+			fm.safe(carlist, FileManager.XSTREAM_FILE, new File(expoDir.getAbsolutePath() + "/" + fName + ".xml"));
 		}
 
+		stage.getScene().getWindow().hide();
 	}
 
-	public void init()
+	public void init(FileManager m)
 	{
+
+		fm = m;
+		lbl_Pfad.setText(expoDir.getName());
+
 		btn_fileChooser.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
@@ -77,6 +78,7 @@ public class ExportFrameController
 				DirectoryChooser chooser = new DirectoryChooser();
 				chooser.setTitle("SpeicherOrt auswählen");
 				expoDir = chooser.showDialog(stage);
+				lbl_Pfad.setText(expoDir.getName());
 			}
 		});
 	}
