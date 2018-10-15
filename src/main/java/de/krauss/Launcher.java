@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.Serializable;
@@ -22,6 +23,7 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -161,12 +163,22 @@ public class Launcher extends Application implements Serializable
 
 	}
 
+	/**
+	 * 
+	 * @param in Der InputStream, welchen der Reader lesen soll
+	 * @return Den funtioniereden Reader
+	 */
 	public BufferedReader createReader(Reader in)
 	{
 		BufferedReader r = new BufferedReader(in);
 		return r;
 	}
 
+	/**
+	 * Startet das Programm
+	 * 
+	 * @param args Die Start-Paramter
+	 */
 	public static void main(String[] args)
 	{
 		Application.launch(args);
@@ -183,8 +195,6 @@ public class Launcher extends Application implements Serializable
 		logger.info("Bereits hinzugefügte Autos ansehen? (list)");
 		logger.info("Ein bereits hinzugefügtes Auto reservieren? (reservieren)");
 		logger.info("Eine bereits hinzugefügte Reservierung löschen? (rdel)");
-//		logger.info("Die vorhandenen Autos speichern? (safe)");
-//		logger.info("Vorhandene Autos aus einlesen? (load)");
 		logger.info("Vorhandene Autos durchsuchen? (search)");
 		return true;
 	}
@@ -202,6 +212,7 @@ public class Launcher extends Application implements Serializable
 		Car dCar = null;
 		int rnum = 1;
 		int resvNummerChoosen = 0;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy (HH:mm)");
 
 		for (Car c : carlist.getList())
 		{
@@ -231,7 +242,6 @@ public class Launcher extends Application implements Serializable
 			return false;
 		}
 
-		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy (HH:mm)");
 		sdf.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"));
 
 		logger.info("Name: " + dCar.getF_Name());
@@ -400,7 +410,12 @@ public class Launcher extends Application implements Serializable
 		return true;
 	}
 
-	public void startReaderThread()
+	/**
+	 * Startet einen Reader für Konsolen eingaben
+	 * 
+	 * @param in der InputStream von welchem gelewesen werden soll
+	 */
+	public void startReaderThread(InputStream in)
 	{
 		userReaderThread = new Thread(new Runnable()
 		{
@@ -411,7 +426,7 @@ public class Launcher extends Application implements Serializable
 				logger.info("Möchten sie ein Auto anlegen? (ja oder nein)");
 				logger.info("Oder bereits hinzugefügte Autos ansehen? (list)");
 
-				BufferedReader reader = createReader(new InputStreamReader(System.in));
+				BufferedReader reader = createReader(new InputStreamReader(in));
 				while (true)
 				{
 					handleUserInpunt(reader);
@@ -434,7 +449,7 @@ public class Launcher extends Application implements Serializable
 
 		if (primaryStage == null)
 		{
-			startReaderThread();
+			startReaderThread(System.in);
 			return;
 		}
 
@@ -451,6 +466,8 @@ public class Launcher extends Application implements Serializable
 		controller.setOracleDataBase(orcb);
 		controller.setFileManager(fm);
 		primaryStage.setTitle("Fuhrpark");
+		primaryStage.setResizable(false);
+		primaryStage.getIcons().add(new Image("icon.png"));
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>()
 		{
 			@Override
@@ -466,6 +483,6 @@ public class Launcher extends Application implements Serializable
 
 		// STOP WINDOW
 		fis.close();
-		startReaderThread();
+		startReaderThread(System.in);
 	}
 }

@@ -149,7 +149,9 @@ public class AddResvController
 
 	}
 
-	// Zeigt die Fehlermeldung an, dass die eingebene Zeit ungültig ist
+	/**
+	 * Zeigt die Fehlermeldung an, dass die eingebene Zeit ungültig ist
+	 */
 	private void showErrorPane()
 	{
 		JOptionPane.showMessageDialog(null, "Bitte die Zeit gültig eingeben!", "Warnung", JOptionPane.WARNING_MESSAGE);

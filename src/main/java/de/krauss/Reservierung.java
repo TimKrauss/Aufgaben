@@ -66,6 +66,12 @@ public class Reservierung implements Serializable
 		return resStop;
 	}
 
+	/**
+	 * 
+	 * @param reader Der Reader zum Lesen der Usereingabe
+	 * @param resCar Das Auto welches Resererviert werden soll
+	 * @return Eine Reservierung für das Auto
+	 */
 	public static Reservierung createReservierung(BufferedReader reader, Car resCar)
 	{
 		Date start = null;
@@ -99,21 +105,37 @@ public class Reservierung implements Serializable
 		this.resStop = resStop;
 	}
 
+	/**
+	 * 
+	 * @return Gibt die CAR_ID zurück
+	 */
 	public int getCarID()
 	{
 		return CAR_ID;
 	}
 
+	/**
+	 * 
+	 * @param iD Setzt die Car_ID
+	 */
 	public void setCarID(int iD)
 	{
 		CAR_ID = iD;
 	}
 
+	/**
+	 * 
+	 * @return Gibt die ReservierungsID zurück
+	 */
 	public int getRES_ID()
 	{
 		return RES_ID;
 	}
 
+	/**
+	 * 
+	 * @param rES_ID Setzt die ReservierungsID
+	 */
 	public void setRES_ID(int rES_ID)
 	{
 		RES_ID = rES_ID;

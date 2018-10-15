@@ -89,6 +89,13 @@ public class FileManager implements Serializable
 		}
 	}
 
+	/**
+	 * Speichert alle Farhzeuge in einer Datei
+	 * 
+	 * @param cars   Liste der Autos welche gespeichert werden soll
+	 * @param option Option mit welcher Methode die Autos gepseichert werden sollen
+	 * @param f      Die Datei in welcher die Autos gespeichert werden sollen.s
+	 */
 	public void safe(CarList cars, int option, File f)
 	{
 		switch (option)

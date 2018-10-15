@@ -23,6 +23,11 @@ public class AddCarController
 	@FXML
 	Button btn_Add;
 
+	/**
+	 * Fügt dem Button zum Hinzufügen des Autos einen Listener hinzu
+	 * 
+	 * @param con Setzt die Instanz des MainframeControllers
+	 */
 	public void addListenerToButton(MainFrameController con)
 	{
 		btn_Add.setOnAction(new EventHandler<ActionEvent>()
@@ -82,6 +87,10 @@ public class AddCarController
 		});
 	}
 
+	/**
+	 * 
+	 * @param c Setzt die Instanz der OracleDatabase
+	 */
 	public void setOracleDataBase(OracleDataBase c)
 	{
 		orcb = c;

@@ -27,6 +27,9 @@ public class JSonFileHandler implements FileHandler
 		gson = new GsonBuilder().setPrettyPrinting().create();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public ArrayList<Car> load(File f)
@@ -60,6 +63,9 @@ public class JSonFileHandler implements FileHandler
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void safe(CarList cars, File f)
 	{
@@ -97,6 +103,9 @@ public class JSonFileHandler implements FileHandler
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public File getDefaultFile()
 	{

@@ -63,6 +63,12 @@ public class MainFrameController
 		carlist = c;
 	}
 
+	/**
+	 * Zeigt im GUI an ob verbunden oder nicht
+	 * 
+	 * @param verbunden Verbunden oder nicht
+	 * @param user      Der User der in die DB eingeloggt ist
+	 */
 	public void setDatenbankStatus(boolean verbunden, String user)
 	{
 		if (verbunden)
@@ -83,6 +89,9 @@ public class MainFrameController
 		}
 	}
 
+	/**
+	 * Öffnet das Exportieren-Fenster
+	 */
 	@FXML
 	public void exportieren()
 	{
@@ -114,11 +123,19 @@ public class MainFrameController
 		}
 	}
 
+	/**
+	 * 
+	 * @param m Setzt die Instanz des Filemanager
+	 */
 	public void setFileManager(FileManager m)
 	{
 		fm = m;
 	}
 
+	/**
+	 * 
+	 * @param c Sezt die Instanz der OrcaleDataBase
+	 */
 	public void setOracleDataBase(OracleDataBase c)
 	{
 		orcb = c;
@@ -134,6 +151,9 @@ public class MainFrameController
 		initReslöschen();
 	}
 
+	/**
+	 * Initizalisiert die Liste
+	 */
 	private void initList()
 	{
 		list_Autos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>()
@@ -189,6 +209,9 @@ public class MainFrameController
 		});
 	}
 
+	/**
+	 * Fügt dem Reservierung-Löschen-Button eine Aktion hinzu
+	 */
 	private void initReslöschen()
 	{
 		btn_Reslöschen.setOnAction(new EventHandler<ActionEvent>()
@@ -208,6 +231,9 @@ public class MainFrameController
 		});
 	}
 
+	/**
+	 * Initalisiert die Combobox
+	 */
 	private void initCombo()
 	{
 		combo_Res.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>()
@@ -250,8 +276,8 @@ public class MainFrameController
 
 			Stage stage = new Stage();
 			stage.setTitle("Auto hinzufügen");
-			stage.setAlwaysOnTop(true);
 			stage.centerOnScreen();
+			stage.requestFocus();
 			stage.setScene(new Scene(root));
 			stage.show();
 		} catch (IOException e)

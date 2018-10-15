@@ -33,6 +33,9 @@ public class ExportFrameController
 	private CarList carlist;
 	private FileManager fm;
 
+	/**
+	 * Schließt das Exportieren ab und schließt das kleine Fenster
+	 */
 	@FXML
 	public void exportieren()
 	{
@@ -64,6 +67,11 @@ public class ExportFrameController
 		stage.getScene().getWindow().hide();
 	}
 
+	/**
+	 * Initalisiert alle von dem Fenster nötigen Elemente
+	 * 
+	 * @param m Setzt die Instanz des FileManagers
+	 */
 	public void init(FileManager m)
 	{
 
@@ -83,11 +91,19 @@ public class ExportFrameController
 		});
 	}
 
+	/**
+	 * 
+	 * @param stage Setzt die "Stage" Instanz
+	 */
 	public void setStage(Stage stage)
 	{
 		this.stage = stage;
 	}
 
+	/**
+	 * 
+	 * @param carlist Setzt die "Carlist" Instanz
+	 */
 	public void setCarlist(CarList carlist)
 	{
 		this.carlist = carlist;

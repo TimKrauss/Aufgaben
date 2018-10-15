@@ -119,11 +119,23 @@ public class Utilities
 
 	}
 
+	/**
+	 * Formatiert das Datum
+	 * 
+	 * @param d Das zu formatierende Datum
+	 * @return Das formatierte Datum
+	 */
 	public static String format(Date d)
 	{
 		return sdf.format(d);
 	}
 
+	/**
+	 * 
+	 * @param carlist Liste von der das Autos ausgesucht werden kann
+	 * @param reader  Reader zum Lesen der Usereingabe
+	 * @return Das ausgewählte Auto
+	 */
 	public static Car chooseCarFromList(CarList carlist, BufferedReader reader)
 	{
 		while (true)
