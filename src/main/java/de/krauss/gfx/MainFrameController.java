@@ -81,6 +81,37 @@ public class MainFrameController
 		}
 	}
 
+	@FXML
+	public void exportieren()
+	{
+		try
+		{
+			FXMLLoader loader = new FXMLLoader();
+			FileInputStream fis = new FileInputStream(
+					new File((Launcher.class.getResource("/de/krauss/gfx/ExportFrame.fxml").getFile())));
+			Parent root = loader.load(fis);
+			fis.close();
+			ExportFrameController controll = loader.getController();
+
+			// controll.addButtonListener(this);
+
+			Stage stage = new Stage();
+
+			controll.setStage(stage);
+			controll.init();
+			controll.setCarlist(carlist);
+
+			stage.setTitle("Autos exportieren");
+			stage.setAlwaysOnTop(true);
+			stage.centerOnScreen();
+			stage.setScene(new Scene(root));
+			stage.show();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
 	public void setOracleDataBase(OracleDataBase c)
 	{
 		orcb = c;

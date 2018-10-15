@@ -119,7 +119,8 @@ public class AddResvController
 
 				resv = new Reservierung(start_Date, stop_Date);
 
-				if (Utilities.isCarAvaible(start_Date, stop_Date, main.getSelectedCar()))
+				if (Utilities.isCarAvaible(start_Date, stop_Date, main.getSelectedCar()) || start_Date.after(new Date())
+						|| start_Date.before(stop_Date))
 				{
 					main.addReservierungToSelCar(resv);
 					((Node) (event.getSource())).getScene().getWindow().hide();
