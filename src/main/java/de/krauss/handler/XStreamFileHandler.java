@@ -18,7 +18,7 @@ import de.krauss.FileManager;
 import de.krauss.Launcher;
 import de.krauss.Reservierung;
 
-public class XStreamFileHandler extends FileHandler
+public class XStreamFileHandler implements FileHandler
 {
 	private XStream xs;
 

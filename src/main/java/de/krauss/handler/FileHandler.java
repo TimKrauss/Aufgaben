@@ -9,9 +9,9 @@ import de.krauss.Car;
 import de.krauss.CarList;
 import de.krauss.Launcher;
 
-public abstract class FileHandler
+public interface FileHandler
 {
-	protected Logger logger = Logger.getLogger(Launcher.class);
+	Logger logger = Logger.getLogger(Launcher.class);
 
 	/**
 	 * 

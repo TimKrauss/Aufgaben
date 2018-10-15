@@ -17,7 +17,7 @@ import de.krauss.Car;
 import de.krauss.CarList;
 import de.krauss.Launcher;
 
-public class JSonFileHandler extends FileHandler
+public class JSonFileHandler implements FileHandler
 {
 
 	private Gson gson;

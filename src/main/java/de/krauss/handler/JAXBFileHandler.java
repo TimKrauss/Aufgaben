@@ -18,7 +18,7 @@ import de.krauss.Car;
 import de.krauss.CarList;
 import de.krauss.Launcher;
 
-public class JAXBFileHandler extends FileHandler
+public class JAXBFileHandler implements FileHandler
 {
 	/**
 	 * {@inheritDoc}

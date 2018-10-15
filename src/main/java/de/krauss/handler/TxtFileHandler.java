@@ -17,7 +17,7 @@ import de.krauss.CarList;
 import de.krauss.Launcher;
 import de.krauss.Reservierung;
 
-public class TxtFileHandler extends FileHandler
+public class TxtFileHandler implements FileHandler
 {
 	/**
 	 * {@inheritDoc}

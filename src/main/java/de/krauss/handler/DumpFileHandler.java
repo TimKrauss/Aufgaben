@@ -15,7 +15,7 @@ import de.krauss.Car;
 import de.krauss.CarList;
 import de.krauss.Launcher;
 
-public class DumpFileHandler extends FileHandler
+public class DumpFileHandler implements FileHandler
 {
 	/**
 	 * {@inheritDoc}
