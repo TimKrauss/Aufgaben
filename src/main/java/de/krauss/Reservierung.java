@@ -32,7 +32,7 @@ public class Reservierung implements Serializable
 
 	/**
 	 * Erzeugt eine neue Reservierung und man setzt das Start, sowie StopDatum erst
-	 * am Ende
+	 * später
 	 */
 	public Reservierung()
 	{
@@ -91,7 +91,6 @@ public class Reservierung implements Serializable
 			r.setCarID(resCar.getCAR_ID());
 			r.setRES_ID(-1);
 			return r;
-
 		}
 
 	}

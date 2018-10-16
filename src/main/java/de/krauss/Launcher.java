@@ -1,8 +1,6 @@
 package de.krauss;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -20,13 +18,7 @@ import org.apache.log4j.Logger;
 import de.krauss.gfx.MainFrameController;
 import de.krauss.search.Searcher;
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 public class Launcher extends Application implements Serializable
 {
@@ -388,7 +380,6 @@ public class Launcher extends Application implements Serializable
 			carlist.getList().add(newCar);
 			orcb.addCar(newCar);
 			syncDatabase();
-			controller.setList(carlist.getList());
 			System.err.println("Auto hinzugefügt!");
 			logger.info("");
 			System.err.flush();
@@ -452,37 +443,16 @@ public class Launcher extends Application implements Serializable
 			startReaderThread(System.in);
 			return;
 		}
-
-		FXMLLoader loader = new FXMLLoader();
-
-		File f = new File(Launcher.class.getResource("/de/krauss/gfx/MainFrame.fxml").getFile());
-		System.out.println(f.getAbsolutePath());
-		FileInputStream fis = new FileInputStream(f);
-		AnchorPane pane = loader.load(fis);
-		primaryStage.setScene(new Scene(pane));
-		controller = loader.getController();
+		controller = MainFrameController.createWindow();
 		controller.setDatenbankStatus(true, orcb.getDataBaseUser());
 		controller.setCarlist(carlist);
 		controller.setOracleDataBase(orcb);
 		controller.setFileManager(fm);
-		primaryStage.setTitle("Fuhrpark");
-		primaryStage.setResizable(false);
-		primaryStage.getIcons().add(new Image("icon.png"));
-		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>()
-		{
-			@Override
-			public void handle(WindowEvent event)
-			{
-				System.exit(1);
-			}
-		});
-		primaryStage.show();
-
 		controller.init();
 		controller.setList(carlist.getList());
 
 		// STOP WINDOW
-		fis.close();
+
 		startReaderThread(System.in);
 	}
 }

@@ -1,5 +1,7 @@
 package de.krauss.gfx;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -9,15 +11,21 @@ import org.apache.log4j.Logger;
 import de.krauss.Car;
 import de.krauss.CarList;
 import de.krauss.FileManager;
+import de.krauss.Launcher;
 import de.krauss.OracleDataBase;
 import de.krauss.Reservierung;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class MainFrameController
 {
@@ -207,6 +215,34 @@ public class MainFrameController
 		{
 			logger.warn("Auto hinzugefügt, dennoch falscher Thread (" + e.getMessage() + ")");
 		}
+	}
+
+	public static MainFrameController createWindow()
+	{
+		try
+		{
+			FXMLLoader loader = new FXMLLoader();
+
+			File f = new File(Launcher.class.getResource("/de/krauss/gfx/MainFrame.fxml").getFile());
+			System.out.println(f.getAbsolutePath());
+			FileInputStream fis = new FileInputStream(f);
+			AnchorPane pane = loader.load(fis);
+			Stage primaryStage = new Stage();
+			primaryStage.setScene(new Scene(pane));
+			MainFrameController controller = loader.getController();
+
+			primaryStage.setTitle("Fuhrpark");
+			primaryStage.setResizable(false);
+			primaryStage.getIcons().add(new Image("icon.png"));
+
+			primaryStage.show();
+			fis.close();
+			return controller;
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**

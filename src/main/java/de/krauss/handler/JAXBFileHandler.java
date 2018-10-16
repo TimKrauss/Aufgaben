@@ -59,7 +59,7 @@ public class JAXBFileHandler implements FileHandler
 			if (chooFile == null)
 				chooFile = getDefaultFile();
 
-			PrintWriter wr = new PrintWriter(new FileWriter(f));
+			PrintWriter wr = new PrintWriter(new FileWriter(chooFile));
 			BufferedReader r = new BufferedReader(new StringReader(writer.toString()));
 
 			String line = "";

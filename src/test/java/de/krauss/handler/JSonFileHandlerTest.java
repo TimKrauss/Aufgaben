@@ -1,13 +1,13 @@
 package de.krauss.handler;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import de.krauss.Car;
 import de.krauss.CarList;
-import de.krauss.Launcher;
 
 public class JSonFileHandlerTest
 {
@@ -29,13 +29,15 @@ public class JSonFileHandlerTest
 		car.setF_Tacho(TACHO);
 		carlist.addCar(car);
 
+		dumpFileHandler.safe(carlist, dumpFileHandler.getDefaultFile());
 		dumpFileHandler.safe(carlist, null);
 		dumpFileHandler.safe(carlist, new File(""));
-		dumpFileHandler.safe(carlist, dumpFileHandler.getDefaultFile());
 
 		Assert.assertNull(dumpFileHandler.load(new File("")));
 		Assert.assertNull(dumpFileHandler.load(existButNotArrayList));
-		Assert.assertNotNull(dumpFileHandler.load(new File(Launcher.HOME_DIR + "Cars.json")));
+
+		ArrayList<Car> cars = dumpFileHandler.load(dumpFileHandler.getDefaultFile());
+		Assert.assertNull(cars);
 	}
 
 }

@@ -58,13 +58,35 @@ public class FileManager implements Serializable
 		}
 	}
 
+	public File getDefaultFile(int handler)
+	{
+		switch (handler)
+		{
+		case DUMP_FILE:
+			return dumpFileHandler.getDefaultFile();
+
+		case JAXB_FILE:
+			return jaxbFileHandler.getDefaultFile();
+
+		case TXT_FILE:
+			return txtFileHandler.getDefaultFile();
+
+		case XSTREAM_FILE:
+			return xStreamFileHandler.getDefaultFile();
+		case JSON_FILE:
+			return jSonFileHandler.getDefaultFile();
+		default:
+			return null;
+		}
+	}
+
 	/**
 	 * 
 	 * @param cars   Die Instanz der Klasse in welcher die Arraylist gespeichert ist
 	 * @param option Mit welcher Methode die Arraylist gespeichert werden soll
 	 * @param l      Der Logger mit welchem man dem User antworten kann
 	 */
-	public void safe(CarList cars, int option, Logger l)
+	public void safe(CarList cars, int option)
 	{
 		switch (option)
 		{
@@ -84,7 +106,7 @@ public class FileManager implements Serializable
 			jSonFileHandler.safe(cars, null);
 			break;
 		default:
-			l.warn("Fahrzeuge speichern wurde abgebrochen");
+			logger.warn("Fahrzeuge speichern wurde abgebrochen");
 			return;
 		}
 	}

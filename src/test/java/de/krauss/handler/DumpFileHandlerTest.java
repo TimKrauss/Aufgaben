@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import de.krauss.Car;
 import de.krauss.CarList;
-import de.krauss.Launcher;
 
 public class DumpFileHandlerTest
 {
@@ -23,7 +22,6 @@ public class DumpFileHandlerTest
 	@Test
 	public void test()
 	{
-
 		car.setF_Name(NAME);
 		car.setF_Marke(MARKE);
 		car.setF_Tacho(TACHO);
@@ -33,7 +31,8 @@ public class DumpFileHandlerTest
 		dumpFileHandler.safe(carlist, new File(""));
 		dumpFileHandler.safe(carlist, dumpFileHandler.getDefaultFile());
 
-		Assert.assertNotNull(dumpFileHandler.load(new File(Launcher.HOME_DIR + "Object")));
+		dumpFileHandler.safe(carlist, dumpFileHandler.getDefaultFile());
+		Assert.assertNotNull(dumpFileHandler.load(dumpFileHandler.getDefaultFile()));
 		Assert.assertNull(dumpFileHandler.load(new File("")));
 		Assert.assertNull(dumpFileHandler.load(existButNotArrayList));
 	}

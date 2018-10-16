@@ -25,7 +25,6 @@ public class TxtFileHandlerTest
 	@Test
 	public void test()
 	{
-
 		car.setF_Name(NAME);
 		car.setF_Marke(MARKE);
 		car.setF_Tacho(TACHO);
@@ -36,7 +35,7 @@ public class TxtFileHandlerTest
 		dumpFileHandler.safe(carlist, new File(""));
 		dumpFileHandler.safe(carlist, dumpFileHandler.getDefaultFile());
 
-		Assert.assertNotNull(dumpFileHandler.load(new File(Launcher.HOME_DIR + "Object")));
+		Assert.assertNull(dumpFileHandler.load(new File(Launcher.HOME_DIR + "Object")));
 		Assert.assertNotNull(dumpFileHandler.load(new File(Launcher.HOME_DIR + "Cars.txt")));
 		Assert.assertNull(dumpFileHandler.load(new File("")));
 

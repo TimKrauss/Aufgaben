@@ -5,7 +5,6 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" path="src/test/res"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/hamcrest-all-1.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/hamcrest-integration-1.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/ojdbc6-11.2.0.3.jar"/>
@@ -27,5 +26,17 @@
 	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/xstream-1.4.10/lib/xstream-hibernate/xstream-jmh-1.4.10.jar"/>
 	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/Logger4j/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/GSon/gson-2.8.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/TestFX/assertj-core-3.11.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/TestFX/groovy-all-2.4.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/TestFX/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/TestFX/spock-core-1.1-groovy-2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/TestFX/testfx-core-4.0.15-alpha.jar"/>
+	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/TestFX/testfx-spock-4.0.15-alpha.jar"/>
+	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/TestFX/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/TestFX/Extra/guava-14.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/TestFX/Extra/hamcrest-all-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/TestFX/Extra/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/TestFX/Extra/testFx-3.1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
