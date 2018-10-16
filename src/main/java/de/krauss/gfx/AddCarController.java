@@ -1,16 +1,26 @@
 package de.krauss.gfx;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 
 import de.krauss.Car;
 import de.krauss.CarList;
+import de.krauss.Launcher;
 import de.krauss.OracleDataBase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 public class AddCarController
 {
@@ -94,6 +104,32 @@ public class AddCarController
 	public void setOracleDataBase(OracleDataBase c)
 	{
 		orcb = c;
+	}
+
+	public static AddCarController createWindow()
+	{
+		try
+		{
+			FXMLLoader loader = new FXMLLoader();
+			FileInputStream fis = new FileInputStream(
+					new File((Launcher.class.getResource("/de/krauss/gfx/AddCar.fxml").getFile())));
+			Parent root = loader.load(fis);
+			AddCarController controll = loader.getController();
+
+			Stage stage = new Stage();
+			stage.setTitle("Auto hinzufügen");
+			stage.setAlwaysOnTop(true);
+			stage.getIcons().add(new Image("car.png"));
+			stage.centerOnScreen();
+			stage.setScene(new Scene(root));
+			stage.show();
+			fis.close();
+			return controll;
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**

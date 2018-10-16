@@ -1,16 +1,23 @@
 package de.krauss.gfx;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 import de.krauss.CarList;
 import de.krauss.FileManager;
+import de.krauss.Launcher;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
@@ -98,6 +105,40 @@ public class ExportFrameController
 	public void setStage(Stage stage)
 	{
 		this.stage = stage;
+	}
+
+	/**
+	 * Erzeugt das Fenster
+	 * 
+	 * @return Gibt den Controller für das Fenster zurück
+	 */
+	public static ExportFrameController createWindow()
+	{
+		try
+		{
+			FXMLLoader loader = new FXMLLoader();
+			FileInputStream fis = new FileInputStream(
+					new File((Launcher.class.getResource("/de/krauss/gfx/ExportFrame.fxml").getFile())));
+			Parent root = loader.load(fis);
+			fis.close();
+
+			ExportFrameController controll = loader.getController();
+			Stage stage = new Stage();
+
+			stage.setTitle("Autos exportieren");
+			stage.setAlwaysOnTop(true);
+			stage.getIcons().add(new Image("export.png"));
+			stage.centerOnScreen();
+			stage.setScene(new Scene(root));
+			controll.setStage(stage);
+			stage.show();
+
+			return controll;
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**

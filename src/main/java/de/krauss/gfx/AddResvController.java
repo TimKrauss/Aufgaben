@@ -1,5 +1,8 @@
 package de.krauss.gfx;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -7,16 +10,22 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import de.krauss.Launcher;
 import de.krauss.Reservierung;
 import de.krauss.Utilities;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 public class AddResvController
 {
@@ -119,8 +128,8 @@ public class AddResvController
 
 				resv = new Reservierung(start_Date, stop_Date);
 
-				if (Utilities.isCarAvaible(start_Date, stop_Date, main.getSelectedCar()) || start_Date.after(new Date())
-						|| start_Date.before(stop_Date))
+				if (Utilities.isCarAvaible(start_Date, stop_Date, main.getSelectedCar()) && start_Date.after(new Date())
+						&& start_Date.before(stop_Date))
 				{
 					main.addReservierungToSelCar(resv);
 					((Node) (event.getSource())).getScene().getWindow().hide();
@@ -147,6 +156,33 @@ public class AddResvController
 			}
 		});
 
+	}
+
+	public static AddResvController createWindow()
+	{
+		try
+		{
+			FXMLLoader loader = new FXMLLoader();
+			FileInputStream fis = new FileInputStream(
+					new File((Launcher.class.getResource("/de/krauss/gfx/AddResv.fxml").getFile())));
+			Parent root = loader.load(fis);
+			fis.close();
+			AddResvController controll = loader.getController();
+
+			Stage stage = new Stage();
+			stage.setTitle("Auto hinzufügen");
+			stage.setResizable(false);
+			stage.getIcons().add(new Image("res.png"));
+			stage.centerOnScreen();
+			stage.requestFocus();
+			stage.setScene(new Scene(root));
+			stage.show();
+			return controll;
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**

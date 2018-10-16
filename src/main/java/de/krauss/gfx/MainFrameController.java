@@ -1,9 +1,5 @@
 package de.krauss.gfx;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -13,25 +9,15 @@ import org.apache.log4j.Logger;
 import de.krauss.Car;
 import de.krauss.CarList;
 import de.krauss.FileManager;
-import de.krauss.Launcher;
 import de.krauss.OracleDataBase;
 import de.krauss.Reservierung;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 public class MainFrameController
 {
@@ -51,8 +37,9 @@ public class MainFrameController
 	private CarList carlist;
 	private OracleDataBase orcb;
 	private Logger logger = Logger.getLogger("MainFrameController");
-	private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy (HH:mm)");
+
 	private FileManager fm;
+	private Initializer initer;
 
 	/**
 	 * 
@@ -95,32 +82,9 @@ public class MainFrameController
 	@FXML
 	public void exportieren()
 	{
-		try
-		{
-			FXMLLoader loader = new FXMLLoader();
-			FileInputStream fis = new FileInputStream(
-					new File((Launcher.class.getResource("/de/krauss/gfx/ExportFrame.fxml").getFile())));
-			Parent root = loader.load(fis);
-			fis.close();
-			ExportFrameController controll = loader.getController();
-
-			// controll.addButtonListener(this);
-
-			Stage stage = new Stage();
-
-			controll.setStage(stage);
-			controll.init(fm);
-			controll.setCarlist(carlist);
-
-			stage.setTitle("Autos exportieren");
-			stage.setAlwaysOnTop(true);
-			stage.centerOnScreen();
-			stage.setScene(new Scene(root));
-			stage.show();
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+		ExportFrameController controll = ExportFrameController.createWindow();
+		controll.init(fm);
+		controll.setCarlist(carlist);
 	}
 
 	/**
@@ -146,114 +110,21 @@ public class MainFrameController
 	 */
 	public void init()
 	{
-		initList();
-		initCombo();
-		initReslöschen();
-	}
-
-	/**
-	 * Initizalisiert die Liste
-	 */
-	private void initList()
-	{
-		list_Autos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>()
-		{
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
-			{
-				// change the label text value to the newly selected
-				// item.
-
-				int opt = list_Autos.getSelectionModel().getSelectedIndex();
-				if (opt == -1)
-				{
-					combo_Res.setItems(FXCollections.observableArrayList());
-					combo_Res.setDisable(true);
-					btn_Löschen.setDisable(true);
-					btn_Reservieren.setDisable(true);
-					btn_Reslöschen.setDisable(true);
-					return;
-				}
-				Car c = carlist.getCar(opt);
-
-				ArrayList<String> res_Name = new ArrayList<>();
-
-				combo_Res.getItems().clear();
-				combo_Res.getSelectionModel().select(-1);
-
-				lbl_Res_start.setText("");
-				lbl_Res_stop.setText("");
-
-				if (c.getReservs().size() == 0)
-				{
-					combo_Res.setDisable(true);
-					btn_Reslöschen.setDisable(true);
-				} else
-				{
-					combo_Res.setDisable(false);
-					btn_Reslöschen.setDisable(false);
-				}
-
-				for (int count = 0; count < c.getReservs().size(); count++)
-				{
-					res_Name.add((count + 1) + "# Reservierung");
-				}
-
-				combo_Res.setItems(FXCollections.observableArrayList(res_Name));
-				combo_Res.getSelectionModel().select(0);
-				label_Name.setText(c.getF_Name());
-				label_Marke.setText(c.getF_Marke());
-				label_Tachostand.setText(c.getF_Tacho() + "");
-				btn_Löschen.setDisable(false);
-				btn_Reservieren.setDisable(false);
-			}
-		});
-	}
-
-	/**
-	 * Fügt dem Reservierung-Löschen-Button eine Aktion hinzu
-	 */
-	private void initReslöschen()
-	{
-		btn_Reslöschen.setOnAction(new EventHandler<ActionEvent>()
-		{
-			@Override
-			public void handle(ActionEvent event)
-			{
-				Car selCar = carlist.getCar(list_Autos.getSelectionModel().getSelectedIndex());
-				Reservierung r = selCar.getReservs().get(combo_Res.getSelectionModel().getSelectedIndex());
-
-				orcb.deleteReservierung(r);
-				selCar.getReservs().remove(r);
-
-				carlist.setCars(orcb.loadDatabase());
-				setList(carlist.getList());
-			}
-		});
-	}
-
-	/**
-	 * Initalisiert die Combobox
-	 */
-	private void initCombo()
-	{
-		combo_Res.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>()
-		{
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
-			{
-				int opt = combo_Res.getSelectionModel().getSelectedIndex();
-				if (opt == -1)
-				{
-					lbl_Res_start.setText("");
-					lbl_Res_stop.setText("");
-					return;
-				}
-
-				Car c = carlist.getCar(list_Autos.getSelectionModel().getSelectedIndex());
-				Reservierung r = c.getReservs().get(opt);
-				lbl_Res_start.setText(format.format(r.getResStart()));
-				lbl_Res_stop.setText(format.format(r.getResStop()));
-			}
-		});
+		initer = new Initializer();
+		initer.setList_Autos(list_Autos);
+		initer.setBtn_Löschen(btn_Löschen);
+		initer.setBtn_Reservieren(btn_Reservieren);
+		initer.setBtn_Reslöschen(btn_Reslöschen);
+		initer.setCarlist(carlist);
+		initer.setCombo_Res(combo_Res);
+		initer.setLabel_Marke(label_Marke);
+		initer.setLabel_Name(label_Name);
+		initer.setLabel_Tachostand(label_Tachostand);
+		initer.setLbl_Res_start(lbl_Res_start);
+		initer.setLbl_Res_stop(lbl_Res_stop);
+		initer.setMainFrameController(this);
+		initer.setOracleDataBase(orcb);
+		initer.init();
 	}
 
 	/**
@@ -263,27 +134,8 @@ public class MainFrameController
 	@FXML
 	public void reservieren()
 	{
-		try
-		{
-			FXMLLoader loader = new FXMLLoader();
-			FileInputStream fis = new FileInputStream(
-					new File((Launcher.class.getResource("/de/krauss/gfx/AddResv.fxml").getFile())));
-			Parent root = loader.load(fis);
-			fis.close();
-			AddResvController controll = loader.getController();
-
-			controll.addButtonListener(this);
-
-			Stage stage = new Stage();
-			stage.setTitle("Auto hinzufügen");
-			stage.centerOnScreen();
-			stage.requestFocus();
-			stage.setScene(new Scene(root));
-			stage.show();
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+		AddResvController controll = AddResvController.createWindow();
+		controll.addButtonListener(this);
 	}
 
 	/**
@@ -295,13 +147,13 @@ public class MainFrameController
 	{
 		try
 		{
-			Car c = carlist.getCar(list_Autos.getSelectionModel().getSelectedIndex());
+			Car c = getSelectedCar();
 			r.setCarID(c.getCAR_ID());
 			c.addResv(r);
 			orcb.uploadRes(r);
 		} catch (Exception e)
 		{
-			System.out.println("Kein Auto ausgewählt");
+			logger.info("Kein Auto ausgewählt");
 		}
 	}
 
@@ -311,36 +163,10 @@ public class MainFrameController
 	@FXML
 	public void hinzufügen()
 	{
-		try
-		{
-			FXMLLoader loader = new FXMLLoader();
-			FileInputStream fis = new FileInputStream(
-					new File((Launcher.class.getResource("/de/krauss/gfx/AddCar.fxml").getFile())));
-			Parent root = loader.load(fis);
-			AddCarController controll = loader.getController();
-
-			controll.setCarlist(carlist);
-			controll.addListenerToButton(this);
-			controll.setOracleDataBase(orcb);
-			Stage stage = new Stage();
-			stage.setTitle("Auto hinzufügen");
-			stage.setAlwaysOnTop(true);
-			stage.setOnCloseRequest(new EventHandler<WindowEvent>()
-			{
-				@Override
-				public void handle(WindowEvent arg0)
-				{
-//
-				}
-			});
-			stage.centerOnScreen();
-			stage.setScene(new Scene(root));
-			stage.show();
-			fis.close();
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+		AddCarController controll = AddCarController.createWindow();
+		controll.setCarlist(carlist);
+		controll.addListenerToButton(this);
+		controll.setOracleDataBase(orcb);
 	}
 
 	/**
@@ -349,15 +175,13 @@ public class MainFrameController
 	@FXML
 	public void ausgewählteLöschen()
 	{
-		Car c = carlist.getCar(list_Autos.getSelectionModel().getSelectedIndex());
-
 		int opt = JOptionPane.showConfirmDialog(null,
-				"Wollen sie das Auto '" + c.getF_Name() + "' wirklich endgültig löschen?");
+				"Wollen sie das Auto '" + getSelectedCar().getF_Name() + "' wirklich endgültig löschen?");
 		if (opt == JOptionPane.OK_OPTION)
 		{
 			carlist.getList().remove(list_Autos.getSelectionModel().getSelectedIndex());
 			list_Autos.getSelectionModel().clearSelection();
-			orcb.deleteCarFromDatabase(c.getCAR_ID());
+			orcb.deleteCarFromDatabase(getSelectedCar().getCAR_ID());
 			setList(carlist.getList());
 		}
 
@@ -385,6 +209,10 @@ public class MainFrameController
 		}
 	}
 
+	/**
+	 * 
+	 * @return Gibt das ausgewählte Auto zurück
+	 */
 	public Car getSelectedCar()
 	{
 		return carlist.getCar(list_Autos.getSelectionModel().getSelectedIndex());

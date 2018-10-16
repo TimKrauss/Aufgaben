@@ -48,7 +48,7 @@ public class Utilities
 	{
 		logger.info("Wie viele Kilometer hat das Auto auf dem Buckel?");
 
-		int kilo;
+		int kilo = 0;
 
 		while (true)
 		{
