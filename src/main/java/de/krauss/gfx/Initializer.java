@@ -35,6 +35,9 @@ public class Initializer
 	private MainFrameController controller;
 	private OracleDataBase orcb;
 
+	/**
+	 * Startet die Initaliasierung von Liste,ComboBox, den Button reslöschen
+	 */
 	public void init()
 	{
 		initList();
@@ -116,7 +119,7 @@ public class Initializer
 				orcb.deleteReservierung(r);
 				selCar.getReservs().remove(r);
 
-				carlist.setCars(orcb.loadDatabase());
+				carlist.loadCarsFromDataBase(orcb);
 				controller.setList(carlist.getList());
 			}
 		});

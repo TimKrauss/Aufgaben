@@ -12,7 +12,6 @@ import de.krauss.CarList;
 public class JSonFileHandlerTest
 {
 	private JSonFileHandler dumpFileHandler = new JSonFileHandler();
-
 	private CarList carlist = new CarList();
 	private Car car = new Car();
 	private static final String NAME = "NAME", MARKE = "MARKE";
@@ -37,7 +36,7 @@ public class JSonFileHandlerTest
 		Assert.assertNull(dumpFileHandler.load(existButNotArrayList));
 
 		ArrayList<Car> cars = dumpFileHandler.load(dumpFileHandler.getDefaultFile());
-		Assert.assertNull(cars);
+		Assert.assertNotNull(cars);
 	}
 
 }

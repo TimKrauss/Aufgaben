@@ -14,7 +14,6 @@ import de.krauss.Reservierung;
 public class TxtFileHandlerTest
 {
 	private TxtFileHandler dumpFileHandler = new TxtFileHandler();
-
 	private CarList carlist = new CarList();
 	private Car car = new Car();
 	private static final String NAME = "NAME", MARKE = "MARKE";
@@ -38,7 +37,6 @@ public class TxtFileHandlerTest
 		Assert.assertNull(dumpFileHandler.load(new File(Launcher.HOME_DIR + "Object")));
 		Assert.assertNotNull(dumpFileHandler.load(new File(Launcher.HOME_DIR + "Cars.txt")));
 		Assert.assertNull(dumpFileHandler.load(new File("")));
-
 	}
 
 }

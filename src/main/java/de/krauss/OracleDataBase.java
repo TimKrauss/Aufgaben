@@ -74,6 +74,12 @@ public class OracleDataBase
 		return false;
 	}
 
+	/**
+	 * Löscht ein Auto aus der Datenbank
+	 * 
+	 * @param id Die ID des zu löschenden Autos
+	 * @return Ob das löschen erfolgreich war
+	 */
 	public boolean deleteCarFromDatabase(int id)
 	{
 		try
@@ -247,6 +253,7 @@ public class OracleDataBase
 
 			smt.executeQuery();
 			smt.close();
+			logger.info("Reservierung hochgeladen");
 			return true;
 		} catch (SQLException e)
 		{

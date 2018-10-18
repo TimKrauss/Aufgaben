@@ -21,7 +21,6 @@ public class SearcherTest
 	public void init()
 	{
 		searcher = new Searcher(logger);
-		list = new CarList();
 
 		Car c = new Car();
 		c.setCAR_ID(CAR_ID);

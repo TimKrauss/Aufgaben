@@ -8,11 +8,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-import javax.swing.JOptionPane;
-
 import de.krauss.Launcher;
 import de.krauss.Reservierung;
 import de.krauss.Utilities;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -33,7 +32,7 @@ public class AddResvController
 	private DatePicker date_Start, date_Stop;
 
 	@FXML
-	private TextField textf_Stop, txtf_Start;
+	private TextField textf_Stop, textf_Start;
 
 	@FXML
 	private Label lbl_Resviert;
@@ -60,7 +59,7 @@ public class AddResvController
 				LocalDate local_Start = date_Start.getValue();
 				LocalDate local_Stop = date_Stop.getValue();
 
-				String txtFromStart = txtf_Start.getText();
+				String txtFromStart = textf_Start.getText();
 				String txtFromStop = textf_Stop.getText();
 
 				int start_Hours = 0;
@@ -72,7 +71,7 @@ public class AddResvController
 				if (txtFromStart.equals("") || !txtFromStart.contains(":") || txtFromStop.equals("")
 						|| !txtFromStop.contains(":") || local_Start == null || local_Stop == null)
 				{
-					showErrorPane();
+					showErrorMessage("Überprüfe bitte nochmal alle Eingaben");
 					return;
 				}
 
@@ -85,34 +84,34 @@ public class AddResvController
 					start_Hours = Integer.parseInt(txtSplitedStart[0]);
 					if (start_Hours < 0 || start_Hours > 23)
 					{
-						showErrorPane();
+						showErrorMessage("Startdatum: Bitte die Stunden gültig eingeben");
 						return;
 					}
 
 					start_Minutes = Integer.parseInt(txtSplitedStart[1]);
 					if (start_Minutes < 0 || start_Minutes > 59)
 					{
-						showErrorPane();
+						showErrorMessage("Startdatum: Bitte die Minuten gültig eingeben");
 						return;
 					}
 
 					stop_Hours = Integer.parseInt(txtSplitedStop[0]);
 					if (stop_Hours < 0 || stop_Hours > 23)
 					{
-						showErrorPane();
+						showErrorMessage("Stopdatum: Bitte die Stunden gültig eingeben");
 						return;
 					}
 
 					stop_Minutes = Integer.parseInt(txtSplitedStop[1]);
 					if (stop_Minutes < 0 || stop_Minutes > 59)
 					{
-						showErrorPane();
+						showErrorMessage("Stopdatum: Bitte die Minuten gültig eingeben");
 						return;
 					}
 
 				} catch (NumberFormatException e)
 				{
-					showErrorPane();
+					showErrorMessage("Bitte die Uhrzeiten gültig eingeben");
 					return;
 				}
 
@@ -128,36 +127,69 @@ public class AddResvController
 
 				resv = new Reservierung(start_Date, stop_Date);
 
-				if (Utilities.isCarAvaible(start_Date, stop_Date, main.getSelectedCar()) && start_Date.after(new Date())
-						&& start_Date.before(stop_Date))
+				if (Utilities.isCarAvaible(start_Date, stop_Date, main.getSelectedCar(), getController()))
 				{
 					main.addReservierungToSelCar(resv);
 					((Node) (event.getSource())).getScene().getWindow().hide();
-				} else
-				{
-					lbl_Resviert.setVisible(true);
-					new Thread(new Runnable()
-					{
-						@Override
-						public void run()
-						{
-							try
-							{
-								Thread.sleep(2000);
-							} catch (InterruptedException e)
-							{
-								e.printStackTrace();
-							}
-							lbl_Resviert.setVisible(false);
-						}
-					}).start();
 				}
+
 				return;
 			}
 		});
 
 	}
 
+	/**
+	 * Gibt auf dem ReservierungsFrame eine Fehlermeldung aus
+	 * 
+	 * @param txt Die Fehlermeldung
+	 */
+	public void showErrorMessage(String txt)
+	{
+		lbl_Resviert.setText("");
+		lbl_Resviert.setVisible(true);
+		new Thread(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				try
+				{
+					Platform.runLater(new Runnable()
+					{
+						@Override
+						public void run()
+						{
+							lbl_Resviert.setText(txt);
+						}
+					});
+					Thread.sleep(3000);
+				} catch (InterruptedException e)
+				{
+					e.printStackTrace();
+				} catch (Exception e)
+				{
+					// DO NOTHING
+				}
+				lbl_Resviert.setVisible(false);
+			}
+		}).start();
+	}
+
+	/**
+	 * 
+	 * @return Gibt diese Instanz der Klasse zurück
+	 */
+	private AddResvController getController()
+	{
+		return this;
+	}
+
+	/**
+	 * Erzeugt das Fenster
+	 * 
+	 * @return Gibt die Controller-Instanz des Fenster zurück
+	 */
 	public static AddResvController createWindow()
 	{
 		try
@@ -170,7 +202,7 @@ public class AddResvController
 			AddResvController controll = loader.getController();
 
 			Stage stage = new Stage();
-			stage.setTitle("Auto hinzufügen");
+			stage.setTitle("Reservierung hinzufügen");
 			stage.setResizable(false);
 			stage.getIcons().add(new Image("res.png"));
 			stage.centerOnScreen();
@@ -183,14 +215,6 @@ public class AddResvController
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	/**
-	 * Zeigt die Fehlermeldung an, dass die eingebene Zeit ungültig ist
-	 */
-	private void showErrorPane()
-	{
-		JOptionPane.showMessageDialog(null, "Bitte die Zeit gültig eingeben!", "Warnung", JOptionPane.WARNING_MESSAGE);
 	}
 
 }

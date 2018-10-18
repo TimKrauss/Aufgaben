@@ -10,6 +10,8 @@ import java.util.TimeZone;
 
 import org.apache.log4j.Logger;
 
+import de.krauss.gfx.AddResvController;
+
 public class Utilities
 {
 	public static final String sdf_Pattern = "dd.MM.yyyy (HH:mm)";
@@ -17,23 +19,101 @@ public class Utilities
 	private static Logger logger = Logger.getLogger("Utilities");
 
 	/**
+	 * Guckt ob das Auto zu der Zeit noch frei ist und gibt, falls nicht, eine
+	 * Fehlermeldung auf dem Frame aus
 	 * 
 	 * @param start_Date Anfang der neuen Reservierung
 	 * @param stop_Date  Ende der neuen Reservierung
 	 * @param c          Das Auto welches zu der Zeit frei seien soll
-	 * @return Ob die Pflanze zu der Zeit schon reserviert ist
+	 * @param controll   Zum Ausgeben der ErrorMeldung auf dem GUI
+	 * @return Ob das Auto zu der Zeit schon reserviert ist
 	 */
-	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car c)
+	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car c, AddResvController controll)
 	{
+
 		for (Reservierung r : c.getReservs())
 		{
-			if (r.getResStop().before(start_Date) || r.getResStart().after(stop_Date))
+			Date oldStart = r.getResStart();
+			Date oldStop = r.getResStop();
+
+			if (start_Date.before(new Date()))
 			{
+				controll.showErrorMessage("Keine Reservierungen in der Vergangenheit möglich");
 				return false;
 			}
 
-			if (r.getResStart().before(start_Date) && r.getResStop().after(stop_Date))
+			if (start_Date.after(stop_Date))
+			{
+				controll.showErrorMessage("Start Datum nach Stop Datum");
 				return false;
+			}
+
+			if (start_Date.after(oldStart) && start_Date.before(oldStop))
+			{
+				controll.showErrorMessage("StartDatum liegt zwischen einer anderen Reservierung");
+				return false;
+			}
+
+			if (stop_Date.after(oldStart) && stop_Date.before(oldStop))
+			{
+				controll.showErrorMessage("StopDatum liegt zwischen einer anderen Reservierung");
+				return false;
+			}
+
+			if (start_Date.before(oldStart) && stop_Date.after(oldStop))
+			{
+				controll.showErrorMessage("Zeitraum überschneidet sich mit einer anderen Reservierung");
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Guckt ob das Auto zu der Zeit noch frei ist
+	 * 
+	 * @param start_Date Anfang der neuen Reservierung
+	 * @param stop_Date  Ende der neuen Reservierung
+	 * @param c          Das Auto welches zu der Zeit frei seien soll
+	 * @return Ob das Auto zu der Zeit schon reserviert ist
+	 */
+	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car c)
+	{
+
+		for (Reservierung r : c.getReservs())
+		{
+			Date oldStart = r.getResStart();
+			Date oldStop = r.getResStop();
+
+			if (start_Date.before(new Date()))
+			{
+				logger.error("Keine Reservierungen in der Vergangenheit möglich");
+				return false;
+			}
+
+			if (start_Date.after(stop_Date))
+			{
+				logger.error("Start Datum nach Stop Datum");
+				return false;
+			}
+
+			if (start_Date.after(oldStart) && start_Date.before(oldStop))
+			{
+				logger.error("StartDatum liegt zwischen einer anderen Reservierung");
+				return false;
+			}
+
+			if (stop_Date.after(oldStart) && stop_Date.before(oldStop))
+			{
+				logger.error("StopDatum liegt zwischen einer anderen Reservierung");
+				return false;
+			}
+
+			if (start_Date.before(oldStart) && stop_Date.after(oldStop))
+			{
+				logger.error("Zeitraum überschneidet sich mit einer anderen Reservierung");
+				return false;
+			}
 		}
 		return true;
 	}
@@ -54,12 +134,11 @@ public class Utilities
 		{
 			try
 			{
-
 				String line = r.readLine();
 				if (line == null)
 				{
 					logger.fatal("Keine Zeile mehr zu lesen");
-					System.exit(1);
+					return 0;
 				}
 
 				kilo = Integer.parseInt(line);
@@ -115,9 +194,7 @@ public class Utilities
 				logger.fatal(e.getMessage());
 				return null;
 			}
-
 		}
-
 	}
 
 	/**
@@ -132,6 +209,7 @@ public class Utilities
 	}
 
 	/**
+	 * Sucht aus der Carliste ein Auto aus
 	 * 
 	 * @param carlist Liste von der das Autos ausgesucht werden kann
 	 * @param reader  Reader zum Lesen der Usereingabe

@@ -34,7 +34,8 @@ public class AddCarController
 	Button btn_Add;
 
 	/**
-	 * Fügt dem Button zum Hinzufügen des Autos einen Listener hinzu
+	 * Fügt dem Button zum Hinzufügen des Autos einen Listener hinzu TODO Adde eine
+	 * ErrorZeile (wie bei AddResv)
 	 * 
 	 * @param con Setzt die Instanz des MainframeControllers
 	 */
@@ -82,7 +83,7 @@ public class AddCarController
 					c.setF_Tacho(int_Tacho);
 
 					orcb.addCar(c);
-					carlist.addCar(c);
+					carlist.loadCarsFromDataBase(orcb);
 					con.setList(carlist.getList());
 					((Node) (event.getSource())).getScene().getWindow().hide();
 
@@ -107,23 +108,32 @@ public class AddCarController
 		orcb = c;
 	}
 
+	/**
+	 * Erzeugt eine Instanz des Fensters
+	 * 
+	 * @return Gibt den Controller für das Fenster zurück
+	 */
 	public static AddCarController createWindow()
 	{
 		try
 		{
+			// Load FXML File
 			FXMLLoader loader = new FXMLLoader();
 			FileInputStream fis = new FileInputStream(
 					new File((Launcher.class.getResource("/de/krauss/gfx/AddCar.fxml").getFile())));
 			Parent root = loader.load(fis);
 			AddCarController controll = loader.getController();
 
+			// Create Stage & Show
 			Stage stage = new Stage();
 			stage.setTitle("Auto hinzufügen");
 			stage.setAlwaysOnTop(true);
 			stage.getIcons().add(new Image("car.png"));
 			stage.centerOnScreen();
+			stage.setResizable(false);
 			stage.setScene(new Scene(root));
 			stage.show();
+
 			fis.close();
 			return controll;
 		} catch (IOException e)

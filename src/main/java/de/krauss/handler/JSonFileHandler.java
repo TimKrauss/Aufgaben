@@ -82,7 +82,7 @@ public class JSonFileHandler implements FileHandler
 
 			String line = "";
 
-			BufferedReader reader = new BufferedReader(new StringReader(gson.toJson(cars)));
+			BufferedReader reader = new BufferedReader(new StringReader(gson.toJson(cars.getList(), ArrayList.class)));
 
 			while ((line = reader.readLine()) != null)
 			{

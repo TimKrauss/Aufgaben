@@ -67,6 +67,7 @@ public class Reservierung implements Serializable
 	}
 
 	/**
+	 * Erstellt eine Reservierung
 	 * 
 	 * @param reader Der Reader zum Lesen der Usereingabe
 	 * @param resCar Das Auto welches Resererviert werden soll

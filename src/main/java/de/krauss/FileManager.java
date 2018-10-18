@@ -58,6 +58,11 @@ public class FileManager implements Serializable
 		}
 	}
 
+	/**
+	 * 
+	 * @param handler Der Handler von welchem das StandardFile zurückgegeben wird
+	 * @return Das Standard-File für den Handler
+	 */
 	public File getDefaultFile(int handler)
 	{
 		switch (handler)
@@ -84,7 +89,6 @@ public class FileManager implements Serializable
 	 * 
 	 * @param cars   Die Instanz der Klasse in welcher die Arraylist gespeichert ist
 	 * @param option Mit welcher Methode die Arraylist gespeichert werden soll
-	 * @param l      Der Logger mit welchem man dem User antworten kann
 	 */
 	public void safe(CarList cars, int option)
 	{

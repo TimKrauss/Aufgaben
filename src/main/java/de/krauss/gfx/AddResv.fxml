@@ -31,7 +31,7 @@
             <Font name="Arial Black" size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtf_Start" alignment="CENTER" layoutX="199.0" layoutY="95.0" prefHeight="38.0" prefWidth="149.0" promptText="00:00" style="-fx-background-color: orange; -fx-text-inner-color: black;">
+      <TextField fx:id="textf_Start" alignment="CENTER" layoutX="199.0" layoutY="95.0" prefHeight="38.0" prefWidth="149.0" promptText="00:00" style="-fx-background-color: orange; -fx-text-inner-color: black;">
          <font>
             <Font name="Arial Black" size="18.0" />
          </font>
@@ -41,7 +41,7 @@
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Button>
-      <Label fx:id="lbl_Resviert" layoutX="108.0" layoutY="330.0" prefHeight="38.0" prefWidth="160.0" text="Zu der Zeit schon reserviert" textFill="RED" underline="true" visible="false">
+      <Label fx:id="lbl_Resviert" alignment="CENTER" contentDisplay="CENTER" layoutY="330.0" prefHeight="38.0" prefWidth="362.0" text="Zu der Zeit schon reserviert" textFill="RED" underline="true" visible="false">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

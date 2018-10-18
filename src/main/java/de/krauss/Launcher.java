@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
 import de.krauss.gfx.MainFrameController;
 import de.krauss.search.Searcher;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 public class Launcher extends Application implements Serializable
@@ -56,18 +57,18 @@ public class Launcher extends Application implements Serializable
 		switch (txt)
 		{
 		case "ja":
-			Autohinzufügen(reader);
+			carlist.Autohinzufügen(reader, orcb);
 			standardCall();
 			break;
 		case "nein":
 			logger.info("Dann eben nicht :(");
 			break;
 		case "list":
-			listCars();
+			carlist.listCars();
 			standardCall();
 			break;
 		case "reservieren":
-			reservieren(reader);
+			carlist.reservieren(reader, orcb);
 			standardCall();
 			break;
 		case "del":
@@ -87,7 +88,7 @@ public class Launcher extends Application implements Serializable
 
 			logger.info("Welches Auto soll gelöscht werden?");
 			orcb.deleteCarFromDatabase(Utilities.chooseCarFromList(carlist, reader).getCAR_ID());
-			syncDatabase();
+			carlist.loadCarsFromDataBase(orcb);
 			standardCall();
 			break;
 		case "rdel":
@@ -269,137 +270,14 @@ public class Launcher extends Application implements Serializable
 		return true;
 	}
 
-	/**
-	 * Reserviert ein Fahrzeug
-	 * 
-	 * @param reader Der Reader mit welchen die Usereingaben gelesen werden können
-	 * @return Ob das reservieren erfolgreich war
-	 */
-	public boolean reservieren(BufferedReader reader)
-	{
-		listCars();
-		Car resCar = new Car();
-		while (true)
-		{
-
-			logger.info("Welches Auto wollen sie Reservieren? (1 - " + carlist.getList().size() + ")");
-			while (true)
-			{
-				try
-				{
-					resCar = carlist.getList().get((Integer.parseInt(reader.readLine()) - 1));
-					break;
-				} catch (Exception e)
-				{
-					logger.warn("Bitte eine vorhandene Zahl angeben!");
-				}
-
-			}
-
-			Reservierung r = Reservierung.createReservierung(reader, resCar);
-
-			if (!Utilities.isCarAvaible(r.getResStart(), r.getResStop(), resCar))
-			{
-				logger.error("Auto zu der Zeit leider reserviert....");
-				logger.info("Bitte wählen sie ein anderes Datum");
-			} else
-			{
-				r.setRES_ID(-1);
-				resCar.addResv(r);
-				orcb.uploadRes(r);
-				logger.info("Reserviert!");
-				return true;
-			}
-		}
-	}
-
-	/**
-	 * Listet alle Fahrzeuge nacheinander in der Konsole auf
-	 */
-	public void listCars()
-	{
-		int num = 1;
-		int rnum = 1;
-
-		logger.info("Anzahl an Autos: " + carlist.getList().size());
-		logger.info("--------------------------------------");
-
-		for (Car c : carlist.getList())
-		{
-			logger.info("Auto " + num);
-			logger.info("-Fahrzeugname: " + c.getF_Name());
-			logger.info("--Fahrzeugmarke: " + c.getF_Marke());
-			logger.info("---Kilometerstand: " + c.getF_Tacho());
-
-			if (c.getReservs().size() == 0)
-			{
-				logger.info("Keine Reservierungen vorhanden.");
-			} else
-			{
-				logger.info("Reservierungen:");
-				for (Reservierung r : c.getReservs())
-				{
-					logger.info("[" + rnum + "] " + Utilities.format(r.getResStart()) + " -------> "
-							+ Utilities.format(r.getResStop()));
-					rnum++;
-				}
-				rnum = 1;
-			}
-
-			logger.info("--------------------------------------");
-			num++;
-		}
-
-	}
-
-	/**
-	 * Erstellt ein Auto und fügt der Cars-Arraylist das Auto hinzu
-	 * 
-	 * @param r Der Reader mit welchen die Usereingaben gelesen werden können
-	 * @return Ob das Auto hinzufügen erfolgreich war
-	 */
-	public boolean Autohinzufügen(BufferedReader r)
-	{
-		Car newCar = new Car();
-		try
-		{
-
-			logger.info("Wie lautet der Fahrzeugname?");
-
-			newCar.setF_Name(r.readLine());
-			logger.info("Fahrzeugname --> " + newCar.getF_Name());
-
-			logger.info("Wie lautet die Fahrzeugmarke?");
-
-			newCar.setF_Marke(r.readLine());
-			logger.info("Fahrzeugmarke --> " + newCar.getF_Marke());
-
-			newCar.setF_Tacho(Utilities.addTacho(r));
-			logger.info("Kilometer: " + newCar.getF_Tacho());
-
-			carlist.getList().add(newCar);
-			orcb.addCar(newCar);
-			syncDatabase();
-			System.err.println("Auto hinzugefügt!");
-			logger.info("");
-			System.err.flush();
-			return true;
-		} catch (IOException e)
-		{
-			logger.info("Fehler beim Lesen der User-Eingabe");
-			return false;
-		}
-
-	}
-
-	/**
-	 * Ersetzt die lokale Liste durch eine neu eingelesene aus der Datenbank
-	 */
-	private boolean syncDatabase()
-	{
-		carlist.setCars(orcb.loadDatabase());
-		return true;
-	}
+//	/**
+//	 * Ersetzt die lokale Liste durch eine neu eingelesene aus der Datenbank
+//	 */
+//	private boolean syncDatabase()
+//	{
+//		carlist.loadCarsFromData();
+//		return true;
+//	}
 
 	/**
 	 * Startet einen Reader für Konsolen eingaben
@@ -434,7 +312,9 @@ public class Launcher extends Application implements Serializable
 		searcher = new Searcher(logger);
 		carlist = new CarList();
 
-		carlist.setCars(orcb.loadDatabase());
+		Platform.setImplicitExit(false);
+
+		carlist.loadCarsFromDataBase(orcb);
 
 		// START WINDOW
 
@@ -451,8 +331,8 @@ public class Launcher extends Application implements Serializable
 		controller.init();
 		controller.setList(carlist.getList());
 
-		// STOP WINDOW
-
+		// Start User Thread (Sodass gleichzeitge Eingabe bei der Konsole und als Frame
+		// verfügbar ist
 		startReaderThread(System.in);
 	}
 }

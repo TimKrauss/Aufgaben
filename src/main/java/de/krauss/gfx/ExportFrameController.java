@@ -129,6 +129,7 @@ public class ExportFrameController
 			stage.setAlwaysOnTop(true);
 			stage.getIcons().add(new Image("export.png"));
 			stage.centerOnScreen();
+			stage.setResizable(false);
 			stage.setScene(new Scene(root));
 			controll.setStage(stage);
 			stage.show();

@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import org.apache.log4j.Logger;
 
 import de.krauss.Car;
@@ -15,6 +13,7 @@ import de.krauss.Launcher;
 import de.krauss.OracleDataBase;
 import de.krauss.Reservierung;
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,6 +25,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class MainFrameController
 {
@@ -157,8 +157,10 @@ public class MainFrameController
 		{
 			Car c = getSelectedCar();
 			r.setCarID(c.getCAR_ID());
-			c.addResv(r);
 			orcb.uploadRes(r);
+			carlist.loadCarsFromDataBase(orcb);
+			setList(carlist.getList());
+
 		} catch (Exception e)
 		{
 			logger.info("Kein Auto ausgewählt");
@@ -183,16 +185,14 @@ public class MainFrameController
 	@FXML
 	public void ausgewählteLöschen()
 	{
-		int opt = JOptionPane.showConfirmDialog(null,
-				"Wollen sie das Auto '" + getSelectedCar().getF_Name() + "' wirklich endgültig löschen?");
-		if (opt == JOptionPane.OK_OPTION)
-		{
-			carlist.getList().remove(list_Autos.getSelectionModel().getSelectedIndex());
-			list_Autos.getSelectionModel().clearSelection();
-			orcb.deleteCarFromDatabase(getSelectedCar().getCAR_ID());
-			setList(carlist.getList());
-		}
-
+		Car delCar = getSelectedCar();
+		label_Marke.setText("");
+		label_Name.setText("");
+		label_Tachostand.setText("");
+		carlist.getList().remove(delCar);
+		list_Autos.getSelectionModel().clearSelection();
+		orcb.deleteCarFromDatabase(delCar.getCAR_ID());
+		setList(carlist.getList());
 	}
 
 	/**
@@ -233,6 +233,14 @@ public class MainFrameController
 
 			primaryStage.setTitle("Fuhrpark");
 			primaryStage.setResizable(false);
+			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>()
+			{
+				@Override
+				public void handle(WindowEvent arg0)
+				{
+					System.exit(1);
+				}
+			});
 			primaryStage.getIcons().add(new Image("icon.png"));
 
 			primaryStage.show();

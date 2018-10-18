@@ -12,7 +12,6 @@ import de.krauss.Launcher;
 public class XStreamFileHandlerTest
 {
 	private XStreamFileHandler dumpFileHandler = new XStreamFileHandler();
-
 	private CarList carlist = new CarList();
 	private Car car = new Car();
 	private static final String NAME = "NAME", MARKE = "MARKE";

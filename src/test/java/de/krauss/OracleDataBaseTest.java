@@ -61,7 +61,7 @@ public class OracleDataBaseTest
 		Assert.assertFalse(orb.deleteReservierung(res));
 
 		Assert.assertFalse(orb.deleteCarFromDatabase(CAR_ID));
-
+		orb.delteAllDataFromBase();
 		Assert.assertFalse(orb.closeConnection());
 	}
 
