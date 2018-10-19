@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
@@ -24,21 +23,15 @@ public class DumpFileHandler implements FileHandler
 	@Override
 	public ArrayList<Car> load(File dumpfile)
 	{
-		InputStream fis = null;
-
-		try
+		System.out.println("HALLO");
+		try (ObjectInputStream o = new ObjectInputStream(new FileInputStream(dumpfile)))
 		{
-			fis = new FileInputStream(dumpfile);
-			ObjectInputStream o = new ObjectInputStream(fis);
 			Object ob = o.readObject();
-			o.close();
 
 			if (ob instanceof java.util.ArrayList)
 			{
-				fis.close();
 				return (ArrayList<Car>) ob;
 			}
-			fis.close();
 			logger.fatal("Objekt ist keine Arraylist!");
 			return null;
 		} catch (FileNotFoundException fnf)
@@ -50,14 +43,6 @@ public class DumpFileHandler implements FileHandler
 		} catch (ClassNotFoundException e)
 		{
 			logger.fatal("Das einzulesende Objekt ist fehlerhaft!");
-		}
-		try
-		{
-			if (fis != null)
-				fis.close();
-		} catch (IOException e)
-		{
-			e.printStackTrace();
 		}
 		return null;
 	}
@@ -108,7 +93,7 @@ public class DumpFileHandler implements FileHandler
 	@Override
 	public File getDefaultFile()
 	{
-		return new File(Launcher.HOME_DIR + "dumpfile");
+		return new File(Launcher.HOME_DIR + ".dump");
 	}
 
 }

@@ -283,6 +283,10 @@ public class OracleDataBase
 		return false;
 	}
 
+	/**
+	 * 
+	 * @return Gibt dem Username der Datenbank zurück
+	 */
 	public String getDataBaseUser()
 	{
 		return username;

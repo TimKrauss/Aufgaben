@@ -46,7 +46,6 @@ public class ExportFrameController
 	@FXML
 	public void exportieren()
 	{
-//
 		String fName = txtf_Name.getText();
 
 		if (expoDir == null || fName.equals(" +"))
@@ -56,7 +55,7 @@ public class ExportFrameController
 
 		if (check_Dump.isSelected())
 		{
-			fm.safe(carlist, FileManager.DUMP_FILE, new File(expoDir.getAbsolutePath() + "/" + fName + ".DUMP"));
+			fm.safe(carlist, FileManager.DUMP_FILE, new File(expoDir.getAbsolutePath() + "/" + fName + ".dump"));
 		}
 		if (check_JSon.isSelected())
 		{

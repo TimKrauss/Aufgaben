@@ -24,12 +24,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class MainFrameController
 {
-
 	@FXML
 	private ListView<String> list_Autos;
 
@@ -45,7 +46,7 @@ public class MainFrameController
 	private CarList carlist;
 	private OracleDataBase orcb;
 	private Logger logger = Logger.getLogger("MainFrameController");
-
+	private static Stage primaryStage;
 	private FileManager fm;
 	private Initializer initer;
 
@@ -82,6 +83,32 @@ public class MainFrameController
 			label_User.setTextFill(Color.RED);
 			label_User.setText("Kein User");
 		}
+	}
+
+	/**
+	 * 
+	 */
+	@FXML
+	public void importieren()
+	{
+		FileChooser chooser = new FileChooser();
+		chooser.getExtensionFilters().add(new ExtensionFilter("Supported Files", "*.dump", "*.json", "*.txt", "*.xml"));
+		chooser.getExtensionFilters().add(new ExtensionFilter("All Files", "*.*"));
+
+		File importFile = chooser.showOpenDialog(primaryStage);
+
+		if (importFile == null)
+			return;
+
+		ArrayList<Car> newCars = fm.load(fm.detectOption(importFile), importFile);
+
+		if (newCars == null)
+		{
+			System.out.println("NewCars == NULL");
+			return;
+		}
+		carlist.getList().addAll(newCars);
+		setList(carlist.getList());
 	}
 
 	/**
@@ -217,6 +244,11 @@ public class MainFrameController
 		}
 	}
 
+	/**
+	 * Erzeugt eine Instanz des Mainframes
+	 * 
+	 * @return Gibt den Controller für das Mainframe zurück
+	 */
 	public static MainFrameController createWindow()
 	{
 		try
@@ -227,7 +259,7 @@ public class MainFrameController
 			System.out.println(f.getAbsolutePath());
 			FileInputStream fis = new FileInputStream(f);
 			AnchorPane pane = loader.load(fis);
-			Stage primaryStage = new Stage();
+			primaryStage = new Stage();
 			primaryStage.setScene(new Scene(pane));
 			MainFrameController controller = loader.getController();
 
@@ -255,7 +287,7 @@ public class MainFrameController
 
 	/**
 	 * 
-	 * @return Gibt das ausgewählte Auto zurück
+	 * @return Gibt das in der Liste ausgewählte Auto zurück
 	 */
 	public Car getSelectedCar()
 	{

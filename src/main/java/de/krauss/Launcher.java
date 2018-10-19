@@ -78,6 +78,7 @@ public class Launcher extends Application implements Serializable
 			{
 				logger.warn("Kein Auto vorhanden!");
 				return;
+
 			}
 
 			for (Car c : carlist.getList())
@@ -269,15 +270,6 @@ public class Launcher extends Application implements Serializable
 		logger.info("Die Reservierung wurde gelöscht");
 		return true;
 	}
-
-//	/**
-//	 * Ersetzt die lokale Liste durch eine neu eingelesene aus der Datenbank
-//	 */
-//	private boolean syncDatabase()
-//	{
-//		carlist.loadCarsFromData();
-//		return true;
-//	}
 
 	/**
 	 * Startet einen Reader für Konsolen eingaben

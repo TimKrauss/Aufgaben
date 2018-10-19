@@ -7,11 +7,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 
 import de.krauss.Car;
 import de.krauss.CarList;
@@ -21,6 +23,10 @@ public class JSonFileHandler implements FileHandler
 {
 
 	private Gson gson;
+	private Type fooType = new TypeToken<ArrayList<Car>>()
+	{
+		//
+	}.getType();
 
 	public JSonFileHandler()
 	{
@@ -47,7 +53,7 @@ public class JSonFileHandler implements FileHandler
 				builder.append(line);
 			}
 			reader.close();
-			return (ArrayList<Car>) gson.fromJson(builder.toString(), ArrayList.class);
+			return (ArrayList<Car>) gson.fromJson(builder.toString(), fooType);
 //TODO LADEN GEHT NOCH NICHT
 		} catch (FileNotFoundException e)
 		{
@@ -82,7 +88,7 @@ public class JSonFileHandler implements FileHandler
 
 			String line = "";
 
-			BufferedReader reader = new BufferedReader(new StringReader(gson.toJson(cars.getList(), ArrayList.class)));
+			BufferedReader reader = new BufferedReader(new StringReader(gson.toJson(cars.getList(), fooType)));
 
 			while ((line = reader.readLine()) != null)
 			{

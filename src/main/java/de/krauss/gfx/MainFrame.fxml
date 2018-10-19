@@ -99,6 +99,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btn_Exportieren" layoutX="242.0" layoutY="449.0" mnemonicParsing="false" onAction="#exportieren" prefHeight="29.0" prefWidth="200.0" style="-fx-background-color: grey;" text="Fahrzeuge exportieren" textFill="#ff9500" />
+      <Button fx:id="btn_Exportieren" layoutX="242.0" layoutY="463.0" mnemonicParsing="false" onAction="#exportieren" prefHeight="29.0" prefWidth="200.0" style="-fx-background-color: grey;" text="Fahrzeuge exportieren" textFill="#ff9500" />
+      <Button fx:id="btn_Exportieren1" layoutX="242.0" layoutY="427.0" mnemonicParsing="false" onAction="#importieren" prefHeight="29.0" prefWidth="200.0" style="-fx-background-color: grey;" text="Fahrzeuge importieren" textFill="#ff9500" />
    </children>
 </AnchorPane>

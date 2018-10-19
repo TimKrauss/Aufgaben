@@ -87,7 +87,6 @@ public class JAXBFileHandler implements FileHandler
 	@Override
 	public File getDefaultFile()
 	{
-
 		return new File(Launcher.HOME_DIR + "JAXB_Cars.xml");
 	}
 

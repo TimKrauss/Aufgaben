@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import de.krauss.handler.DumpFileHandler;
+import de.krauss.handler.FileHandler;
 import de.krauss.handler.JAXBFileHandler;
 import de.krauss.handler.JSonFileHandler;
 import de.krauss.handler.TxtFileHandler;
@@ -29,6 +30,7 @@ public class FileManager implements Serializable
 	private XStreamFileHandler xStreamFileHandler;
 	private JSonFileHandler jSonFileHandler;
 	private Logger logger;
+	private ArrayList<FileHandler> handlerList;
 
 	/**
 	 * 
@@ -161,6 +163,32 @@ public class FileManager implements Serializable
 		txtFileHandler = new TxtFileHandler();
 		xStreamFileHandler = new XStreamFileHandler();
 		jSonFileHandler = new JSonFileHandler();
+
+		// ALLE AUSSER JAXB
+		handlerList = new ArrayList<>();
+		handlerList.add(dumpFileHandler);
+		handlerList.add(jSonFileHandler);
+		handlerList.add(xStreamFileHandler);
+		handlerList.add(xStreamFileHandler);
+	}
+
+	public int detectOption(File importFile)
+	{
+		String extension = importFile.getName().split("\\.")[1];
+
+		switch (extension)
+		{
+		case "xml":
+			return FileManager.XSTREAM_FILE;
+		case "json":
+			return FileManager.JSON_FILE;
+		case "dump":
+			return FileManager.DUMP_FILE;
+		case "txt":
+			return FileManager.TXT_FILE;
+		default:
+			return FileManager.DUMP_FILE; // Meisten ObjectSerialization heiﬂen nicht DUMP-File
+		}
 
 	}
 }

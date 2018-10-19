@@ -73,7 +73,8 @@ public class CarList
 	/**
 	 * Erstellt ein Auto und fügt der Cars-Arraylist das Auto hinzu
 	 * 
-	 * @param r Der Reader mit welchen die Usereingaben gelesen werden können
+	 * @param r    Der Reader mit welchen die Usereingaben gelesen werden können
+	 * @param orcb Die Datenbank in welcher das Auto hinzufügen soll
 	 * @return Ob das Auto hinzufügen erfolgreich war
 	 */
 	public boolean Autohinzufügen(BufferedReader r, OracleDataBase orcb)
@@ -142,6 +143,8 @@ public class CarList
 	 * Reserviert ein Fahrzeug
 	 * 
 	 * @param reader Der Reader mit welchen die Usereingaben gelesen werden können
+	 * @param orcb   Die Datenbank in welche die REservierung hinzugefügt werden
+	 *               soll
 	 * @return Ob das reservieren erfolgreich war
 	 */
 	public boolean reservieren(BufferedReader reader, OracleDataBase orcb)
