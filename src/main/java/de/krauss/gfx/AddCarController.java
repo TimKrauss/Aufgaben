@@ -81,6 +81,7 @@ public class AddCarController
 					c.setF_Name(name);
 					c.setF_Marke(marke);
 					c.setF_Tacho(int_Tacho);
+					c.setCAR_ID(0);
 
 					orcb.addCar(c);
 					carlist.loadCarsFromDataBase(orcb);

@@ -151,6 +151,10 @@ public class CarList
 	{
 		listCars();
 		Car resCar = new Car();
+
+		if (getList().size() == 0)
+			return false;
+
 		while (true)
 		{
 
@@ -185,6 +189,11 @@ public class CarList
 		}
 	}
 
+	/**
+	 * Lieﬂt alle Autos in die Datenbank ein
+	 * 
+	 * @param orcb
+	 */
 	public void loadCarsFromDataBase(OracleDataBase orcb)
 	{
 		cars = orcb.loadDatabase();

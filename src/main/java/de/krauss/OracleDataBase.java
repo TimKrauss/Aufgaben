@@ -215,15 +215,29 @@ public class OracleDataBase
 	 */
 	public boolean addCar(Car c)
 	{
-		String query = "INSERT INTO AUTOS(NAME, MARKE, TACHO) VALUES ('" + c.getF_Name() + "','" + c.getF_Marke() + "',"
-				+ c.getF_Tacho() + ")";
-
 		try
 		{
+			if (c.getCAR_ID() == 0)
+			{
+				c.setCAR_ID(getNextID());
+			}
+
+			String query = "INSERT INTO AUTOS(NAME, MARKE, TACHO,ID) VALUES ('" + c.getF_Name() + "','" + c.getF_Marke()
+					+ "'," + c.getF_Tacho() + "," + c.getCAR_ID() + ")";
+
 			Statement smt;
 			smt = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			smt.executeQuery(query);
 			smt.close();
+
+			for (Reservierung r : c.getReservs())
+			{
+				if (c.getReservs().size() == 0)
+					break;
+
+				r.setCarID(c.getCAR_ID());
+				uploadRes(r);
+			}
 			return true;
 		} catch (SQLException e)
 		{
@@ -231,6 +245,30 @@ public class OracleDataBase
 		}
 		return false;
 
+	}
+
+	private int getNextID()
+	{
+		try
+		{
+			Statement stmSequence = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			ResultSet seq = stmSequence.executeQuery("select AUTOS_SEQUENCE.NEXTVAL from DUAL");
+			if (seq.next())
+			{
+				int reInt = seq.getInt("NEXTVAL");
+				seq.close();
+				stmSequence.close();
+				return reInt;
+			}
+			stmSequence.close();
+			seq.close();
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+
+		return 0;
 	}
 
 	/**
@@ -241,7 +279,7 @@ public class OracleDataBase
 	 */
 	public boolean uploadRes(Reservierung r)
 	{
-		String query = "INSERT INTO RES_AUTO(STARTD,STOPD,CARNR) VALUES (?,?,?)";
+		String query = "INSERT INTO RES_AUTO(STARTD,STOPD,CARNR,OWNER) VALUES (?,?,?,?)";
 
 		try
 		{
@@ -250,6 +288,7 @@ public class OracleDataBase
 			smt.setTimestamp(1, new Timestamp(r.getResStart().getTime()));
 			smt.setTimestamp(2, new Timestamp(r.getResStop().getTime()));
 			smt.setInt(3, r.getCarID());
+			smt.setString(4, r.getOwner());
 
 			smt.executeQuery();
 			smt.close();

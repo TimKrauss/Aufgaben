@@ -23,7 +23,6 @@ public class DumpFileHandler implements FileHandler
 	@Override
 	public ArrayList<Car> load(File dumpfile)
 	{
-		System.out.println("HALLO");
 		try (ObjectInputStream o = new ObjectInputStream(new FileInputStream(dumpfile)))
 		{
 			Object ob = o.readObject();

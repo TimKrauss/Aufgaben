@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,11 +18,40 @@ import de.krauss.Reservierung;
 
 public class TxtFileHandler implements FileHandler
 {
+
+	private String NAME_PATTERN = "Name:", MARKE_PATTERN = "Marke:", TACHO_PATTERN = "Kilometer:",
+			RES_START_PATTERN = "ResStart:", RES_STOP_PATTERN = "ResStop:", CAR_FINISHED_PATTERN = "---",
+			OWNER_PATTERN = "owner:";
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public ArrayList<Car> load(File f)
+	{
+		if (f.getName().startsWith("ALEC"))
+		{
+			NAME_PATTERN = "name:";
+			MARKE_PATTERN = "mark:";
+			TACHO_PATTERN = "milage:";
+			OWNER_PATTERN = "user:";
+			RES_START_PATTERN = "beginn:";
+			RES_STOP_PATTERN = "end:";
+			CAR_FINISHED_PATTERN = "";
+		} else
+		{
+			NAME_PATTERN = "Name:";
+			MARKE_PATTERN = "Marke:";
+			TACHO_PATTERN = "Kilometer:";
+			RES_START_PATTERN = "ResStart:";
+			RES_STOP_PATTERN = "ResStop:";
+			CAR_FINISHED_PATTERN = "---";
+			OWNER_PATTERN = "owner:";
+		}
+		return loadData(f);
+	}
+
+	private ArrayList<Car> loadData(File f)
 	{
 		try
 		{
@@ -36,33 +64,60 @@ public class TxtFileHandler implements FileHandler
 
 			String st = "";
 			Car newCar = new Car();
+			Reservierung res = new Reservierung();
 			while ((st = reader.readLine()) != null)
 			{
 
-				if (st.contains("Name:"))
+				if (st.contains(NAME_PATTERN))
 				{
-					newCar.setF_Name(st.replace("Name:", ""));
-				} else if (st.contains("Marke:"))
+					newCar.setF_Name(st.replace(NAME_PATTERN, ""));
+				} else if (st.contains(MARKE_PATTERN))
 				{
-					newCar.setF_Marke(st.replace("Marke:", ""));
-				} else if (st.contains("Kilometer:"))
+					newCar.setF_Marke(st.replace(MARKE_PATTERN, ""));
+				} else if (st.contains(TACHO_PATTERN))
 				{
-					String g = st.replace("Kilometer:", "").replaceAll(" +", "");
+					String g = st.replace(TACHO_PATTERN, "").replaceAll(" +", "");
 					newCar.setF_Tacho(Integer.parseInt(g));
-				} else if (st.contains("ResStart:"))
+				} else if (st.contains(OWNER_PATTERN))
+				{
+					res.setOwner(st.replace(OWNER_PATTERN, ""));
+				}
+
+				else if (st.contains(RES_START_PATTERN))
 				{
 					SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy (HH:MM)");
 					sdf.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"));
 
-					Date start = sdf.parse(st.replace("ResStart: ", ""));
-					String dStop = reader.readLine();
-					Date stop = sdf.parse(dStop.replace("ResStop: ", ""));
+					Date start = null;
+					Date stop = null;
 
-					newCar.addResv(new Reservierung(start, stop));
-				} else if (st.contains("---"))
+					String resLine1 = st.replace(RES_START_PATTERN, "");
+					String resLine2 = reader.readLine().replace(RES_STOP_PATTERN, "");
+
+					try
+					{
+						start = sdf.parse(resLine1);
+						stop = sdf.parse(resLine2);
+
+					} catch (java.text.ParseException e)
+					{
+						// TRY LOAD AS LONG
+						resLine1 = resLine1.replaceAll(" +", "");
+						resLine2 = resLine2.replaceAll(" +", "");
+						logger.info("Versuche Laden als TimeStamp-Long");
+						start = new Date(Long.parseLong(resLine1));
+						stop = new Date(Long.parseLong(resLine2));
+					}
+					res.setResStart(start);
+					res.setResStop(stop);
+					newCar.addResv(res);
+				} else if (st.contains(CAR_FINISHED_PATTERN))
 				{
-					cars.add(newCar);
-					newCar = new Car();
+					if (newCar.getF_Name() != null)
+					{
+						cars.add(newCar);
+						newCar = new Car();
+					}
 				}
 
 			}
@@ -79,9 +134,6 @@ public class TxtFileHandler implements FileHandler
 		} catch (IOException e)
 		{
 			logger.fatal("Fehler beim Lesen des Files");
-		} catch (ParseException e)
-		{
-			logger.fatal("Fehler beim Datumformat!");
 		}
 		return null;
 	}
@@ -92,16 +144,6 @@ public class TxtFileHandler implements FileHandler
 	@Override
 	public void safe(CarList cars, File f)
 	{
-//		JFileChooser fc = new JFileChooser();
-//		
-//		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-//		
-//		int option = fc.showDialog(null, "Wähle diesen Ordner");
-//	
-//		if (option == JFileChooser.APPROVE_OPTION)
-//			
-//		File f = fc.getSelectedFile();
-
 		File chooFile = f;
 		if (f == null)
 		{

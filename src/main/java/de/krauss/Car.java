@@ -14,7 +14,7 @@ public class Car implements Serializable
 	private static final long serialVersionUID = 1257287804168043133L;
 	private String f_Name;
 	private String f_Marke;
-	private int CAR_ID;
+	private int CAR_ID = 0;
 	private int f_Tacho;
 	@XmlElement(name = "Reservierungen")
 	private ArrayList<Reservierung> resv;

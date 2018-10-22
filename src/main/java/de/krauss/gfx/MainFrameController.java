@@ -100,7 +100,7 @@ public class MainFrameController
 		if (importFile == null)
 			return;
 
-		ArrayList<Car> newCars = fm.load(fm.detectOption(importFile), importFile);
+		ArrayList<Car> newCars = fm.load(fm.detectOption(importFile), importFile, orcb);
 
 		if (newCars == null)
 		{

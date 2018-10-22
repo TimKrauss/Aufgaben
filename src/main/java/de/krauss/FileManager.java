@@ -31,6 +31,7 @@ public class FileManager implements Serializable
 	private JSonFileHandler jSonFileHandler;
 	private Logger logger;
 	private ArrayList<FileHandler> handlerList;
+	private ArrayList<Car> carList;
 
 	/**
 	 * 
@@ -38,26 +39,37 @@ public class FileManager implements Serializable
 	 * @param f      Die Datei aus welcher eingelesen werden soll
 	 * @return Die eingelesene Arraylist
 	 */
-	public ArrayList<Car> load(int option, File f)
+	public ArrayList<Car> load(int option, File f, OracleDataBase o)
 	{
 		switch (option)
 		{
 		case DUMP_FILE:
-			return dumpFileHandler.load(f);
-
+			carList = dumpFileHandler.load(f);
+			break;
 		case JAXB_FILE:
-			return jaxbFileHandler.load(f);
-
+			carList = jaxbFileHandler.load(f);
+			break;
 		case TXT_FILE:
-			return txtFileHandler.load(f);
-
+			carList = txtFileHandler.load(f);
+			break;
 		case XSTREAM_FILE:
-			return xStreamFileHandler.load(f);
+			carList = xStreamFileHandler.load(f);
+			break;
 		case JSON_FILE:
-			return jSonFileHandler.load(f);
+			carList = jSonFileHandler.load(f);
+			break;
 		default:
 			return null;
 		}
+
+		if (o != null)
+		{
+			for (Car c : carList)
+			{
+				o.addCar(c);
+			}
+		}
+		return carList;
 	}
 
 	/**
@@ -164,6 +176,8 @@ public class FileManager implements Serializable
 		xStreamFileHandler = new XStreamFileHandler();
 		jSonFileHandler = new JSonFileHandler();
 
+		carList = new ArrayList<>();
+
 		// ALLE AUSSER JAXB
 		handlerList = new ArrayList<>();
 		handlerList.add(dumpFileHandler);
@@ -172,6 +186,12 @@ public class FileManager implements Serializable
 		handlerList.add(xStreamFileHandler);
 	}
 
+	/**
+	 * Gibt die Option aus mit welcher die Datei eingelesen werden soll
+	 * 
+	 * @param importFile Das zu überprüfende File
+	 * @return Die Option womit das File eingelesen werden sollte
+	 */
 	public int detectOption(File importFile)
 	{
 		String extension = importFile.getName().split("\\.")[1];

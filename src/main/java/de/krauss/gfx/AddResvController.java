@@ -127,6 +127,9 @@ public class AddResvController
 
 				resv = new Reservierung(start_Date, stop_Date);
 
+				// OWNER SETZEN
+				resv.setOwner("Tim");
+
 				if (Utilities.isCarAvaible(start_Date, stop_Date, main.getSelectedCar(), getController()))
 				{
 					main.addReservierungToSelCar(resv);

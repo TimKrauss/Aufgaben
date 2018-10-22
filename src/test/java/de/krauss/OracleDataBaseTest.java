@@ -10,7 +10,7 @@ import org.junit.Test;
 public class OracleDataBaseTest
 {
 	private OracleDataBase orb;
-	private Car car;
+	private Car car, car2;
 	private static final String CAR_NAME = "NAME", CAR_MARKE = "MARKE";
 	private static final int CAR_TACHO = 1, CAR_ID = 200;
 	private Reservierung res;
@@ -20,16 +20,23 @@ public class OracleDataBaseTest
 	{
 		orb = new OracleDataBase(Logger.getLogger(Launcher.class));
 		car = new Car();
+		car2 = new Car();
 
 		car.setCAR_ID(CAR_ID);
 		car.setF_Marke(CAR_MARKE);
 		car.setF_Name(CAR_NAME);
 		car.setF_Tacho(CAR_TACHO);
 
+		car2.setCAR_ID(0);
+		car2.setF_Marke(CAR_MARKE);
+		car2.setF_Name(CAR_NAME);
+		car2.setF_Tacho(CAR_TACHO);
+
 		res = new Reservierung();
 		res.setResStart(new Date());
 		res.setResStop(new Date());
 		res.setCarID(CAR_ID);
+		res.setOwner("Tim");
 	}
 
 	@Test
@@ -38,7 +45,7 @@ public class OracleDataBaseTest
 		Assert.assertTrue(orb.delteAllDataFromBase());
 
 		Assert.assertTrue(orb.addCar(car));
-		Assert.assertTrue(orb.addCar(car));
+		Assert.assertTrue(orb.addCar(car2));
 
 		Assert.assertTrue(orb.uploadRes(res));
 		Assert.assertTrue(orb.uploadRes(res));

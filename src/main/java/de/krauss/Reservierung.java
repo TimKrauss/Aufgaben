@@ -17,6 +17,7 @@ public class Reservierung implements Serializable
 	private Date resStart, resStop;
 	private int CAR_ID;
 	private int RES_ID;
+	private String owner;
 
 	/**
 	 * Erzeugt eine neue Reservierug
@@ -140,4 +141,15 @@ public class Reservierung implements Serializable
 	{
 		RES_ID = rES_ID;
 	}
+
+	public void setOwner(String replace)
+	{
+		owner = replace;
+	}
+
+	public String getOwner()
+	{
+		return owner;
+	}
+
 }
