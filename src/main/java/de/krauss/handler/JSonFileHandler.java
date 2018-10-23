@@ -54,7 +54,6 @@ public class JSonFileHandler implements FileHandler
 			}
 			reader.close();
 			return (ArrayList<Car>) gson.fromJson(builder.toString(), fooType);
-//TODO LADEN GEHT NOCH NICHT
 		} catch (FileNotFoundException e)
 		{
 			logger.fatal(e.getMessage());
@@ -103,8 +102,7 @@ public class JSonFileHandler implements FileHandler
 			logger.fatal(e.getMessage());
 		} catch (IOException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.warn(e.getMessage());
 		}
 
 	}

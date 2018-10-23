@@ -57,15 +57,12 @@ public class MainFrameControllerTest extends ApplicationTest
 
 		clickOn("#btn_Reservieren");
 		clickOn("#date_Start");
+		write("22.12.2030");
 
 		clickOn("#date_Stop");
-		write("25.12.2030");
-
 		write("24.12.2030");
-		clickOn("#btn_Add");
 
-		clickOn("#date_Stop");
-		write("25.12.2030");
+		clickOn("#btn_Add");
 
 		clickOn("#textf_Start");
 		write("11:00");
@@ -105,9 +102,16 @@ public class MainFrameControllerTest extends ApplicationTest
 		clickOn("#txtf_Name");
 		write("Ghost-Hand");
 		clickOn("#txtf_Marke");
+		clickOn("#btn_Add");
+		clickOn("#txtf_Marke");
 		write("VW (Die Marke)");
 		clickOn("#txtf_Tacho");
-		write("500");
+		write("500o");
+
+		clickOn("#btn_Add");
+		clickOn("#txtf_Tacho");
+		type(KeyCode.BACK_SPACE);
+
 		clickOn("#btn_Add");
 	}
 }

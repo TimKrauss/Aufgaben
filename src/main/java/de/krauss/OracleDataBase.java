@@ -247,7 +247,11 @@ public class OracleDataBase
 
 	}
 
-	private int getNextID()
+	/**
+	 * 
+	 * @return Gibt die nächste freie Car-ID zurück
+	 */
+	public int getNextID()
 	{
 		try
 		{

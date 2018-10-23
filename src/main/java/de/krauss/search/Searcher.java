@@ -69,4 +69,9 @@ public class Searcher
 		}
 	}
 
+	public OracleDataBase getDataBase()
+	{
+		return orcb;
+	}
+
 }

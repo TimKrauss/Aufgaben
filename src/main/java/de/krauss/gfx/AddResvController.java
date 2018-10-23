@@ -170,9 +170,6 @@ public class AddResvController
 				} catch (InterruptedException e)
 				{
 					e.printStackTrace();
-				} catch (Exception e)
-				{
-					// DO NOTHING
 				}
 				lbl_Resviert.setVisible(false);
 			}

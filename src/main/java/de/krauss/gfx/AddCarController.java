@@ -4,12 +4,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import javax.swing.JOptionPane;
-
 import de.krauss.Car;
 import de.krauss.CarList;
 import de.krauss.Launcher;
 import de.krauss.OracleDataBase;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -31,11 +31,14 @@ public class AddCarController
 	private CarList carlist;
 
 	@FXML
-	Button btn_Add;
+	private Button btn_Add;
+
+	@FXML
+	private Label lblError;
 
 	/**
-	 * TODO Entferne JOptionPane \n Fügt dem Button zum Hinzufügen des Autos einen
-	 * Listener hinzu TODO Adde eine ErrorZeile (wie bei AddResv)
+	 * 
+	 * Listener hinzu
 	 * 
 	 * @param con Setzt die Instanz des MainframeControllers
 	 */
@@ -50,8 +53,7 @@ public class AddCarController
 
 				if (name.equals("") || name.equals(null))
 				{
-					JOptionPane.showMessageDialog(null, "Bitte einen Namen angeben!", "Kein Name",
-							JOptionPane.WARNING_MESSAGE);
+					showErrorMessage("Bitte einen Namen angeben!");
 					return;
 				}
 
@@ -59,8 +61,7 @@ public class AddCarController
 
 				if (marke.equals("") || marke.equals(null))
 				{
-					JOptionPane.showMessageDialog(null, "Bitte eine Marke angeben!", "Keine Marke",
-							JOptionPane.WARNING_MESSAGE);
+					showErrorMessage("Bitte eine Marke angeben!");
 					return;
 				}
 
@@ -68,8 +69,7 @@ public class AddCarController
 
 				if (tacho.equals("") || tacho.equals(null))
 				{
-					JOptionPane.showMessageDialog(null, "Bitte einen Tachostand angeben!", "Kein Tachostand",
-							JOptionPane.WARNING_MESSAGE);
+					showErrorMessage("Bitte einen Tachostand angeben!");
 					return;
 				}
 
@@ -91,8 +91,7 @@ public class AddCarController
 					// Auto hinzufügen
 				} catch (NumberFormatException e)
 				{
-					JOptionPane.showMessageDialog(null, "Bitte einen GÜLTIGEN Tachostand angeben!",
-							"Kein gültiger Tachostand", JOptionPane.WARNING_MESSAGE);
+					showErrorMessage("Bitte einen gültigen Tachostand angeben!");
 					return;
 				}
 			}
@@ -142,6 +141,40 @@ public class AddCarController
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	/**
+	 * Gibt auf dem AddCarFrame eine Fehlermeldung aus
+	 * 
+	 * @param txt Die Fehlermeldung
+	 */
+	public void showErrorMessage(String txt)
+	{
+		lblError.setText(txt);
+		new Thread(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				try
+				{
+					Thread.sleep(3000);
+				} catch (InterruptedException e)
+				{
+					e.printStackTrace();
+				}
+
+				Platform.runLater(new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						lblError.setText("");
+					}
+				});
+			}
+
+		}).start();
 	}
 
 	/**

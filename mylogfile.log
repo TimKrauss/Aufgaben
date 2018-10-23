@@ -1,53 +1,221 @@
-2018-10-23 12:11:15,278 INFO  [Launcher] - Hallo Lieber Kunde!
-2018-10-23 12:11:15,281 INFO  [Launcher] - Möchten sie ein Auto anlegen? (ja oder nein)
-2018-10-23 12:11:15,281 INFO  [Launcher] - Oder bereits hinzugefügte Autos ansehen? (list)
-2018-10-23 12:11:18,451 INFO  [Launcher] - Nach welchem Merkmal möchten sie suchen?
-2018-10-23 12:11:18,451 INFO  [Launcher] - [+1] Name
-2018-10-23 12:11:18,451 INFO  [Launcher] - [+2] Marke
-2018-10-23 12:11:18,451 INFO  [Launcher] - [+3] Tacho
-2018-10-23 12:11:21,362 INFO  [Launcher] - Bitte geben sie den Namen des Fahrzeuges an:
-2018-10-23 12:11:26,542 INFO  [Searcher] - --------------
-2018-10-23 12:11:26,542 INFO  [Searcher] - Name:  Tiguan
-2018-10-23 12:11:26,543 INFO  [Searcher] - Marke:  VW
-2018-10-23 12:11:26,543 INFO  [Searcher] - Tacho: 456
-2018-10-23 12:11:26,543 INFO  [Searcher] - --------------
-2018-10-23 12:11:26,546 INFO  [Searcher] - --------------
-2018-10-23 12:11:26,547 INFO  [Searcher] - Name: Tim
-2018-10-23 12:11:26,547 INFO  [Searcher] - Marke: VW
-2018-10-23 12:11:26,547 INFO  [Searcher] - Tacho: 123
-2018-10-23 12:11:26,547 INFO  [Searcher] - --------------
-2018-10-23 12:11:26,547 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
-2018-10-23 12:11:26,547 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
-2018-10-23 12:11:26,547 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
-2018-10-23 12:11:26,547 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
-2018-10-23 12:11:26,547 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
-2018-10-23 12:11:30,753 INFO  [Launcher] - Nach welchem Merkmal möchten sie suchen?
-2018-10-23 12:11:30,753 INFO  [Launcher] - [+1] Name
-2018-10-23 12:11:30,753 INFO  [Launcher] - [+2] Marke
-2018-10-23 12:11:30,753 INFO  [Launcher] - [+3] Tacho
-2018-10-23 12:11:31,585 INFO  [Launcher] - Bitte geben sie die Marke des Fahrzeuges an:
-2018-10-23 12:11:33,701 INFO  [Searcher] - --------------
-2018-10-23 12:11:33,701 INFO  [Searcher] - Name:  Golf
-2018-10-23 12:11:33,701 INFO  [Searcher] - Marke:  VW
-2018-10-23 12:11:33,701 INFO  [Searcher] - Tacho: 123456
-2018-10-23 12:11:33,701 INFO  [Searcher] - --------------
-2018-10-23 12:11:33,705 INFO  [Searcher] - --------------
-2018-10-23 12:11:33,705 INFO  [Searcher] - Name:  UP
-2018-10-23 12:11:33,705 INFO  [Searcher] - Marke:  VW
-2018-10-23 12:11:33,705 INFO  [Searcher] - Tacho: 12564
-2018-10-23 12:11:33,705 INFO  [Searcher] - --------------
-2018-10-23 12:11:33,707 INFO  [Searcher] - --------------
-2018-10-23 12:11:33,707 INFO  [Searcher] - Name:  Tiguan
-2018-10-23 12:11:33,707 INFO  [Searcher] - Marke:  VW
-2018-10-23 12:11:33,708 INFO  [Searcher] - Tacho: 456
-2018-10-23 12:11:33,708 INFO  [Searcher] - --------------
-2018-10-23 12:11:33,710 INFO  [Searcher] - --------------
-2018-10-23 12:11:33,710 INFO  [Searcher] - Name: Tim
-2018-10-23 12:11:33,710 INFO  [Searcher] - Marke: VW
-2018-10-23 12:11:33,710 INFO  [Searcher] - Tacho: 123
-2018-10-23 12:11:33,711 INFO  [Searcher] - --------------
-2018-10-23 12:11:33,711 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
-2018-10-23 12:11:33,711 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
-2018-10-23 12:11:33,711 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
-2018-10-23 12:11:33,711 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
-2018-10-23 12:11:33,711 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-23 12:51:19,296 INFO  [CarList] - Anzahl an Autos: 0
+2018-10-23 12:51:19,296 INFO  [Launcher] - Hallo Lieber Kunde!
+2018-10-23 12:51:19,306 INFO  [CarList] - --------------------------------------
+2018-10-23 12:51:19,306 INFO  [Launcher] - Möchten sie ein Auto anlegen? (ja oder nein)
+2018-10-23 12:51:19,306 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
+2018-10-23 12:51:19,306 INFO  [Launcher] - Oder bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:51:19,306 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:51:19,307 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+2018-10-23 12:51:19,307 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
+2018-10-23 12:51:19,307 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-23 12:51:19,307 INFO  [CarList] - Wie lautet der Fahrzeugname?
+2018-10-23 12:51:19,307 INFO  [CarList] - Fahrzeugname --> TEST
+2018-10-23 12:51:19,307 INFO  [CarList] - Wie lautet die Fahrzeugmarke?
+2018-10-23 12:51:19,307 INFO  [CarList] - Fahrzeugmarke --> Marke
+2018-10-23 12:51:19,308 INFO  [Utilities] - Wie viele Kilometer hat das Auto auf dem Buckel?
+2018-10-23 12:51:19,308 INFO  [CarList] - Kilometer: 2
+2018-10-23 12:51:19,371 INFO  [CarList] - 
+2018-10-23 12:51:19,371 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
+2018-10-23 12:51:19,377 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:51:19,377 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+2018-10-23 12:51:19,377 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
+2018-10-23 12:51:19,377 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-23 12:51:19,377 INFO  [CarList] - Anzahl an Autos: 1
+2018-10-23 12:51:19,377 INFO  [CarList] - --------------------------------------
+2018-10-23 12:51:19,377 INFO  [CarList] - Auto 1
+2018-10-23 12:51:19,377 INFO  [CarList] - -Fahrzeugname: TEST
+2018-10-23 12:51:19,377 INFO  [CarList] - --Fahrzeugmarke: Marke
+2018-10-23 12:51:19,378 INFO  [CarList] - ---Kilometerstand: 2
+2018-10-23 12:51:19,378 INFO  [CarList] - Keine Reservierungen vorhanden.
+2018-10-23 12:51:19,379 INFO  [CarList] - --------------------------------------
+2018-10-23 12:51:19,379 INFO  [CarList] - Welches Auto wollen sie Reservieren? (1 - 1)
+2018-10-23 12:51:19,380 INFO  [Reservierung] - Wann soll die Reservierung starten? (tt.MM.yyyy HH:mm)
+2018-10-23 12:51:19,381 INFO  [Reservierung] - Wann soll die Reservierung enden? (tt.MM.yyyy HH:mm)
+2018-10-23 12:51:19,383 INFO  [Reservierung] - Auf welchen Namen soll diese Reservierung gespeichert werden?
+2018-10-23 12:51:19,648 FATAL [OracleDataBase] - ORA-01400: cannot insert NULL into ("TIM"."RES_AUTO"."OWNER")
+
+2018-10-23 12:51:19,648 INFO  [CarList] - Reserviert!
+2018-10-23 12:51:19,648 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-23 12:51:19,648 INFO  [CarList] - Anzahl an Autos: 1
+2018-10-23 12:51:19,648 INFO  [CarList] - --------------------------------------
+2018-10-23 12:51:19,648 INFO  [CarList] - Auto 1
+2018-10-23 12:51:19,648 INFO  [CarList] - -Fahrzeugname: TEST
+2018-10-23 12:51:19,648 INFO  [CarList] - --Fahrzeugmarke: Marke
+2018-10-23 12:51:19,648 INFO  [CarList] - ---Kilometerstand: 2
+2018-10-23 12:51:19,648 INFO  [CarList] - Reservierungen:
+2018-10-23 12:51:19,648 INFO  [CarList] - [1] 12.12.2019 (15:00) -------> 13.12.2019 (16:00)
+2018-10-23 12:51:19,648 INFO  [CarList] - --------------------------------------
+2018-10-23 12:51:19,648 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-23 12:51:19,648 INFO  [Launcher] - ( 1 ) TEST
+2018-10-23 12:51:19,648 INFO  [Launcher] - Von welchem Auto wollen sie die Reservierung löschen? (Zahl eingeben)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Name: TEST
+2018-10-23 12:51:19,648 INFO  [Launcher] - [1] 12.12.2019 (15:00) -------> 13.12.2019 (16:00)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Welche von den Reservierungen wollen sie löschen? (1 - 1)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Die Reservierung wurde gelöscht
+2018-10-23 12:51:19,648 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-23 12:51:19,648 INFO  [Launcher] - Nach welchem Merkmal möchten sie suchen?
+2018-10-23 12:51:19,648 INFO  [Launcher] - [+1] Name
+2018-10-23 12:51:19,648 INFO  [Launcher] - [+2] Marke
+2018-10-23 12:51:19,648 INFO  [Launcher] - [+3] Tacho
+2018-10-23 12:51:19,648 INFO  [Launcher] - Bitte geben sie den Namen des Fahrzeuges an:
+2018-10-23 12:51:19,680 INFO  [Searcher] - --------------
+2018-10-23 12:51:19,680 INFO  [Searcher] - Name: TEST
+2018-10-23 12:51:19,680 INFO  [Searcher] - Marke: Marke
+2018-10-23 12:51:19,680 INFO  [Searcher] - Tacho: 2
+2018-10-23 12:51:19,680 INFO  [Searcher] - --------------
+2018-10-23 12:51:19,680 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
+2018-10-23 12:51:19,680 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:51:19,680 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+2018-10-23 12:51:19,680 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
+2018-10-23 12:51:19,680 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-23 12:51:19,680 INFO  [Launcher] - Nach welchem Merkmal möchten sie suchen?
+2018-10-23 12:51:19,680 INFO  [Launcher] - [+1] Name
+2018-10-23 12:51:19,680 INFO  [Launcher] - [+2] Marke
+2018-10-23 12:51:19,680 INFO  [Launcher] - [+3] Tacho
+2018-10-23 12:51:19,680 INFO  [Launcher] - Bitte geben sie die Marke des Fahrzeuges an:
+2018-10-23 12:51:19,695 INFO  [Searcher] - --------------
+2018-10-23 12:51:19,695 INFO  [Searcher] - Name: TEST
+2018-10-23 12:51:19,695 INFO  [Searcher] - Marke: Marke
+2018-10-23 12:51:19,695 INFO  [Searcher] - Tacho: 2
+2018-10-23 12:51:19,695 INFO  [Searcher] - --------------
+2018-10-23 12:51:19,695 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Nach welchem Merkmal möchten sie suchen?
+2018-10-23 12:51:19,695 INFO  [Launcher] - [+1] Name
+2018-10-23 12:51:19,695 INFO  [Launcher] - [+2] Marke
+2018-10-23 12:51:19,695 INFO  [Launcher] - [+3] Tacho
+2018-10-23 12:51:19,695 INFO  [Launcher] - Bitte geben sie den Kilometerstand an:
+2018-10-23 12:51:19,695 INFO  [Searcher] - --------------
+2018-10-23 12:51:19,695 INFO  [Searcher] - Name: TEST
+2018-10-23 12:51:19,695 INFO  [Searcher] - Marke: Marke
+2018-10-23 12:51:19,695 INFO  [Searcher] - Tacho: 2
+2018-10-23 12:51:19,695 INFO  [Searcher] - --------------
+2018-10-23 12:51:19,695 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Nach welchem Merkmal möchten sie suchen?
+2018-10-23 12:51:19,695 INFO  [Launcher] - [+1] Name
+2018-10-23 12:51:19,695 INFO  [Launcher] - [+2] Marke
+2018-10-23 12:51:19,695 INFO  [Launcher] - [+3] Tacho
+2018-10-23 12:51:19,695 INFO  [Launcher] - Bitte geben sie den Namen des Fahrzeuges an:
+2018-10-23 12:51:19,695 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Nach welchem Merkmal möchten sie suchen?
+2018-10-23 12:51:19,695 INFO  [Launcher] - [+1] Name
+2018-10-23 12:51:19,695 INFO  [Launcher] - [+2] Marke
+2018-10-23 12:51:19,695 INFO  [Launcher] - [+3] Tacho
+2018-10-23 12:51:19,695 INFO  [Launcher] - Bitte geben sie die Marke des Fahrzeuges an:
+2018-10-23 12:51:19,695 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Nach welchem Merkmal möchten sie suchen?
+2018-10-23 12:51:19,695 INFO  [Launcher] - [+1] Name
+2018-10-23 12:51:19,695 INFO  [Launcher] - [+2] Marke
+2018-10-23 12:51:19,695 INFO  [Launcher] - [+3] Tacho
+2018-10-23 12:51:19,695 INFO  [Launcher] - Bitte geben sie den Kilometerstand an:
+2018-10-23 12:51:19,695 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
+2018-10-23 12:51:19,695 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-23 12:51:19,695 INFO  [Launcher] - [1] TEST
+2018-10-23 12:51:19,695 INFO  [Launcher] - Welches Auto soll gelöscht werden?
+2018-10-23 12:51:19,711 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
+2018-10-23 12:51:19,711 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:51:19,711 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+2018-10-23 12:51:19,711 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
+2018-10-23 12:51:19,711 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-23 12:51:19,711 INFO  [Launcher] - Dann eben nicht :(
+2018-10-23 12:51:19,945 FATAL [Launcher] - Datei () nicht gefunden!
+2018-10-23 12:51:19,992 FATAL [Launcher] - Fehler beim Einlesen der JAXB-XML-Datei.
+2018-10-23 12:51:19,992 FATAL [Launcher] - 
+2018-10-23 12:51:19,992 FATAL [Launcher] - Das Textfile wurde nicht gefunden!
+2018-10-23 12:51:20,008 FATAL [Launcher] - 
+2018-10-23 12:51:20,023 INFO  [Launcher] - 
+2018-10-23 12:51:20,023 INFO  [Launcher] - 
+2018-10-23 12:51:20,133 INFO  [Searcher] - --------------
+2018-10-23 12:51:20,133 INFO  [Searcher] - Name: NAME
+2018-10-23 12:51:20,133 INFO  [Searcher] - Marke: MARKE
+2018-10-23 12:51:20,133 INFO  [Searcher] - Tacho: 1
+2018-10-23 12:51:20,133 INFO  [Searcher] - --------------
+2018-10-23 12:51:20,133 INFO  [Searcher] - --------------
+2018-10-23 12:51:20,133 INFO  [Searcher] - Name: NAME
+2018-10-23 12:51:20,133 INFO  [Searcher] - Marke: MARKE
+2018-10-23 12:51:20,133 INFO  [Searcher] - Tacho: 1
+2018-10-23 12:51:20,133 INFO  [Searcher] - --------------
+2018-10-23 12:51:20,148 INFO  [Searcher] - --------------
+2018-10-23 12:51:20,148 INFO  [Searcher] - Name: NAME
+2018-10-23 12:51:20,148 INFO  [Searcher] - Marke: MARKE
+2018-10-23 12:51:20,148 INFO  [Searcher] - Tacho: 1
+2018-10-23 12:51:20,148 INFO  [Searcher] - --------------
+2018-10-23 12:51:20,226 INFO  [OracleDataBase] - Reservierung hochgeladen
+2018-10-23 12:51:20,226 INFO  [OracleDataBase] - Reservierung hochgeladen
+2018-10-23 12:51:20,226 WARN  [OracleDataBase] - Getrennte Verbindung
+2018-10-23 12:51:20,226 FATAL [OracleDataBase] - Getrennte Verbindung
+2018-10-23 12:51:20,226 FATAL [OracleDataBase] - Getrennte Verbindung
+2018-10-23 12:51:20,226 FATAL [OracleDataBase] - Getrennte Verbindung
+2018-10-23 12:51:20,226 WARN  [OracleDataBase] - Getrennte Verbindung
+2018-10-23 12:51:20,226 WARN  [OracleDataBase] - Getrennte Verbindung
+2018-10-23 12:51:20,226 FATAL [Launcher] - Die gesuchte Datei wurde nicht gefunden
+2018-10-23 12:51:20,242 FATAL [Launcher] - Datei () nicht gefunden!
+2018-10-23 12:51:20,242 FATAL [Launcher] - Probleme mit dem Einlesen der Datei
+2018-10-23 12:51:20,242 FATAL [Launcher] - Fehler beim Speichern in der Datei schreiben
+2018-10-23 12:51:20,258 FATAL [Launcher] - Fehler beim Einlesen der JAXB-XML-Datei.
+2018-10-23 12:51:20,273 FATAL [Launcher] - Fehler beim Einlesen der JAXB-XML-Datei.
+2018-10-23 12:51:20,273 FATAL [Launcher] - Fehler beim Einlesen der JAXB-XML-Datei.
+2018-10-23 12:51:20,273 FATAL [Launcher] -  (Result too large)
+2018-10-23 12:51:20,273 FATAL [Launcher] -  (Result too large)
+2018-10-23 12:51:20,273 FATAL [Launcher] - java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 1 path $
+2018-10-23 12:51:20,289 WARN  [Launcher] - File not Found
+2018-10-23 12:51:20,289 FATAL [Launcher] - Das Textfile wurde nicht gefunden!
+2018-10-23 12:51:20,289 INFO  [Launcher] - 
+2018-10-23 12:51:20,289 INFO  [Launcher] - 
+2018-10-23 12:51:20,289 FATAL [Launcher] - Das Textfile wurde nicht gefunden!
+2018-10-23 12:51:20,289 FATAL [Launcher] - Fehler beim Schreiben der XML-Datei
+2018-10-23 12:51:20,304 FATAL [Launcher] - 
+2018-10-23 12:51:20,309 FATAL [Launcher] - 
+2018-10-23 12:51:35,329 INFO  [OracleDataBase] - Reservierung hochgeladen
+2018-10-23 12:51:40,433 INFO  [Utilities] - Bitte geben sie ein gültiges Datum ein! (dd.MM.yyyy HH:mm)
+2018-10-23 12:51:40,435 INFO  [Utilities] - Kein Datum in der Vergangenheit bitte!
+2018-10-23 12:51:40,443 INFO  [Utilities] - StartDate --> Sun Dec 12 11:00:00 CET 2021
+2018-10-23 12:51:40,443 INFO  [Utilities] - StopDate --> Tue Dec 14 14:00:00 CET 2021
+2018-10-23 12:51:40,444 ERROR [Utilities] - StopDatum liegt zwischen einer anderen Reservierung
+2018-10-23 12:51:40,445 INFO  [Utilities] - StartDate --> Wed Dec 15 11:00:00 CET 2021
+2018-10-23 12:51:40,446 INFO  [Utilities] - StopDate --> Wed Dec 15 14:00:00 CET 2021
+2018-10-23 12:51:40,446 ERROR [Utilities] - StartDatum liegt zwischen einer anderen Reservierung
+2018-10-23 12:51:40,447 INFO  [Utilities] - StartDate --> Tue Dec 14 16:00:00 CET 2021
+2018-10-23 12:51:40,448 INFO  [Utilities] - StopDate --> Tue Dec 14 18:00:00 CET 2021
+2018-10-23 12:51:40,448 ERROR [Utilities] - StartDatum liegt zwischen einer anderen Reservierung
+2018-10-23 12:51:40,449 INFO  [Utilities] - StartDate --> Tue Dec 14 16:00:00 CET 2021
+2018-10-23 12:51:40,450 INFO  [Utilities] - StopDate --> Tue Dec 14 11:00:00 CET 2021
+2018-10-23 12:51:40,451 ERROR [Utilities] - Start Datum nach Stop Datum
+2018-10-23 12:51:40,451 WARN  [Utilities] - Bitte eine gültige Zahl eingeben
+2018-10-23 12:51:40,451 INFO  [Utilities] - Wie viele Kilometer hat das Auto auf dem Buckel?
+2018-10-23 12:51:40,452 INFO  [Utilities] - Bitte gib eine gültige Kilometerzahl ein!
