@@ -16,7 +16,7 @@ public class Utilities
 {
 	public static final String sdf_Pattern = "dd.MM.yyyy (HH:mm)";
 	private static SimpleDateFormat sdf = new SimpleDateFormat(sdf_Pattern);
-	private static Logger logger = Logger.getLogger("Utilities");
+	private static Logger logger = Logger.getLogger(Utilities.class);
 
 	/**
 	 * Guckt ob das Auto zu der Zeit noch frei ist und gibt, falls nicht, eine
@@ -79,11 +79,15 @@ public class Utilities
 	 */
 	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car c)
 	{
+		System.out.println("I GET CALLED");
 
 		for (Reservierung r : c.getReservs())
 		{
 			Date oldStart = r.getResStart();
 			Date oldStop = r.getResStop();
+
+			logger.info("StartDate --> " + start_Date);
+			logger.info("StopDate --> " + stop_Date);
 
 			if (start_Date.before(new Date()))
 			{

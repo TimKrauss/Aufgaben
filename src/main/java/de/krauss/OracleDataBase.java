@@ -17,20 +17,20 @@ import oracle.jdbc.pool.OracleDataSource;
 public class OracleDataBase
 {
 	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private final String username = "tim";
-	private final String passwort = "Test123";
+	private final static String username = "tim";
+	private final static String passwort = "Test123";
 	private Connection connection = null;
-	private Logger logger;
+	private Statement runQueryStatement = null;
+	private Logger logger = Logger.getLogger(OracleDataBase.class);
 
 	/**
 	 * Stellt die Connection her
 	 * 
 	 * @param l Den Logger zur UserAusgabe
 	 */
-	public OracleDataBase(Logger l)
+	public OracleDataBase()
 	{
 
-		logger = l;
 		try
 		{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -329,5 +329,60 @@ public class OracleDataBase
 	public String getDataBaseUser()
 	{
 		return username;
+	}
+
+	public ResultSet runQuery(String query)
+	{
+		try
+		{
+			runQueryStatement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = runQueryStatement.executeQuery(query);
+			return rs;
+		} catch (SQLException e)
+		{
+			logger.fatal(e.getMessage());
+		}
+		return null;
+	}
+
+	public void closeStatement()
+	{
+		try
+		{
+			runQueryStatement.close();
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	public Car getCarByID(int int1)
+	{
+		ResultSet rs = runQuery("SELECT * FROM AUTOS WHERE ID=" + int1);
+
+		Car car = new Car();
+
+		try
+		{
+			while (rs.next())
+			{
+				car.setF_Name(rs.getString("name"));
+				car.setF_Marke(rs.getString("marke"));
+				car.setF_Tacho(rs.getInt(("tacho")));
+				car.setCAR_ID(rs.getInt("id"));
+			}
+			rs.close();
+		} catch (SQLException e)
+		{
+			logger.fatal(e.getMessage());
+		}
+		try
+		{
+			rs.close();
+		} catch (SQLException e)
+		{
+			logger.fatal(e.getMessage());
+		}
+		return car;
 	}
 }

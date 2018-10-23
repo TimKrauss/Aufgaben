@@ -1,27 +1,26 @@
 package de.krauss.search;
 
+import java.sql.ResultSet;
+
 import org.apache.log4j.Logger;
 
-import de.krauss.CarList;
+import de.krauss.Car;
+import de.krauss.OracleDataBase;
 
 public class Searcher
 {
 	public static final int NAME = 1, MARKE = 2, Tacho = 3;
-	private SearchMarke searchMarke;
-	private SearchName searchName;
-	private SearchTacho searchTacho;
-	private Logger logger;
+	private OracleDataBase orcb;
+	private Logger logger = Logger.getLogger(Searcher.class);
 
 	/**
 	 * 
+	 * 
 	 * @param l Der Logger zum Ausgeben in der Konsole
 	 */
-	public Searcher(Logger l)
+	public Searcher()
 	{
-		logger = l;
-		searchMarke = new SearchMarke(logger);
-		searchName = new SearchName(logger);
-		searchTacho = new SearchTacho(logger);
+		orcb = new OracleDataBase();
 	}
 
 	/**
@@ -31,27 +30,42 @@ public class Searcher
 	 * @param option Wonach gesucht werden soll
 	 * @param value  Das Object wonach gesucht werden soll
 	 */
-	public void search(CarList list, int option, Object value)
+	public void search(int option, String value)
 	{
-
-		while (true)
+		String query = "";
+		switch (option)
 		{
-			switch (option)
-			{
-			case NAME:
-				searchName.search(value, list);
-				break;
-			case MARKE:
-				searchMarke.search(value, list);
-				break;
-			case Tacho:
-				searchTacho.search(value, list);
-				break;
-			default:
-				logger.info("Suche abgebrochen");
-				return;
-			}
+		case NAME:
+			query = "SELECT ID FROM AUTOS WHERE NAME LIKE '%" + value + "%'";
 			break;
+		case MARKE:
+			query = "SELECT ID FROM AUTOS WHERE MARKE LIKE '%" + value + "%'";
+			break;
+		case Tacho:
+			query = "SELECT ID FROM AUTOS WHERE TACHO LIKE '%" + value + "%'";
+			break;
+		default:
+			return;
+		}
+
+		try
+		{
+			ResultSet rs = orcb.runQuery(query);
+
+			while (rs.next())
+			{
+				Car f = orcb.getCarByID(rs.getInt("ID"));
+				logger.info("--------------");
+				logger.info("Name: " + f.getF_Name());
+				logger.info("Marke: " + f.getF_Marke());
+				logger.info("Tacho: " + f.getF_Tacho());
+				logger.info("--------------");
+			}
+			rs.close();
+			orcb.closeStatement();
+		} catch (Exception e)
+		{
+			logger.fatal(e.getMessage());
 		}
 	}
 

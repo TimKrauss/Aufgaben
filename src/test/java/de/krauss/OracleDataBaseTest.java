@@ -2,7 +2,6 @@ package de.krauss;
 
 import java.util.Date;
 
-import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +17,7 @@ public class OracleDataBaseTest
 	@Before
 	public void init()
 	{
-		orb = new OracleDataBase(Logger.getLogger(Launcher.class));
+		orb = new OracleDataBase();
 		car = new Car();
 		car2 = new Car();
 

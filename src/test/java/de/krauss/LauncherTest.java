@@ -3,7 +3,6 @@ package de.krauss;
 import java.io.BufferedReader;
 import java.io.StringReader;
 
-import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +20,7 @@ public class LauncherTest
 	{
 		launcher = new Launcher();
 		launcher.init();
-		orc = new OracleDataBase(Logger.getLogger(""));
+		orc = new OracleDataBase();
 	}
 
 	@Test

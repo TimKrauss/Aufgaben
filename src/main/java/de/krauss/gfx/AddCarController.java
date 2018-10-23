@@ -34,8 +34,8 @@ public class AddCarController
 	Button btn_Add;
 
 	/**
-	 * Fügt dem Button zum Hinzufügen des Autos einen Listener hinzu TODO Adde eine
-	 * ErrorZeile (wie bei AddResv)
+	 * TODO Entferne JOptionPane \n Fügt dem Button zum Hinzufügen des Autos einen
+	 * Listener hinzu TODO Adde eine ErrorZeile (wie bei AddResv)
 	 * 
 	 * @param con Setzt die Instanz des MainframeControllers
 	 */

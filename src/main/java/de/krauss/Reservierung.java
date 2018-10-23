@@ -1,6 +1,7 @@
 package de.krauss;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ public class Reservierung implements Serializable
 	/**
 	 * Log4j logger
 	 */
-	private static Logger logger = Logger.getLogger("Reservierung");
+	private static Logger logger = Logger.getLogger(Reservierung.class);
 	private static final long serialVersionUID = 13273646095955764L;
 	private Date resStart, resStop;
 	private int CAR_ID;
@@ -90,9 +91,54 @@ public class Reservierung implements Serializable
 
 			stop = Utilities.enterDate(reader);
 			Reservierung r = new Reservierung(start, stop);
-			r.setCarID(resCar.getCAR_ID());
-			r.setRES_ID(-1);
-			return r;
+
+			if (Utilities.isCarAvaible(start, stop, resCar))
+			{
+				try
+				{
+					logger.info("Auf welchen Namen soll diese Reservierung gespeichert werden?");
+					r.setOwner(reader.readLine());
+				} catch (IOException e)
+				{
+					logger.warn(e.getMessage());
+					logger.info("Reservierung  wurde auf Unbekannt gesetzt");
+					r.setOwner("Unbekannt");
+				}
+
+				r.setCarID(resCar.getCAR_ID());
+				r.setRES_ID(-1);
+				return r;
+			}
+
+			while (true)
+			{
+				try
+				{
+					logger.info("Möchten sie das Reservieren abbrechen? (ja oder nein)");
+					String antwort = reader.readLine();
+					boolean reStart = false;
+
+					switch (antwort)
+					{
+					case "ja":
+						return null;
+					case "nein":
+						reStart = true;
+						break;
+					default:
+						logger.info("Bitte eine gültige Antwort eingeben");
+						break;
+					}
+
+					if (reStart)
+						break;
+
+				} catch (IOException e)
+				{
+					logger.fatal(e.getMessage());
+				}
+			}
+
 		}
 
 	}

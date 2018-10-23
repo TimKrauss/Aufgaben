@@ -45,7 +45,7 @@ public class MainFrameController
 
 	private CarList carlist;
 	private OracleDataBase orcb;
-	private Logger logger = Logger.getLogger("MainFrameController");
+	private Logger logger = Logger.getLogger(MainFrameController.class);
 	private static Stage primaryStage;
 	private FileManager fm;
 	private Initializer initer;

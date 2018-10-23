@@ -29,7 +29,7 @@ public class FileManager implements Serializable
 	private TxtFileHandler txtFileHandler;
 	private XStreamFileHandler xStreamFileHandler;
 	private JSonFileHandler jSonFileHandler;
-	private Logger logger;
+	private Logger logger = Logger.getLogger(FileManager.class);
 	private ArrayList<FileHandler> handlerList;
 	private ArrayList<Car> carList;
 
@@ -100,6 +100,7 @@ public class FileManager implements Serializable
 	}
 
 	/**
+	 * Speichert im Standard-File auf dem Desktop
 	 * 
 	 * @param cars   Die Instanz der Klasse in welcher die Arraylist gespeichert ist
 	 * @param option Mit welcher Methode die Arraylist gespeichert werden soll
@@ -166,9 +167,8 @@ public class FileManager implements Serializable
 	 * 
 	 * @param l Reader zum Lesen der Usereingaben
 	 */
-	public FileManager(Logger l)
+	public FileManager()
 	{
-		logger = l;
 
 		dumpFileHandler = new DumpFileHandler();
 		jaxbFileHandler = new JAXBFileHandler();

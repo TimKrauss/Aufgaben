@@ -3,7 +3,6 @@ package de.krauss;
 import java.io.File;
 import java.util.Date;
 
-import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +31,7 @@ public class FileManagerTest
 		RES = new Reservierung(new Date(), new Date());
 		RES.setCarID(CAR_ID);
 
-		fm = new FileManager(Logger.getLogger("FM"));
+		fm = new FileManager();
 	}
 
 	@Test
@@ -44,6 +43,11 @@ public class FileManagerTest
 		fm.safe(list, FileManager.TXT_FILE);
 		fm.safe(list, FileManager.JSON_FILE);
 		fm.safe(list, FileManager.XSTREAM_FILE);
+
+		fm.detectOption(fm.getDefaultFile(FileManager.TXT_FILE));
+		fm.detectOption(fm.getDefaultFile(FileManager.DUMP_FILE));
+		fm.detectOption(fm.getDefaultFile(FileManager.JSON_FILE));
+		fm.detectOption(fm.getDefaultFile(FileManager.XSTREAM_FILE));
 
 		fm.safe(list, FileManager.DUMP_FILE, fm.getDefaultFile(FileManager.DUMP_FILE));
 		fm.safe(list, FileManager.JAXB_FILE, fm.getDefaultFile(FileManager.JAXB_FILE));

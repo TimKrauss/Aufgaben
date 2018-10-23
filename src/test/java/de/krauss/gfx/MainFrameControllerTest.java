@@ -3,7 +3,6 @@ package de.krauss.gfx;
 import java.io.File;
 import java.io.FileInputStream;
 
-import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,9 +36,9 @@ public class MainFrameControllerTest extends ApplicationTest
 		arg0.show();
 		arg0.toFront();
 		fis.close();
-		orcb = new OracleDataBase(Logger.getLogger("ORCB-JUNIT"));
+		orcb = new OracleDataBase();
 		controller.setOracleDataBase(orcb);
-		controller.setFileManager(new FileManager(Logger.getLogger("FileManager")));
+		controller.setFileManager(new FileManager());
 		controller.setCarlist(new CarList());
 		controller.init();
 		controller.setDatenbankStatus(false, null);
@@ -52,12 +51,18 @@ public class MainFrameControllerTest extends ApplicationTest
 	@Test
 	public void reservieren()
 	{
+
 		clickOn("#list_Autos");
 		type(KeyCode.DOWN);
 
 		clickOn("#btn_Reservieren");
 		clickOn("#date_Start");
+
+		clickOn("#date_Stop");
+		write("25.12.2030");
+
 		write("24.12.2030");
+		clickOn("#btn_Add");
 
 		clickOn("#date_Stop");
 		write("25.12.2030");

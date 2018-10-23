@@ -1,0 +1,53 @@
+2018-10-23 12:11:15,278 INFO  [Launcher] - Hallo Lieber Kunde!
+2018-10-23 12:11:15,281 INFO  [Launcher] - Möchten sie ein Auto anlegen? (ja oder nein)
+2018-10-23 12:11:15,281 INFO  [Launcher] - Oder bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:11:18,451 INFO  [Launcher] - Nach welchem Merkmal möchten sie suchen?
+2018-10-23 12:11:18,451 INFO  [Launcher] - [+1] Name
+2018-10-23 12:11:18,451 INFO  [Launcher] - [+2] Marke
+2018-10-23 12:11:18,451 INFO  [Launcher] - [+3] Tacho
+2018-10-23 12:11:21,362 INFO  [Launcher] - Bitte geben sie den Namen des Fahrzeuges an:
+2018-10-23 12:11:26,542 INFO  [Searcher] - --------------
+2018-10-23 12:11:26,542 INFO  [Searcher] - Name:  Tiguan
+2018-10-23 12:11:26,543 INFO  [Searcher] - Marke:  VW
+2018-10-23 12:11:26,543 INFO  [Searcher] - Tacho: 456
+2018-10-23 12:11:26,543 INFO  [Searcher] - --------------
+2018-10-23 12:11:26,546 INFO  [Searcher] - --------------
+2018-10-23 12:11:26,547 INFO  [Searcher] - Name: Tim
+2018-10-23 12:11:26,547 INFO  [Searcher] - Marke: VW
+2018-10-23 12:11:26,547 INFO  [Searcher] - Tacho: 123
+2018-10-23 12:11:26,547 INFO  [Searcher] - --------------
+2018-10-23 12:11:26,547 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
+2018-10-23 12:11:26,547 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:11:26,547 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+2018-10-23 12:11:26,547 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
+2018-10-23 12:11:26,547 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-23 12:11:30,753 INFO  [Launcher] - Nach welchem Merkmal möchten sie suchen?
+2018-10-23 12:11:30,753 INFO  [Launcher] - [+1] Name
+2018-10-23 12:11:30,753 INFO  [Launcher] - [+2] Marke
+2018-10-23 12:11:30,753 INFO  [Launcher] - [+3] Tacho
+2018-10-23 12:11:31,585 INFO  [Launcher] - Bitte geben sie die Marke des Fahrzeuges an:
+2018-10-23 12:11:33,701 INFO  [Searcher] - --------------
+2018-10-23 12:11:33,701 INFO  [Searcher] - Name:  Golf
+2018-10-23 12:11:33,701 INFO  [Searcher] - Marke:  VW
+2018-10-23 12:11:33,701 INFO  [Searcher] - Tacho: 123456
+2018-10-23 12:11:33,701 INFO  [Searcher] - --------------
+2018-10-23 12:11:33,705 INFO  [Searcher] - --------------
+2018-10-23 12:11:33,705 INFO  [Searcher] - Name:  UP
+2018-10-23 12:11:33,705 INFO  [Searcher] - Marke:  VW
+2018-10-23 12:11:33,705 INFO  [Searcher] - Tacho: 12564
+2018-10-23 12:11:33,705 INFO  [Searcher] - --------------
+2018-10-23 12:11:33,707 INFO  [Searcher] - --------------
+2018-10-23 12:11:33,707 INFO  [Searcher] - Name:  Tiguan
+2018-10-23 12:11:33,707 INFO  [Searcher] - Marke:  VW
+2018-10-23 12:11:33,708 INFO  [Searcher] - Tacho: 456
+2018-10-23 12:11:33,708 INFO  [Searcher] - --------------
+2018-10-23 12:11:33,710 INFO  [Searcher] - --------------
+2018-10-23 12:11:33,710 INFO  [Searcher] - Name: Tim
+2018-10-23 12:11:33,710 INFO  [Searcher] - Marke: VW
+2018-10-23 12:11:33,710 INFO  [Searcher] - Tacho: 123
+2018-10-23 12:11:33,711 INFO  [Searcher] - --------------
+2018-10-23 12:11:33,711 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
+2018-10-23 12:11:33,711 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
+2018-10-23 12:11:33,711 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+2018-10-23 12:11:33,711 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
+2018-10-23 12:11:33,711 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)

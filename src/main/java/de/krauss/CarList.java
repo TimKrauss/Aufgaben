@@ -17,7 +17,7 @@ public class CarList
 {
 	@XmlElement(name = "carlist")
 	private ArrayList<Car> cars;
-	private Logger logger = Logger.getLogger("CarList");
+	private Logger logger = Logger.getLogger(CarList.class);
 
 	/**
 	 * Log4j logger
@@ -172,20 +172,17 @@ public class CarList
 
 			}
 
-			Reservierung r = Reservierung.createReservierung(reader, resCar);
+			Reservierung res = Reservierung.createReservierung(reader, resCar);
 
-			if (!Utilities.isCarAvaible(r.getResStart(), r.getResStop(), resCar))
-			{
-				logger.error("Auto zu der Zeit leider reserviert....");
-				logger.info("Bitte wählen sie ein anderes Datum");
-			} else
-			{
-				r.setRES_ID(-1);
-				resCar.addResv(r);
-				orcb.uploadRes(r);
-				logger.info("Reserviert!");
-				return true;
-			}
+			if (res == null)
+				return false;
+
+			res.setRES_ID(-1);
+			resCar.addResv(res);
+			orcb.uploadRes(res);
+			logger.info("Reserviert!");
+
+			return true;
 		}
 	}
 

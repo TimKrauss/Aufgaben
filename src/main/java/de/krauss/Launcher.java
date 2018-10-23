@@ -24,21 +24,24 @@ import javafx.stage.Stage;
 public class Launcher extends Application implements Serializable
 {
 
+	// TODO Kein städiger Sync, parallel aufbauen und am Ende synchronisieren
+
 	private static final long serialVersionUID = 1636324934042718631L;
 
 	@XmlElement(name = "carlist")
 	private CarList carlist;
-	static Logger logger = Logger.getLogger(Launcher.class);
+	private Logger logger = Logger.getLogger(Launcher.class);
 	// private FileManager fm;
 	public static final String HOME_DIR = System.getProperty("user.home") + "/Desktop/Cars/";
 	private Searcher searcher;
 	private MainFrameController controller;
 	private Thread userReaderThread;
-	private OracleDataBase orcb = new OracleDataBase(logger);
+	private OracleDataBase orcb = new OracleDataBase();
 	private FileManager fm;
 
 	/**
-	 * Kümmert sich um die Eingabe des User in der Konsole
+	 * Kümmert sich um die Eingabe des User in der Konsole // ICH WEIß DU WIRST
+	 * MECKERN
 	 * 
 	 * @param reader ließt die Usereingabe
 	 */
@@ -78,7 +81,6 @@ public class Launcher extends Application implements Serializable
 			{
 				logger.warn("Kein Auto vorhanden!");
 				return;
-
 			}
 
 			for (Car c : carlist.getList())
@@ -99,9 +101,9 @@ public class Launcher extends Application implements Serializable
 
 		case "search":
 			logger.info("Nach welchem Merkmal möchten sie suchen?");
-			logger.info("[1] Name");
-			logger.info("[2] Marke");
-			logger.info("[3] Tachostand");
+			logger.info("[+" + Searcher.NAME + "] Name");
+			logger.info("[+" + Searcher.MARKE + "] Marke");
+			logger.info("[+" + Searcher.Tacho + "] Tacho");
 
 			int choose = 0;
 
@@ -117,15 +119,15 @@ public class Launcher extends Application implements Serializable
 						{
 						case Searcher.NAME:
 							logger.info("Bitte geben sie den Namen des Fahrzeuges an:");
-							searcher.search(carlist, choose, reader.readLine());
+							searcher.search(choose, reader.readLine());
 							break;
 						case Searcher.MARKE:
 							logger.info("Bitte geben sie die Marke des Fahrzeuges an:");
-							searcher.search(carlist, choose, reader.readLine());
+							searcher.search(choose, reader.readLine());
 							break;
 						case Searcher.Tacho:
 							logger.info("Bitte geben sie den Kilometerstand an:");
-							searcher.search(carlist, choose, reader.readLine());
+							searcher.search(choose, reader.readLine());
 							break;
 						default:
 							break;
@@ -300,8 +302,8 @@ public class Launcher extends Application implements Serializable
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
-		fm = new FileManager(logger);
-		searcher = new Searcher(logger);
+		fm = new FileManager();
+		searcher = new Searcher();
 		carlist = new CarList();
 
 		Platform.setImplicitExit(false);

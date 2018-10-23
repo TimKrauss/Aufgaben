@@ -2,7 +2,6 @@ package de.krauss;
 
 import java.util.ArrayList;
 
-import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +11,7 @@ public class CarListTest
 	private CarList carlist;
 	private ArrayList<Car> arrayList;
 	private Car car;
-	private OracleDataBase orcb = new OracleDataBase(Logger.getLogger("ORCB"));
+	private OracleDataBase orcb = new OracleDataBase();
 
 	@Before
 	public void init()
