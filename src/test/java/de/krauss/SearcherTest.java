@@ -22,7 +22,7 @@ public class SearcherTest
 		c.setF_Name(NAME);
 		c.setF_Marke(MARKE);
 		c.setF_Tacho(TACHO);
-		c.setCAR_ID(search.getDataBase().getNextID());
+		c.setCAR_ID(search.getDataBase().getNextCarID());
 		search.getDataBase().addCar(c);
 	}
 

@@ -219,7 +219,7 @@ public class OracleDataBase
 		{
 			if (c.getCAR_ID() == 0)
 			{
-				c.setCAR_ID(getNextID());
+				c.setCAR_ID(getNextCarID());
 			}
 
 			String query = "INSERT INTO AUTOS(NAME, MARKE, TACHO,ID) VALUES ('" + c.getF_Name() + "','" + c.getF_Marke()
@@ -251,7 +251,7 @@ public class OracleDataBase
 	 * 
 	 * @return Gibt die nächste freie Car-ID zurück
 	 */
-	public int getNextID()
+	public int getNextCarID()
 	{
 		try
 		{
@@ -271,7 +271,33 @@ public class OracleDataBase
 		{
 			e.printStackTrace();
 		}
+		return 0;
+	}
 
+	/**
+	 * 
+	 * @return Gibt die nächste freie Car-ID zurück
+	 */
+	public int getNextReservierungID()
+	{
+		try
+		{
+			Statement stmSequence = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			ResultSet seq = stmSequence.executeQuery("select RESV_SEQ.NEXTVAL from DUAL");
+			if (seq.next())
+			{
+				int reInt = seq.getInt("NEXTVAL");
+				seq.close();
+				stmSequence.close();
+				return reInt;
+			}
+			stmSequence.close();
+			seq.close();
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
@@ -283,7 +309,7 @@ public class OracleDataBase
 	 */
 	public boolean uploadRes(Reservierung r)
 	{
-		String query = "INSERT INTO RES_AUTO(STARTD,STOPD,CARNR,OWNER) VALUES (?,?,?,?)";
+		String query = "INSERT INTO RES_AUTO(STARTD,STOPD,CARNR,OWNER,ID) VALUES (?,?,?,?,?)";
 
 		try
 		{
@@ -293,6 +319,15 @@ public class OracleDataBase
 			smt.setTimestamp(2, new Timestamp(r.getResStop().getTime()));
 			smt.setInt(3, r.getCarID());
 			smt.setString(4, r.getOwner());
+
+			if (r.getRES_ID() != 0)
+			{
+				logger.info("Die hochzuladene Reservierung hatte schon eine RES_ID (" + r.getRES_ID() + ")");
+			} else
+			{
+				r.setRES_ID(getNextReservierungID());
+			}
+			smt.setInt(5, r.getRES_ID());
 
 			smt.executeQuery();
 			smt.close();

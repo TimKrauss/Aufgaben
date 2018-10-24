@@ -2,6 +2,8 @@ package de.krauss.gfx;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
@@ -10,7 +12,6 @@ import de.krauss.Car;
 import de.krauss.CarList;
 import de.krauss.FileManager;
 import de.krauss.Launcher;
-import de.krauss.OracleDataBase;
 import de.krauss.Reservierung;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
@@ -44,8 +45,7 @@ public class MainFrameController
 	private ComboBox<String> combo_Res;
 
 	private CarList carlist;
-	private OracleDataBase orcb;
-	private Logger logger = Logger.getLogger(MainFrameController.class);
+	private static Logger logger = Logger.getLogger(MainFrameController.class);
 	private static Stage primaryStage;
 	private FileManager fm;
 	private Initializer initer;
@@ -100,14 +100,17 @@ public class MainFrameController
 		if (importFile == null)
 			return;
 
-		ArrayList<Car> newCars = fm.load(fm.detectOption(importFile), importFile, orcb);
+		ArrayList<Car> newCars = null;
+		newCars = fm.load(fm.detectOption(importFile), importFile, carlist);
 
 		if (newCars == null)
 		{
 			System.out.println("NewCars == NULL");
 			return;
 		}
-		carlist.getList().addAll(newCars);
+
+		carlist.addCars(newCars);
+
 		setList(carlist.getList());
 	}
 
@@ -132,15 +135,6 @@ public class MainFrameController
 	}
 
 	/**
-	 * 
-	 * @param c Sezt die Instanz der OrcaleDataBase
-	 */
-	public void setOracleDataBase(OracleDataBase c)
-	{
-		orcb = c;
-	}
-
-	/**
 	 * Fügt den Elementen im GUI die Listener hinzu
 	 */
 	public void init()
@@ -158,7 +152,6 @@ public class MainFrameController
 		initer.setLbl_Res_start(lbl_Res_start);
 		initer.setLbl_Res_stop(lbl_Res_stop);
 		initer.setMainFrameController(this);
-		initer.setOracleDataBase(orcb);
 		initer.init();
 	}
 
@@ -184,10 +177,11 @@ public class MainFrameController
 		{
 			Car c = getSelectedCar();
 			r.setCarID(c.getCAR_ID());
-			orcb.uploadRes(r);
-			carlist.loadCarsFromDataBase(orcb);
-			setList(carlist.getList());
 
+			// DATENBANK + LOKAL
+			carlist.addReservierung(r, c);
+
+			setList(carlist.getList());
 		} catch (Exception e)
 		{
 			logger.info("Kein Auto ausgewählt");
@@ -203,11 +197,10 @@ public class MainFrameController
 		AddCarController controll = AddCarController.createWindow();
 		controll.setCarlist(carlist);
 		controll.addListenerToButton(this);
-		controll.setOracleDataBase(orcb);
 	}
 
 	/**
-	 * Löscht das im GUI ausgewählte Auto
+	 * TODO: REMOVE NULL Löscht das im GUI ausgewählte Auto
 	 */
 	@FXML
 	public void ausgewählteLöschen()
@@ -216,9 +209,11 @@ public class MainFrameController
 		label_Marke.setText("");
 		label_Name.setText("");
 		label_Tachostand.setText("");
-		carlist.getList().remove(delCar);
 		list_Autos.getSelectionModel().clearSelection();
-		orcb.deleteCarFromDatabase(delCar.getCAR_ID());
+
+		// DATENBANK + LOKAL
+		carlist.deleteCar(delCar);
+
 		setList(carlist.getList());
 	}
 
@@ -235,13 +230,7 @@ public class MainFrameController
 		{
 			names.add(c.getF_Name());
 		}
-		try
-		{
-			list_Autos.setItems(FXCollections.observableArrayList(names));
-		} catch (IllegalStateException e)
-		{
-			logger.warn("Auto hinzugefügt, dennoch falscher Thread (" + e.getMessage() + ")");
-		}
+		list_Autos.setItems(FXCollections.observableArrayList(names));
 	}
 
 	/**
@@ -255,9 +244,9 @@ public class MainFrameController
 		{
 			FXMLLoader loader = new FXMLLoader();
 
-			File f = new File(Launcher.class.getResource("/de/krauss/gfx/MainFrame.fxml").getFile());
-			System.out.println(f.getAbsolutePath());
-			FileInputStream fis = new FileInputStream(f);
+			File file = new File(Launcher.class.getResource("/de/krauss/gfx/MainFrame.fxml").getFile());
+			System.out.println(file.getAbsolutePath());
+			FileInputStream fis = new FileInputStream(file);
 			AnchorPane pane = loader.load(fis);
 			primaryStage = new Stage();
 			primaryStage.setScene(new Scene(pane));
@@ -278,9 +267,12 @@ public class MainFrameController
 			primaryStage.show();
 			fis.close();
 			return controller;
-		} catch (Exception e)
+		} catch (FileNotFoundException e)
 		{
-			e.printStackTrace();
+			logger.warn(e.getLocalizedMessage());
+		} catch (IOException e)
+		{
+			logger.warn(e.getLocalizedMessage());
 		}
 		return null;
 	}

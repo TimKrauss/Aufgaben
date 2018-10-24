@@ -18,7 +18,7 @@ public interface FileHandler
 	 * @param f Das File von welchem die Arraylist eingelesen werden soll
 	 * @return Die eingelesene Arraylist
 	 */
-	public abstract ArrayList<Car> load(File f);
+	ArrayList<Car> load(File f);
 
 	/**
 	 * 
@@ -26,12 +26,12 @@ public interface FileHandler
 	 *             gespeichert werden soll
 	 * @param f    Die Datei in welcher die Arraylist gespeichert werden soll
 	 */
-	public abstract void safe(CarList cars, File f);
+	void safe(CarList cars, File f);
 
 	/**
 	 * Nimmt die Datein aus dem Cars-Ordner vom Desktop
 	 * 
 	 * @return Das Standard-File zum lesen und speichern
 	 */
-	public abstract File getDefaultFile();
+	File getDefaultFile();
 }

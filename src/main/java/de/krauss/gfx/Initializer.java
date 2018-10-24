@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import de.krauss.Car;
 import de.krauss.CarList;
-import de.krauss.OracleDataBase;
 import de.krauss.Reservierung;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -33,7 +32,6 @@ public class Initializer
 	private CarList carlist;
 
 	private MainFrameController controller;
-	private OracleDataBase orcb;
 
 	/**
 	 * Startet die Initaliasierung von Liste,ComboBox, den Button reslöschen
@@ -116,10 +114,9 @@ public class Initializer
 				Car selCar = carlist.getCar(list_Autos.getSelectionModel().getSelectedIndex());
 				Reservierung r = selCar.getReservs().get(combo_Res.getSelectionModel().getSelectedIndex());
 
-				orcb.deleteReservierung(r);
-				selCar.getReservs().remove(r);
+				// DATENBANK + LOKAL
+				carlist.deleteReservierungFromCar(selCar, r);
 
-				carlist.loadCarsFromDataBase(orcb);
 				controller.setList(carlist.getList());
 			}
 		});
@@ -153,11 +150,6 @@ public class Initializer
 	public void setMainFrameController(MainFrameController m)
 	{
 		controller = m;
-	}
-
-	public void setOracleDataBase(OracleDataBase o)
-	{
-		orcb = o;
 	}
 
 	public void setCarlist(CarList car)

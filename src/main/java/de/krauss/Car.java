@@ -9,7 +9,7 @@ public class Car implements Serializable
 {
 
 	/**
-	 * Log4j logger
+	 * TODO NAMEN ANPASSEN Log4j logger
 	 */
 	private static final long serialVersionUID = 1257287804168043133L;
 	private String f_Name;

@@ -79,8 +79,6 @@ public class Utilities
 	 */
 	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car c)
 	{
-		System.out.println("I GET CALLED");
-
 		for (Reservierung r : c.getReservs())
 		{
 			Date oldStart = r.getResStart();
@@ -229,9 +227,8 @@ public class Utilities
 				int choo = Integer.parseInt(reader.readLine());
 				if (choo > carlist.getList().size())
 				{
-					new Exception();
+					throw new NumberFormatException();
 				}
-
 				return carlist.getList().get(choo - 1);
 
 			} catch (NumberFormatException e)

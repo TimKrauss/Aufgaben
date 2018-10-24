@@ -183,7 +183,6 @@ public class TxtFileHandler implements FileHandler
 			logger.warn("File not Found");
 		}
 
-		// }
 	}
 
 	/**

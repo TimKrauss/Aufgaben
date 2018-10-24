@@ -55,17 +55,17 @@ public class FileManagerTest
 		fm.safe(list, FileManager.JSON_FILE, fm.getDefaultFile(FileManager.JSON_FILE));
 		fm.safe(list, FileManager.XSTREAM_FILE, fm.getDefaultFile(FileManager.XSTREAM_FILE));
 
-		Assert.assertNull(fm.load(FileManager.DUMP_FILE, new File(""), null));
-		Assert.assertNull(fm.load(FileManager.JAXB_FILE, new File(""), null));
-		Assert.assertNull(fm.load(FileManager.JSON_FILE, new File(""), null));
-		Assert.assertNull(fm.load(FileManager.TXT_FILE, new File(""), null));
-		Assert.assertNull(fm.load(FileManager.XSTREAM_FILE, new File(""), null));
+		Assert.assertNull(fm.load(FileManager.DUMP_FILE, new File(""), list));
+		Assert.assertNull(fm.load(FileManager.JAXB_FILE, new File(""), list));
+		Assert.assertNull(fm.load(FileManager.JSON_FILE, new File(""), list));
+		Assert.assertNull(fm.load(FileManager.TXT_FILE, new File(""), list));
+		Assert.assertNull(fm.load(FileManager.XSTREAM_FILE, new File(""), list));
 
-		Assert.assertNotNull(fm.load(FileManager.DUMP_FILE, fm.getDefaultFile(FileManager.DUMP_FILE), null));
-		Assert.assertNotNull(fm.load(FileManager.JAXB_FILE, fm.getDefaultFile(FileManager.JAXB_FILE), null));
-		Assert.assertNotNull(fm.load(FileManager.JSON_FILE, fm.getDefaultFile(FileManager.JSON_FILE), null));
-		Assert.assertNotNull(fm.load(FileManager.TXT_FILE, fm.getDefaultFile(FileManager.TXT_FILE), null));
-		Assert.assertNotNull(fm.load(FileManager.XSTREAM_FILE, fm.getDefaultFile(FileManager.XSTREAM_FILE), null));
+		Assert.assertNotNull(fm.load(FileManager.DUMP_FILE, fm.getDefaultFile(FileManager.DUMP_FILE), list));
+		Assert.assertNotNull(fm.load(FileManager.JAXB_FILE, fm.getDefaultFile(FileManager.JAXB_FILE), list));
+		Assert.assertNotNull(fm.load(FileManager.JSON_FILE, fm.getDefaultFile(FileManager.JSON_FILE), list));
+		Assert.assertNotNull(fm.load(FileManager.TXT_FILE, fm.getDefaultFile(FileManager.TXT_FILE), list));
+		Assert.assertNotNull(fm.load(FileManager.XSTREAM_FILE, fm.getDefaultFile(FileManager.XSTREAM_FILE), list));
 
 	}
 }

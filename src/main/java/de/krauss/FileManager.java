@@ -31,7 +31,7 @@ public class FileManager implements Serializable
 	private JSonFileHandler jSonFileHandler;
 	private Logger logger = Logger.getLogger(FileManager.class);
 	private ArrayList<FileHandler> handlerList;
-	private ArrayList<Car> carList;
+	private ArrayList<Car> arrayListWithCars;
 
 	/**
 	 * 
@@ -39,37 +39,43 @@ public class FileManager implements Serializable
 	 * @param f      Die Datei aus welcher eingelesen werden soll
 	 * @return Die eingelesene Arraylist
 	 */
-	public ArrayList<Car> load(int option, File f, OracleDataBase o)
+	public ArrayList<Car> load(int option, File f, CarList checkList)
 	{
 		switch (option)
 		{
 		case DUMP_FILE:
-			carList = dumpFileHandler.load(f);
+			arrayListWithCars = dumpFileHandler.load(f);
 			break;
 		case JAXB_FILE:
-			carList = jaxbFileHandler.load(f);
+			arrayListWithCars = jaxbFileHandler.load(f);
 			break;
 		case TXT_FILE:
-			carList = txtFileHandler.load(f);
+			arrayListWithCars = txtFileHandler.load(f);
 			break;
 		case XSTREAM_FILE:
-			carList = xStreamFileHandler.load(f);
+			arrayListWithCars = xStreamFileHandler.load(f);
 			break;
 		case JSON_FILE:
-			carList = jSonFileHandler.load(f);
+			arrayListWithCars = jSonFileHandler.load(f);
 			break;
 		default:
 			return null;
 		}
 
-		if (o != null)
+		for (Car checkCar : checkList.getList())
 		{
-			for (Car c : carList)
+			for (Car newCar : arrayListWithCars)
 			{
-				o.addCar(c);
+				if (checkCar.getF_Name().equalsIgnoreCase(newCar.getF_Name()))
+				{
+					logger.info("Gleicher Autoname gefunden! ( " + newCar.getF_Name() + " )");
+					logger.info("Dennoch wird das Auto erstmal hinzugefügt");
+					// XXX Falls Verbesserung bei gleichem Namen
+				}
 			}
 		}
-		return carList;
+
+		return arrayListWithCars;
 	}
 
 	/**
@@ -176,10 +182,10 @@ public class FileManager implements Serializable
 		xStreamFileHandler = new XStreamFileHandler();
 		jSonFileHandler = new JSonFileHandler();
 
-		carList = new ArrayList<>();
+		arrayListWithCars = new ArrayList<>();
+		handlerList = new ArrayList<>();
 
 		// ALLE AUSSER JAXB
-		handlerList = new ArrayList<>();
 		handlerList.add(dumpFileHandler);
 		handlerList.add(jSonFileHandler);
 		handlerList.add(xStreamFileHandler);

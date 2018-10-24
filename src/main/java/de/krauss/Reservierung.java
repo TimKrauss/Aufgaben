@@ -16,8 +16,8 @@ public class Reservierung implements Serializable
 	private static Logger logger = Logger.getLogger(Reservierung.class);
 	private static final long serialVersionUID = 13273646095955764L;
 	private Date resStart, resStop;
-	private int CAR_ID;
-	private int RES_ID;
+	private int CAR_ID = 0;
+	private int RES_ID = 0;
 	private String owner;
 
 	/**

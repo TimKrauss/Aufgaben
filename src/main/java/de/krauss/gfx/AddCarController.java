@@ -7,7 +7,6 @@ import java.io.IOException;
 import de.krauss.Car;
 import de.krauss.CarList;
 import de.krauss.Launcher;
-import de.krauss.OracleDataBase;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,7 +26,6 @@ public class AddCarController
 	@FXML
 	private TextField txtf_Name, txtf_Marke, txtf_Tacho;
 
-	private OracleDataBase orcb;
 	private CarList carlist;
 
 	@FXML
@@ -83,8 +81,9 @@ public class AddCarController
 					c.setF_Tacho(int_Tacho);
 					c.setCAR_ID(0);
 
-					orcb.addCar(c);
-					carlist.loadCarsFromDataBase(orcb);
+					// DATENANK + LOKAL
+					carlist.addCar(c);
+
 					con.setList(carlist.getList());
 					((Node) (event.getSource())).getScene().getWindow().hide();
 
@@ -97,15 +96,6 @@ public class AddCarController
 			}
 		});
 
-	}
-
-	/**
-	 * 
-	 * @param c Setzt die Instanz der OracleDatabase
-	 */
-	public void setOracleDataBase(OracleDataBase c)
-	{
-		orcb = c;
 	}
 
 	/**

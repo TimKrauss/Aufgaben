@@ -37,7 +37,6 @@ public class MainFrameControllerTest extends ApplicationTest
 		arg0.toFront();
 		fis.close();
 		orcb = new OracleDataBase();
-		controller.setOracleDataBase(orcb);
 		controller.setFileManager(new FileManager());
 		controller.setCarlist(new CarList());
 		controller.init();

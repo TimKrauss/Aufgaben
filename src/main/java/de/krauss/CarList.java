@@ -18,6 +18,7 @@ public class CarList
 	@XmlElement(name = "carlist")
 	private ArrayList<Car> cars;
 	private Logger logger = Logger.getLogger(CarList.class);
+	private OracleDataBase orcb = new OracleDataBase();
 
 	/**
 	 * Log4j logger
@@ -39,10 +40,10 @@ public class CarList
 		int num = 1;
 		int rnum = 1;
 
-		logger.info("Anzahl an Autos: " + getList().size());
+		logger.info("Anzahl an Autos: " + cars.size());
 		logger.info("--------------------------------------");
 
-		for (Car c : getList())
+		for (Car c : cars)
 		{
 			logger.info("Auto " + num);
 			logger.info("-Fahrzeugname: " + c.getF_Name());
@@ -77,7 +78,7 @@ public class CarList
 	 * @param orcb Die Datenbank in welcher das Auto hinzufügen soll
 	 * @return Ob das Auto hinzufügen erfolgreich war
 	 */
-	public boolean Autohinzufügen(BufferedReader r, OracleDataBase orcb)
+	public boolean addCarWithReader(BufferedReader r)
 	{
 		Car newCar = new Car();
 		try
@@ -96,9 +97,12 @@ public class CarList
 			newCar.setF_Tacho(Utilities.addTacho(r));
 			logger.info("Kilometer: " + newCar.getF_Tacho());
 
+			// LOKALE LISTE
 			cars.add(newCar);
+
+			// DATENBANK
 			orcb.addCar(newCar);
-			loadCarsFromDataBase(orcb);
+
 			System.err.println("Auto hinzugefügt!");
 			logger.info("");
 			System.err.flush();
@@ -118,9 +122,11 @@ public class CarList
 	public void addCar(Car c)
 	{
 		cars.add(c);
+		orcb.addCar(c);
 	}
 
 	/**
+	 * TODO Exception fangen & prüfen
 	 * 
 	 * @param i Die Nummer des Autos welches zurück gegeben werden soll
 	 * @return Gibt das ausgewählte Auto zurück
@@ -130,13 +136,21 @@ public class CarList
 		return cars.get(i);
 	}
 
-	/**
-	 * 
-	 * @return Die Arraylist in der sich alle Autos befinden
-	 */
-	public ArrayList<Car> getList()
+	public void addReservierung(Reservierung r, Car c)
 	{
-		return cars;
+		r.setCarID(c.getCAR_ID());
+
+		orcb.uploadRes(r);
+		c.addResv(r);
+	}
+
+	public void deleteCar(Car c)
+	{
+		// DATENBANK
+		orcb.deleteCarFromDatabase(c.getCAR_ID());
+
+		// LOKAL
+		cars.remove(c);
 	}
 
 	/**
@@ -147,25 +161,25 @@ public class CarList
 	 *               soll
 	 * @return Ob das reservieren erfolgreich war
 	 */
-	public boolean reservieren(BufferedReader reader, OracleDataBase orcb)
+	public boolean reservieren(BufferedReader reader)
 	{
 		listCars();
 		Car resCar = new Car();
 
-		if (getList().size() == 0)
+		if (cars.size() == 0)
 			return false;
 
 		while (true)
 		{
 
-			logger.info("Welches Auto wollen sie Reservieren? (1 - " + getList().size() + ")");
+			logger.info("Welches Auto wollen sie Reservieren? (1 - " + cars.size() + ")");
 			while (true)
 			{
 				try
 				{
-					resCar = getList().get((Integer.parseInt(reader.readLine()) - 1));
+					resCar = cars.get((Integer.parseInt(reader.readLine()) - 1));
 					break;
-				} catch (Exception e)
+				} catch (IOException | NumberFormatException e)
 				{
 					logger.warn("Bitte eine vorhandene Zahl angeben!");
 				}
@@ -178,8 +192,12 @@ public class CarList
 				return false;
 
 			res.setRES_ID(-1);
+
+			// LOKAL
 			resCar.addResv(res);
+			// DATENBANK
 			orcb.uploadRes(res);
+
 			logger.info("Reserviert!");
 
 			return true;
@@ -191,8 +209,56 @@ public class CarList
 	 * 
 	 * @param orcb
 	 */
-	public void loadCarsFromDataBase(OracleDataBase orcb)
+	public void addCarsFromDataBase()
 	{
-		cars = orcb.loadDatabase();
+		ArrayList<Car> addablesCars = new ArrayList<>();
+
+		if (cars.size() == 0)
+		{
+			cars.addAll(orcb.loadDatabase());
+			return;
+		}
+
+		for (Car alreadyIn : cars)
+		{
+			for (Car putIn : orcb.loadDatabase())
+			{
+				if (alreadyIn.getCAR_ID() != putIn.getCAR_ID())
+				{
+					addablesCars.add(putIn);
+				} else
+				{
+					logger.info("Auto aus der Liste entfernt, da schon vorhanden (ID: " + putIn.getCAR_ID() + " )");
+				}
+			}
+		}
+		logger.info(addablesCars.size());
+		cars.addAll(addablesCars);
+
 	}
+
+	public OracleDataBase getOracleDatabase()
+	{
+		return orcb;
+	}
+
+	public ArrayList<Car> getList()
+	{
+		return cars;
+	}
+
+	public void deleteReservierungFromCar(Car fromCar, Reservierung toDelete)
+	{
+		orcb.deleteReservierung(toDelete);
+		fromCar.getReservs().remove(toDelete);
+	}
+
+	public void addCars(ArrayList<Car> newCars)
+	{
+		for (Car car : newCars)
+		{
+			addCar(car);
+		}
+	}
+
 }

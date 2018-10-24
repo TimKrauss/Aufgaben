@@ -31,12 +31,11 @@ public class Launcher extends Application implements Serializable
 	@XmlElement(name = "carlist")
 	private CarList carlist;
 	private Logger logger = Logger.getLogger(Launcher.class);
-	// private FileManager fm;
 	public static final String HOME_DIR = System.getProperty("user.home") + "/Desktop/Cars/";
 	private Searcher searcher;
 	private MainFrameController controller;
 	private Thread userReaderThread;
-	private OracleDataBase orcb = new OracleDataBase();
+//	private OracleDataBase orcb = new OracleDataBase();
 	private FileManager fm;
 
 	/**
@@ -53,14 +52,15 @@ public class Launcher extends Application implements Serializable
 			txt = reader.readLine();
 		} catch (IOException e1)
 		{
-			e1.printStackTrace();
+			logger.fatal(e1.getMessage());
 			System.exit(1);
 		}
 
 		switch (txt)
 		{
 		case "ja":
-			carlist.Autohinzufügen(reader, orcb);
+			carlist.addCarWithReader(reader);
+			updateList();
 			standardCall();
 			break;
 		case "nein":
@@ -68,10 +68,12 @@ public class Launcher extends Application implements Serializable
 			break;
 		case "list":
 			carlist.listCars();
+			updateList();
 			standardCall();
 			break;
 		case "reservieren":
-			carlist.reservieren(reader, orcb);
+			carlist.reservieren(reader);
+			updateList();
 			standardCall();
 			break;
 		case "del":
@@ -90,12 +92,18 @@ public class Launcher extends Application implements Serializable
 			}
 
 			logger.info("Welches Auto soll gelöscht werden?");
-			orcb.deleteCarFromDatabase(Utilities.chooseCarFromList(carlist, reader).getCAR_ID());
-			carlist.loadCarsFromDataBase(orcb);
+
+			Car carToDelete = Utilities.chooseCarFromList(carlist, reader);
+			// LOKAL + DATENBANK
+			carlist.deleteCar(carToDelete);
+
+			updateList();
 			standardCall();
+
 			break;
 		case "rdel":
 			rLöschen(reader);
+			updateList();
 			standardCall();
 			break;
 
@@ -266,9 +274,8 @@ public class Launcher extends Application implements Serializable
 			}
 		}
 
-		orcb.deleteReservierung(dCar.getReservs().get(resvNummerChoosen));
+		carlist.deleteReservierungFromCar(dCar, dCar.getReservs().get(resvNummerChoosen));
 
-		dCar.getReservs().remove(resvNummerChoosen);
 		logger.info("Die Reservierung wurde gelöscht");
 		return true;
 	}
@@ -299,8 +306,9 @@ public class Launcher extends Application implements Serializable
 		userReaderThread.start();
 	}
 
+	// TODO CHECK GEGEN NULL
 	@Override
-	public void start(Stage primaryStage) throws Exception
+	public void start(Stage primaryStage)
 	{
 		fm = new FileManager();
 		searcher = new Searcher();
@@ -308,7 +316,7 @@ public class Launcher extends Application implements Serializable
 
 		Platform.setImplicitExit(false);
 
-		carlist.loadCarsFromDataBase(orcb);
+		carlist.addCarsFromDataBase();
 
 		// START WINDOW
 
@@ -318,9 +326,8 @@ public class Launcher extends Application implements Serializable
 			return;
 		}
 		controller = MainFrameController.createWindow();
-		controller.setDatenbankStatus(true, orcb.getDataBaseUser());
+		controller.setDatenbankStatus(true, "tim");
 		controller.setCarlist(carlist);
-		controller.setOracleDataBase(orcb);
 		controller.setFileManager(fm);
 		controller.init();
 		controller.setList(carlist.getList());
@@ -329,4 +336,18 @@ public class Launcher extends Application implements Serializable
 		// verfügbar ist
 		startReaderThread(System.in);
 	}
+
+	private void updateList()
+	{
+		Platform.runLater(new Runnable()
+		{
+
+			@Override
+			public void run()
+			{
+				controller.setList(carlist.getList());
+			}
+		});
+	}
+
 }

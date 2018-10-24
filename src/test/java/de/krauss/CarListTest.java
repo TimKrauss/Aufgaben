@@ -24,7 +24,6 @@ public class CarListTest
 	@Test
 	public void test()
 	{
-		carlist.loadCarsFromDataBase(orcb);
 		Assert.assertEquals(arrayList, carlist.getList());
 
 		carlist.addCar(car);

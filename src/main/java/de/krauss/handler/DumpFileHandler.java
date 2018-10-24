@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 
 import de.krauss.Car;
@@ -52,21 +51,14 @@ public class DumpFileHandler implements FileHandler
 	@Override
 	public void safe(CarList cars, File f)
 	{
-		OutputStream fos = null;
-		try
+		if (f == null)
 		{
-			File chooFile = f;
-
-			if (chooFile == null)
-				chooFile = getDefaultFile();
-
-			fos = new FileOutputStream(chooFile);
-
-			ObjectOutputStream o = new ObjectOutputStream(fos);
+			f = getDefaultFile();
+		}
+		try (ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(f)))
+		{
 			o.writeObject(cars.getList());
 			o.flush();
-			o.close();
-			fos.close();
 		} catch (FileNotFoundException e)
 		{
 			logger.fatal("Die gesuchte Datei wurde nicht gefunden");
@@ -75,15 +67,6 @@ public class DumpFileHandler implements FileHandler
 			logger.fatal("Fehler beim Schreiben des Objektes");
 			e.printStackTrace();
 		}
-		try
-		{
-			if (fos != null)
-				fos.close();
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-
 	}
 
 	/**
@@ -92,7 +75,7 @@ public class DumpFileHandler implements FileHandler
 	@Override
 	public File getDefaultFile()
 	{
-		return new File(Launcher.HOME_DIR + ".dump");
+		return new File(Launcher.HOME_DIR + "Dump.dump");
 	}
 
 }
