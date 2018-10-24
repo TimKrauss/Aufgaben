@@ -176,7 +176,7 @@ public class MainFrameController
 		try
 		{
 			Car c = getSelectedCar();
-			r.setCarID(c.getCAR_ID());
+			r.setCarID(c.getCarID());
 
 			// DATENBANK + LOKAL
 			carlist.addReservierung(r, c);
@@ -200,12 +200,16 @@ public class MainFrameController
 	}
 
 	/**
-	 * TODO: REMOVE NULL Löscht das im GUI ausgewählte Auto
+	 * Löscht das im GUI ausgewählte Auto
 	 */
 	@FXML
 	public void ausgewählteLöschen()
 	{
 		Car delCar = getSelectedCar();
+
+		if (delCar == null)
+			return;
+
 		label_Marke.setText("");
 		label_Name.setText("");
 		label_Tachostand.setText("");
@@ -228,7 +232,7 @@ public class MainFrameController
 
 		for (Car c : cars)
 		{
-			names.add(c.getF_Name());
+			names.add(c.getCarName());
 		}
 		list_Autos.setItems(FXCollections.observableArrayList(names));
 	}
@@ -283,7 +287,15 @@ public class MainFrameController
 	 */
 	public Car getSelectedCar()
 	{
-		return carlist.getCar(list_Autos.getSelectionModel().getSelectedIndex());
+		Car car = null;
+		try
+		{
+			car = carlist.getCar(list_Autos.getSelectionModel().getSelectedIndex());
+		} catch (Exception e) // All Exceptions da ich nicht weiß, welche man genau fangen sollte
+		{
+			logger.warn(e.getMessage());
+		}
+		return car;
 	}
 
 }

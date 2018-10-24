@@ -24,9 +24,9 @@ public class TxtFileHandlerTest
 	@Test
 	public void test()
 	{
-		car.setF_Name(NAME);
-		car.setF_Marke(MARKE);
-		car.setF_Tacho(TACHO);
+		car.setCarName(NAME);
+		car.setCarMarke(MARKE);
+		car.setCarTacho(TACHO);
 		car.addResv(new Reservierung(new Date(), new Date()));
 		carlist.addCar(car);
 

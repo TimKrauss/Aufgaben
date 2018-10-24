@@ -23,9 +23,6 @@ import javafx.stage.Stage;
 
 public class Launcher extends Application implements Serializable
 {
-
-	// TODO Kein städiger Sync, parallel aufbauen und am Ende synchronisieren
-
 	private static final long serialVersionUID = 1636324934042718631L;
 
 	@XmlElement(name = "carlist")
@@ -87,7 +84,7 @@ public class Launcher extends Application implements Serializable
 
 			for (Car c : carlist.getList())
 			{
-				logger.info("[" + counter + "] " + c.getF_Name());
+				logger.info("[" + counter + "] " + c.getCarName());
 				counter++;
 			}
 
@@ -222,7 +219,7 @@ public class Launcher extends Application implements Serializable
 		{
 			if (c.getReservs().size() != 0)
 			{
-				logger.info("( " + resnum + " ) " + c.getF_Name());
+				logger.info("( " + resnum + " ) " + c.getCarName());
 				resCars.add(c);
 				resnum++;
 			}
@@ -248,7 +245,7 @@ public class Launcher extends Application implements Serializable
 
 		sdf.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"));
 
-		logger.info("Name: " + dCar.getF_Name());
+		logger.info("Name: " + dCar.getCarName());
 
 		for (Reservierung r : dCar.getReservs())
 		{

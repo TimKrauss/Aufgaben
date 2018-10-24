@@ -21,15 +21,15 @@ public class OracleDataBaseTest
 		car = new Car();
 		car2 = new Car();
 
-		car.setCAR_ID(CAR_ID);
-		car.setF_Marke(CAR_MARKE);
-		car.setF_Name(CAR_NAME);
-		car.setF_Tacho(CAR_TACHO);
+		car.setCarID(CAR_ID);
+		car.setCarMarke(CAR_MARKE);
+		car.setCarName(CAR_NAME);
+		car.setCarTacho(CAR_TACHO);
 
-		car2.setCAR_ID(0);
-		car2.setF_Marke(CAR_MARKE);
-		car2.setF_Name(CAR_NAME);
-		car2.setF_Tacho(CAR_TACHO);
+		car2.setCarID(0);
+		car2.setCarMarke(CAR_MARKE);
+		car2.setCarName(CAR_NAME);
+		car2.setCarTacho(CAR_TACHO);
 
 		res = new Reservierung();
 		res.setResStart(new Date());
@@ -49,9 +49,9 @@ public class OracleDataBaseTest
 		Assert.assertTrue(orb.uploadRes(res));
 		Assert.assertTrue(orb.uploadRes(res));
 		Car car2 = orb.loadDatabase().get(0);
-		Assert.assertEquals(car.getF_Name(), car2.getF_Name());
-		Assert.assertEquals(car.getF_Marke(), car2.getF_Marke());
-		Assert.assertEquals(car.getF_Tacho(), car2.getF_Tacho());
+		Assert.assertEquals(car.getCarName(), car2.getCarName());
+		Assert.assertEquals(car.getCarMarke(), car2.getCarMarke());
+		Assert.assertEquals(car.getCarTacho(), car2.getCarTacho());
 
 		Assert.assertTrue(orb.deleteReservierung(res));
 

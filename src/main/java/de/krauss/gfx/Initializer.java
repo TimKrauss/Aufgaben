@@ -92,9 +92,9 @@ public class Initializer
 
 				combo_Res.setItems(FXCollections.observableArrayList(res_Name));
 				combo_Res.getSelectionModel().select(0);
-				label_Name.setText(c.getF_Name());
-				label_Marke.setText(c.getF_Marke());
-				label_Tachostand.setText(c.getF_Tacho() + "");
+				label_Name.setText(c.getCarName());
+				label_Marke.setText(c.getCarMarke());
+				label_Tachostand.setText(c.getCarTacho() + "");
 				btn_Löschen.setDisable(false);
 				btn_Reservieren.setDisable(false);
 			}

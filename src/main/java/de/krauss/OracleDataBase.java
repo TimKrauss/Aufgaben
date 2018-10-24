@@ -143,10 +143,10 @@ public class OracleDataBase
 
 			while (rset.next())
 			{
-				car.setF_Name(rset.getString("name"));
-				car.setF_Marke(rset.getString("marke"));
-				car.setF_Tacho(rset.getInt(("tacho")));
-				car.setCAR_ID(rset.getInt("id"));
+				car.setCarName(rset.getString("name"));
+				car.setCarMarke(rset.getString("marke"));
+				car.setCarTacho(rset.getInt(("tacho")));
+				car.setCarID(rset.getInt("id"));
 
 				cars.add(car);
 				car = new Car();
@@ -187,7 +187,7 @@ public class OracleDataBase
 			{
 				for (Car c : cars)
 				{
-					if (c.getCAR_ID() == rset.getInt("carnr"))
+					if (c.getCarID() == rset.getInt("carnr"))
 					{
 						Reservierung r = new Reservierung();
 
@@ -217,13 +217,13 @@ public class OracleDataBase
 	{
 		try
 		{
-			if (c.getCAR_ID() == 0)
+			if (c.getCarID() == 0)
 			{
-				c.setCAR_ID(getNextCarID());
+				c.setCarID(getNextCarID());
 			}
 
-			String query = "INSERT INTO AUTOS(NAME, MARKE, TACHO,ID) VALUES ('" + c.getF_Name() + "','" + c.getF_Marke()
-					+ "'," + c.getF_Tacho() + "," + c.getCAR_ID() + ")";
+			String query = "INSERT INTO AUTOS(NAME, MARKE, TACHO,ID) VALUES ('" + c.getCarName() + "','" + c.getCarMarke()
+					+ "'," + c.getCarTacho() + "," + c.getCarID() + ")";
 
 			Statement smt;
 			smt = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -235,7 +235,7 @@ public class OracleDataBase
 				if (c.getReservs().size() == 0)
 					break;
 
-				r.setCarID(c.getCAR_ID());
+				r.setCarID(c.getCarID());
 				uploadRes(r);
 			}
 			return true;
@@ -405,10 +405,10 @@ public class OracleDataBase
 		{
 			while (rs.next())
 			{
-				car.setF_Name(rs.getString("name"));
-				car.setF_Marke(rs.getString("marke"));
-				car.setF_Tacho(rs.getInt(("tacho")));
-				car.setCAR_ID(rs.getInt("id"));
+				car.setCarName(rs.getString("name"));
+				car.setCarMarke(rs.getString("marke"));
+				car.setCarTacho(rs.getInt(("tacho")));
+				car.setCarID(rs.getInt("id"));
 			}
 			rs.close();
 		} catch (SQLException e)

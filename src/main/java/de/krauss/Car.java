@@ -8,14 +8,11 @@ import javax.xml.bind.annotation.XmlElement;
 public class Car implements Serializable
 {
 
-	/**
-	 * TODO NAMEN ANPASSEN Log4j logger
-	 */
 	private static final long serialVersionUID = 1257287804168043133L;
-	private String f_Name;
-	private String f_Marke;
-	private int CAR_ID = 0;
-	private int f_Tacho;
+	private String carName;
+	private String carMarke;
+	private int carID = 0;
+	private int carTacho;
 	@XmlElement(name = "Reservierungen")
 	private ArrayList<Reservierung> resv;
 
@@ -31,54 +28,54 @@ public class Car implements Serializable
 	 * 
 	 * @return Gibt den Namen des Fahrzeuges zurück
 	 */
-	public String getF_Name()
+	public String getCarName()
 	{
-		return f_Name;
+		return carName;
 	}
 
 	/**
 	 * 
 	 * @param f_Name Setzt den Namen des Fahrzeuges
 	 */
-	public void setF_Name(String f_Name)
+	public void setCarName(String f_Name)
 	{
-		this.f_Name = f_Name;
+		this.carName = f_Name;
 	}
 
 	/**
 	 * 
 	 * @return Gibt die Marke des Fahrzeuges zurück
 	 */
-	public String getF_Marke()
+	public String getCarMarke()
 	{
-		return f_Marke;
+		return carMarke;
 	}
 
 	/**
 	 * 
 	 * @param f_Marke Setzt die Marke des Fahrzeuges
 	 */
-	public void setF_Marke(String f_Marke)
+	public void setCarMarke(String f_Marke)
 	{
-		this.f_Marke = f_Marke;
+		this.carMarke = f_Marke;
 	}
 
 	/**
 	 * 
 	 * @return Gibt den Tachostand des Fahrzeuges zurück
 	 */
-	public int getF_Tacho()
+	public int getCarTacho()
 	{
-		return f_Tacho;
+		return carTacho;
 	}
 
 	/**
 	 * 
 	 * @param f_Tacho Setzt den Tachostamd des Fahrzeuges
 	 */
-	public void setF_Tacho(int f_Tacho)
+	public void setCarTacho(int f_Tacho)
 	{
-		this.f_Tacho = f_Tacho;
+		this.carTacho = f_Tacho;
 	}
 
 	/**
@@ -104,18 +101,18 @@ public class Car implements Serializable
 	 * 
 	 * @return ID des Autos
 	 */
-	public int getCAR_ID()
+	public int getCarID()
 	{
-		return CAR_ID;
+		return carID;
 	}
 
 	/**
 	 * 
 	 * @param cAR_ID Setzt ID des Atuos
 	 */
-	public void setCAR_ID(int cAR_ID)
+	public void setCarID(int cAR_ID)
 	{
-		CAR_ID = cAR_ID;
+		carID = cAR_ID;
 	}
 
 }

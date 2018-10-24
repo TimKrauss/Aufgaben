@@ -76,10 +76,10 @@ public class AddCarController
 					int int_Tacho = Integer.parseInt(tacho);
 
 					Car c = new Car();
-					c.setF_Name(name);
-					c.setF_Marke(marke);
-					c.setF_Tacho(int_Tacho);
-					c.setCAR_ID(0);
+					c.setCarName(name);
+					c.setCarMarke(marke);
+					c.setCarTacho(int_Tacho);
+					c.setCarID(0);
 
 					// DATENANK + LOKAL
 					carlist.addCar(c);

@@ -66,9 +66,9 @@ public class FileManager implements Serializable
 		{
 			for (Car newCar : arrayListWithCars)
 			{
-				if (checkCar.getF_Name().equalsIgnoreCase(newCar.getF_Name()))
+				if (checkCar.getCarName().equalsIgnoreCase(newCar.getCarName()))
 				{
-					logger.info("Gleicher Autoname gefunden! ( " + newCar.getF_Name() + " )");
+					logger.info("Gleicher Autoname gefunden! ( " + newCar.getCarName() + " )");
 					logger.info("Dennoch wird das Auto erstmal hinzugefügt");
 					// XXX Falls Verbesserung bei gleichem Namen
 				}

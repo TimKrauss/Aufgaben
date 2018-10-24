@@ -19,10 +19,10 @@ public class SearcherTest
 	{
 		search = new Searcher();
 		c = new Car();
-		c.setF_Name(NAME);
-		c.setF_Marke(MARKE);
-		c.setF_Tacho(TACHO);
-		c.setCAR_ID(search.getDataBase().getNextCarID());
+		c.setCarName(NAME);
+		c.setCarMarke(MARKE);
+		c.setCarTacho(TACHO);
+		c.setCarID(search.getDataBase().getNextCarID());
 		search.getDataBase().addCar(c);
 	}
 
@@ -37,7 +37,7 @@ public class SearcherTest
 	@After
 	public void tearDown()
 	{
-		search.getDataBase().deleteCarFromDatabase(c.getCAR_ID());
+		search.getDataBase().deleteCarFromDatabase(c.getCarID());
 		search.getDataBase().closeConnection();
 	}
 

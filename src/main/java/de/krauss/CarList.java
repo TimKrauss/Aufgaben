@@ -46,9 +46,9 @@ public class CarList
 		for (Car c : cars)
 		{
 			logger.info("Auto " + num);
-			logger.info("-Fahrzeugname: " + c.getF_Name());
-			logger.info("--Fahrzeugmarke: " + c.getF_Marke());
-			logger.info("---Kilometerstand: " + c.getF_Tacho());
+			logger.info("-Fahrzeugname: " + c.getCarName());
+			logger.info("--Fahrzeugmarke: " + c.getCarMarke());
+			logger.info("---Kilometerstand: " + c.getCarTacho());
 
 			if (c.getReservs().size() == 0)
 			{
@@ -86,16 +86,16 @@ public class CarList
 
 			logger.info("Wie lautet der Fahrzeugname?");
 
-			newCar.setF_Name(r.readLine());
-			logger.info("Fahrzeugname --> " + newCar.getF_Name());
+			newCar.setCarName(r.readLine());
+			logger.info("Fahrzeugname --> " + newCar.getCarName());
 
 			logger.info("Wie lautet die Fahrzeugmarke?");
 
-			newCar.setF_Marke(r.readLine());
-			logger.info("Fahrzeugmarke --> " + newCar.getF_Marke());
+			newCar.setCarMarke(r.readLine());
+			logger.info("Fahrzeugmarke --> " + newCar.getCarMarke());
 
-			newCar.setF_Tacho(Utilities.addTacho(r));
-			logger.info("Kilometer: " + newCar.getF_Tacho());
+			newCar.setCarTacho(Utilities.addTacho(r));
+			logger.info("Kilometer: " + newCar.getCarTacho());
 
 			// LOKALE LISTE
 			cars.add(newCar);
@@ -126,19 +126,26 @@ public class CarList
 	}
 
 	/**
-	 * TODO Exception fangen & prüfen
 	 * 
 	 * @param i Die Nummer des Autos welches zurück gegeben werden soll
 	 * @return Gibt das ausgewählte Auto zurück
 	 */
 	public Car getCar(int i)
 	{
-		return cars.get(i);
+		Car car = null;
+		try
+		{
+			car = cars.get(i);
+		} catch (IndexOutOfBoundsException e)
+		{
+			logger.warn(e.getMessage());
+		}
+		return car;
 	}
 
 	public void addReservierung(Reservierung r, Car c)
 	{
-		r.setCarID(c.getCAR_ID());
+		r.setCarID(c.getCarID());
 
 		orcb.uploadRes(r);
 		c.addResv(r);
@@ -147,7 +154,7 @@ public class CarList
 	public void deleteCar(Car c)
 	{
 		// DATENBANK
-		orcb.deleteCarFromDatabase(c.getCAR_ID());
+		orcb.deleteCarFromDatabase(c.getCarID());
 
 		// LOKAL
 		cars.remove(c);
@@ -223,12 +230,12 @@ public class CarList
 		{
 			for (Car putIn : orcb.loadDatabase())
 			{
-				if (alreadyIn.getCAR_ID() != putIn.getCAR_ID())
+				if (alreadyIn.getCarID() != putIn.getCarID())
 				{
 					addablesCars.add(putIn);
 				} else
 				{
-					logger.info("Auto aus der Liste entfernt, da schon vorhanden (ID: " + putIn.getCAR_ID() + " )");
+					logger.info("Auto aus der Liste entfernt, da schon vorhanden (ID: " + putIn.getCarID() + " )");
 				}
 			}
 		}

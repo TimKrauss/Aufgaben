@@ -70,14 +70,14 @@ public class TxtFileHandler implements FileHandler
 
 				if (st.contains(NAME_PATTERN))
 				{
-					newCar.setF_Name(st.replace(NAME_PATTERN, ""));
+					newCar.setCarName(st.replace(NAME_PATTERN, ""));
 				} else if (st.contains(MARKE_PATTERN))
 				{
-					newCar.setF_Marke(st.replace(MARKE_PATTERN, ""));
+					newCar.setCarMarke(st.replace(MARKE_PATTERN, ""));
 				} else if (st.contains(TACHO_PATTERN))
 				{
 					String g = st.replace(TACHO_PATTERN, "").replaceAll(" +", "");
-					newCar.setF_Tacho(Integer.parseInt(g));
+					newCar.setCarTacho(Integer.parseInt(g));
 				} else if (st.contains(OWNER_PATTERN))
 				{
 					res.setOwner(st.replace(OWNER_PATTERN, ""));
@@ -113,7 +113,7 @@ public class TxtFileHandler implements FileHandler
 					newCar.addResv(res);
 				} else if (st.contains(CAR_FINISHED_PATTERN))
 				{
-					if (newCar.getF_Name() != null)
+					if (newCar.getCarName() != null)
 					{
 						cars.add(newCar);
 						newCar = new Car();
@@ -155,9 +155,9 @@ public class TxtFileHandler implements FileHandler
 
 			for (Car c : cars.getList())
 			{
-				wr.println("Name: " + c.getF_Name());
-				wr.println("Marke: " + c.getF_Marke());
-				wr.println("Kilometer: " + c.getF_Tacho());
+				wr.println("Name: " + c.getCarName());
+				wr.println("Marke: " + c.getCarMarke());
+				wr.println("Kilometer: " + c.getCarTacho());
 				wr.flush();
 
 				// Reservierungen

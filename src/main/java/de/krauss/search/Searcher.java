@@ -56,9 +56,9 @@ public class Searcher
 			{
 				Car f = orcb.getCarByID(rs.getInt("ID"));
 				logger.info("--------------");
-				logger.info("Name: " + f.getF_Name());
-				logger.info("Marke: " + f.getF_Marke());
-				logger.info("Tacho: " + f.getF_Tacho());
+				logger.info("Name: " + f.getCarName());
+				logger.info("Marke: " + f.getCarMarke());
+				logger.info("Tacho: " + f.getCarTacho());
 				logger.info("--------------");
 			}
 			rs.close();

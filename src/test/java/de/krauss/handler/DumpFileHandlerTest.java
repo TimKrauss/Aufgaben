@@ -22,9 +22,9 @@ public class DumpFileHandlerTest
 	@Test
 	public void test()
 	{
-		car.setF_Name(NAME);
-		car.setF_Marke(MARKE);
-		car.setF_Tacho(TACHO);
+		car.setCarName(NAME);
+		car.setCarMarke(MARKE);
+		car.setCarTacho(TACHO);
 		carlist.addCar(car);
 
 		dumpFileHandler.safe(carlist, null);

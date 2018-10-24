@@ -105,7 +105,7 @@ public class Reservierung implements Serializable
 					r.setOwner("Unbekannt");
 				}
 
-				r.setCarID(resCar.getCAR_ID());
+				r.setCarID(resCar.getCarID());
 				r.setRES_ID(-1);
 				return r;
 			}

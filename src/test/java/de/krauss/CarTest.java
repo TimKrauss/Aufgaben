@@ -26,14 +26,14 @@ public class CarTest
 	@Test
 	public void test()
 	{
-		car.setF_Tacho(TACHO);
-		Assert.assertEquals(TACHO + "", car.getF_Tacho() + "");
+		car.setCarTacho(TACHO);
+		Assert.assertEquals(TACHO + "", car.getCarTacho() + "");
 
-		car.setF_Marke(MARKE);
-		Assert.assertEquals(MARKE, car.getF_Marke());
+		car.setCarMarke(MARKE);
+		Assert.assertEquals(MARKE, car.getCarMarke());
 
-		car.setF_Name(NAME);
-		Assert.assertEquals(NAME, car.getF_Name());
+		car.setCarName(NAME);
+		Assert.assertEquals(NAME, car.getCarName());
 
 		Reservierung reservierung = new Reservierung(start, stop);
 		car.addResv(reservierung);
@@ -41,8 +41,8 @@ public class CarTest
 		resv.add(reservierung);
 		Assert.assertEquals(resv, car.getReservs());
 
-		car.setCAR_ID(CAR_ID);
-		Assert.assertEquals(CAR_ID, car.getCAR_ID());
+		car.setCarID(CAR_ID);
+		Assert.assertEquals(CAR_ID, car.getCarID());
 
 		car.addResv(reservierung);
 	}

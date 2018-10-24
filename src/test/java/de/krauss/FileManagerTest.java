@@ -20,10 +20,10 @@ public class FileManagerTest
 	public void init()
 	{
 		car = new Car();
-		car.setF_Name(NAME);
-		car.setF_Marke(MARKE);
-		car.setF_Tacho(Tacho);
-		car.setCAR_ID(CAR_ID);
+		car.setCarName(NAME);
+		car.setCarMarke(MARKE);
+		car.setCarTacho(Tacho);
+		car.setCarID(CAR_ID);
 
 		list = new CarList();
 		list.addCar(car);
