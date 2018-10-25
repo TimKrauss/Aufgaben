@@ -17,8 +17,8 @@ public class CarList
 {
 	@XmlElement(name = "carlist")
 	private ArrayList<Car> cars;
-	private Logger logger = Logger.getLogger(CarList.class);
 	private OracleDataBase orcb = new OracleDataBase();
+	private Logger logger = Logger.getLogger("System");
 
 	/**
 	 * Log4j logger

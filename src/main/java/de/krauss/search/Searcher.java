@@ -11,7 +11,7 @@ public class Searcher
 {
 	public static final int NAME = 1, MARKE = 2, Tacho = 3;
 	private OracleDataBase orcb;
-	private Logger logger = Logger.getLogger(Searcher.class);
+	private Logger logger = Logger.getLogger("System");
 
 	/**
 	 * 

@@ -16,7 +16,7 @@ public class Utilities
 {
 	public static final String sdf_Pattern = "dd.MM.yyyy (HH:mm)";
 	private static SimpleDateFormat sdf = new SimpleDateFormat(sdf_Pattern);
-	private static Logger logger = Logger.getLogger(Utilities.class);
+	private static Logger logger = Logger.getLogger("System");
 
 	/**
 	 * Guckt ob das Auto zu der Zeit noch frei ist und gibt, falls nicht, eine

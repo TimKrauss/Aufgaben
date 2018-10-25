@@ -45,7 +45,7 @@ public class MainFrameController
 	private ComboBox<String> combo_Res;
 
 	private CarList carlist;
-	private static Logger logger = Logger.getLogger(MainFrameController.class);
+	private static Logger logger = Logger.getLogger("System");
 	private static Stage primaryStage;
 	private FileManager fm;
 	private Initializer initer;
@@ -225,7 +225,6 @@ public class MainFrameController
 			FXMLLoader loader = new FXMLLoader();
 
 			File file = new File(Launcher.class.getResource("/de/krauss/gfx/MainFrame.fxml").getFile());
-			System.out.println(file.getAbsolutePath());
 			FileInputStream fis = new FileInputStream(file);
 			AnchorPane pane = loader.load(fis);
 			primaryStage = new Stage();

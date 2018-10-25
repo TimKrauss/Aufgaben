@@ -1,13 +1,5 @@
-2018-10-25 09:34:42,670 INFO  [Launcher] - Hallo Lieber Kunde!
-2018-10-25 09:34:42,671 INFO  [Launcher] - Möchten sie ein Auto anlegen? (ja oder nein)
-2018-10-25 09:34:42,672 INFO  [Launcher] - Oder bereits hinzugefügte Autos ansehen? (list)
-2018-10-25 09:34:48,004 INFO  [Launcher] - Versuche Laden als TimeStamp-Long
-2018-10-25 09:34:48,004 INFO  [Launcher] - Versuche Laden als TimeStamp-Long
-2018-10-25 09:34:48,005 INFO  [Launcher] - Versuche Laden als TimeStamp-Long
-2018-10-25 09:34:48,005 INFO  [Launcher] - Versuche Laden als TimeStamp-Long
-2018-10-25 09:34:48,006 INFO  [Launcher] - 
-2018-10-25 09:34:48,006 INFO  [Launcher] - 
-2018-10-25 09:34:48,092 INFO  [OracleDataBase] - Reservierung hochgeladen
-2018-10-25 09:34:48,099 INFO  [OracleDataBase] - Reservierung hochgeladen
-2018-10-25 09:34:48,101 INFO  [OracleDataBase] - Reservierung hochgeladen
-2018-10-25 09:34:48,105 INFO  [OracleDataBase] - Reservierung hochgeladen
+[2018-10-25 13:28:35 | de.krauss.Launcher$1 | INFO ] ==> [System] Hallo Lieber Kunde!
+[2018-10-25 13:28:35 | de.krauss.Launcher$1 | INFO ] ==> [System] Möchten sie ein Auto anlegen? (ja oder nein)
+[2018-10-25 13:28:35 | de.krauss.Launcher$1 | INFO ] ==> [System] Oder bereits hinzugefügte Autos ansehen? (list)
+[2018-10-25 13:28:40 | de.krauss.Launcher | INFO ] ==> [Usereingabe] nein
+[2018-10-25 13:28:40 | de.krauss.Launcher | INFO ] ==> [System] Dann eben nicht :(

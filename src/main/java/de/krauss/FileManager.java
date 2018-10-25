@@ -29,7 +29,7 @@ public class FileManager implements Serializable
 	private TxtFileHandler txtFileHandler;
 	private XStreamFileHandler xStreamFileHandler;
 	private JSonFileHandler jSonFileHandler;
-	private Logger logger = Logger.getLogger(FileManager.class);
+	private Logger logger = Logger.getLogger("System");
 	private ArrayList<FileHandler> handlerList;
 	private ArrayList<Car> arrayListWithCars;
 

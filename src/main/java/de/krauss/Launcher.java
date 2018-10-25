@@ -6,9 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.TimeZone;
 
 import javax.activity.InvalidActivityException;
 import javax.xml.bind.annotation.XmlElement;
@@ -27,12 +25,14 @@ public class Launcher extends Application implements Serializable
 
 	@XmlElement(name = "carlist")
 	private CarList carlist;
-	private Logger logger = Logger.getLogger(Launcher.class);
+
+	private Logger logger = Logger.getLogger("System");
+	private Logger fileLogger = Logger.getLogger("Usereingabe");
+
 	public static final String HOME_DIR = System.getProperty("user.home") + "/Desktop/Cars/";
 	private Searcher searcher;
 	private MainFrameController controller;
 	private Thread userReaderThread;
-//	private OracleDataBase orcb = new OracleDataBase();
 	private FileManager fm;
 
 	/**
@@ -44,9 +44,11 @@ public class Launcher extends Application implements Serializable
 	public void handleUserInpunt(BufferedReader reader)
 	{
 		String txt = "";
+
 		try
 		{
 			txt = reader.readLine();
+			fileLogger.info(txt);
 		} catch (IOException e1)
 		{
 			logger.fatal(e1.getMessage());
@@ -167,7 +169,7 @@ public class Launcher extends Application implements Serializable
 	/**
 	 * 
 	 * @param in Der InputStream, welchen der Reader lesen soll
-	 * @return Den funtioniereden Reader
+	 * @return Den funktionierende Reader
 	 */
 	public BufferedReader createReader(Reader in)
 	{
@@ -210,10 +212,9 @@ public class Launcher extends Application implements Serializable
 	{
 		ArrayList<Car> resCars = new ArrayList<>();
 		int resnum = 1;
-		Car dCar = null;
+		Car carToDelete = null;
 		int rnum = 1;
 		int resvNummerChoosen = 0;
-		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy (HH:mm)");
 
 		for (Car c : carlist.getList())
 		{
@@ -235,7 +236,7 @@ public class Launcher extends Application implements Serializable
 
 		try
 		{
-			dCar = resCars.get(Integer.parseInt(reader.readLine()) - 1);
+			carToDelete = resCars.get(Integer.parseInt(reader.readLine()) - 1);
 
 		} catch (Exception e)
 		{
@@ -243,13 +244,12 @@ public class Launcher extends Application implements Serializable
 			return false;
 		}
 
-		sdf.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"));
+		logger.info("Name: " + carToDelete.getCarName());
 
-		logger.info("Name: " + dCar.getCarName());
-
-		for (Reservierung r : dCar.getReservs())
+		for (Reservierung r : carToDelete.getReservs())
 		{
-			logger.info("[" + rnum + "] " + sdf.format(r.getResStart()) + " -------> " + sdf.format(r.getResStop()));
+			logger.info("[" + rnum + "] " + Utilities.format(r.getResStart()) + " -------> "
+					+ Utilities.format(r.getResStop()));
 			rnum++;
 		}
 
@@ -271,7 +271,7 @@ public class Launcher extends Application implements Serializable
 			}
 		}
 
-		carlist.deleteReservierungFromCar(dCar, dCar.getReservs().get(resvNummerChoosen));
+		carlist.deleteReservierungFromCar(carToDelete, carToDelete.getReservs().get(resvNummerChoosen));
 
 		logger.info("Die Reservierung wurde gelöscht");
 		return true;
@@ -289,37 +289,52 @@ public class Launcher extends Application implements Serializable
 			@Override
 			public void run()
 			{
+				// Erstellt den ReaderThread, der die Eingaben des Users liest
+				BufferedReader reader = createReader(new InputStreamReader(in));
+
+				// Gibt dem Kunden ein das Willkommen aus
 				logger.info("Hallo Lieber Kunde!");
 				logger.info("Möchten sie ein Auto anlegen? (ja oder nein)");
 				logger.info("Oder bereits hinzugefügte Autos ansehen? (list)");
 
-				BufferedReader reader = createReader(new InputStreamReader(in));
+				// Endlosschleife welche die Eingaben bearbeitet
 				while (true)
 				{
 					handleUserInpunt(reader);
 				}
 			}
 		});
+		// Startet den Thread zum Lesen
 		userReaderThread.start();
 	}
 
-	// TODO CHECK GEGEN NULL
+	/**
+	 * Startet das Programm und startet den Thread so wie das MainframeWindow
+	 * 
+	 * @throws Exception
+	 */
 	@Override
-	public void start(Stage primaryStage)
+	public void start(Stage primaryStage) throws Exception
 	{
+
+		fileLogger.getName().replaceAll("fileLogger", "Usereingabe");
+
+		// Initialisiere FileManager
 		fm = new FileManager();
+
+		// Initialisiere Searcher
 		searcher = new Searcher();
+
+		// Initalisiere CarList
 		carlist = new CarList();
-
-		Platform.setImplicitExit(false);
-
 		carlist.addCarsFromDataBase();
 
-		// START WINDOW
+		// Starte Konsolen-Eingabe-Thread
+		startReaderThread(System.in);
 
+		// START & INIT WINDOW
 		if (primaryStage == null)
 		{
-			startReaderThread(System.in);
 			return;
 		}
 		controller = MainFrameController.createWindow();
@@ -327,17 +342,17 @@ public class Launcher extends Application implements Serializable
 		controller.setFileManager(fm);
 		controller.init();
 		controller.setList(carlist.getList());
-
-		// Start User Thread (Sodass gleichzeitge Eingabe bei der Konsole und als Frame
-		// verfügbar ist
-		startReaderThread(System.in);
 	}
 
+	/**
+	 * Updatet die im Frame angezeigte Liste im FX-Thread
+	 */
 	private void updateList()
 	{
+		// Mit diesem Befehl läuft die Operation über den FX-Thread, so dass Fehler
+		// vermieden werden
 		Platform.runLater(new Runnable()
 		{
-
 			@Override
 			public void run()
 			{

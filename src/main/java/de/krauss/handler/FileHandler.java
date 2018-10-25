@@ -7,11 +7,10 @@ import org.apache.log4j.Logger;
 
 import de.krauss.Car;
 import de.krauss.CarList;
-import de.krauss.Launcher;
 
 public interface FileHandler
 {
-	Logger logger = Logger.getLogger(Launcher.class);
+	Logger logger = Logger.getLogger("System");
 
 	/**
 	 * 
