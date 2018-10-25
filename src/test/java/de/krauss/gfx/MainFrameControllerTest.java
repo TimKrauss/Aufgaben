@@ -40,8 +40,6 @@ public class MainFrameControllerTest extends ApplicationTest
 		controller.setFileManager(new FileManager());
 		controller.setCarlist(new CarList());
 		controller.init();
-		controller.setDatenbankStatus(false, null);
-		controller.setDatenbankStatus(true, orcb.getDataBaseUser());
 		orcb.delteAllDataFromBase();
 		arg0.toFront();
 		arg0.requestFocus();

@@ -323,7 +323,6 @@ public class Launcher extends Application implements Serializable
 			return;
 		}
 		controller = MainFrameController.createWindow();
-		controller.setDatenbankStatus(true, "tim");
 		controller.setCarlist(carlist);
 		controller.setFileManager(fm);
 		controller.init();

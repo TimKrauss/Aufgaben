@@ -28,7 +28,9 @@ public class DumpFileHandler implements FileHandler
 
 			if (ob instanceof java.util.ArrayList)
 			{
-				return (ArrayList<Car>) ob;
+				ArrayList<Car> cars = (ArrayList<Car>) ob;
+
+				return cars;
 			}
 			logger.fatal("Objekt ist keine Arraylist!");
 			return null;

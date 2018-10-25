@@ -222,8 +222,8 @@ public class OracleDataBase
 				c.setCarID(getNextCarID());
 			}
 
-			String query = "INSERT INTO AUTOS(NAME, MARKE, TACHO,ID) VALUES ('" + c.getCarName() + "','" + c.getCarMarke()
-					+ "'," + c.getCarTacho() + "," + c.getCarID() + ")";
+			String query = "INSERT INTO AUTOS(NAME, MARKE, TACHO,ID) VALUES ('" + c.getCarName() + "','"
+					+ c.getCarMarke() + "'," + c.getCarTacho() + "," + c.getCarID() + ")";
 
 			Statement smt;
 			smt = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -320,13 +320,8 @@ public class OracleDataBase
 			smt.setInt(3, r.getCarID());
 			smt.setString(4, r.getOwner());
 
-			if (r.getRES_ID() != 0)
-			{
-				logger.info("Die hochzuladene Reservierung hatte schon eine RES_ID (" + r.getRES_ID() + ")");
-			} else
-			{
-				r.setRES_ID(getNextReservierungID());
-			}
+			r.setRES_ID(getNextReservierungID());
+
 			smt.setInt(5, r.getRES_ID());
 
 			smt.executeQuery();

@@ -111,6 +111,8 @@ public class TxtFileHandler implements FileHandler
 					res.setResStart(start);
 					res.setResStop(stop);
 					newCar.addResv(res);
+					res = new Reservierung();
+
 				} else if (st.contains(CAR_FINISHED_PATTERN))
 				{
 					if (newCar.getCarName() != null)

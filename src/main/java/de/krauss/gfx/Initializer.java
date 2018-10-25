@@ -21,7 +21,7 @@ public class Initializer
 
 	private ListView<String> list_Autos;
 
-	private Button btn_Reservieren, btn_Löschen, btn_Reslöschen;
+	private Button btn_Reservieren, btn_Löschen, btn_Reslöschen, btn_DeleteAll, btn_Update;
 
 	private Label label_Name, label_Marke, label_Tachostand, lbl_Res_start, lbl_Res_stop;
 
@@ -41,6 +41,35 @@ public class Initializer
 		initList();
 		initCombo();
 		initReslöschen();
+		initDeleteAll();
+		initUpdate();
+	}
+
+	private void initUpdate()
+	{
+		btn_Update.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent event)
+			{
+				carlist.getList().clear();
+				carlist.addCarsFromDataBase();
+				controller.setList(carlist.getList());
+			}
+		});
+	}
+
+	private void initDeleteAll()
+	{
+		btn_DeleteAll.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				carlist.deleteEverything();
+				controller.setList(carlist.getList());
+			}
+		});
 	}
 
 	/**
@@ -210,6 +239,16 @@ public class Initializer
 	public void setFormat(SimpleDateFormat format)
 	{
 		this.format = format;
+	}
+
+	public void setBtn_DeleteAll(Button btn_DeleteAll)
+	{
+		this.btn_DeleteAll = btn_DeleteAll;
+	}
+
+	public void setBtn_Update(Button btn_Update)
+	{
+		this.btn_Update = btn_Update;
 	}
 
 }

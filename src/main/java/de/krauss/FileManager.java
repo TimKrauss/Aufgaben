@@ -34,6 +34,7 @@ public class FileManager implements Serializable
 	private ArrayList<Car> arrayListWithCars;
 
 	/**
+	 * Übergibt die Autos + Reservierungen OHNE RES_ID,CAR_ID,RES:CAR_ID
 	 * 
 	 * @param option Die Methode mit welcher eingelesen werden soll
 	 * @param f      Die Datei aus welcher eingelesen werden soll
@@ -74,7 +75,6 @@ public class FileManager implements Serializable
 				}
 			}
 		}
-
 		return arrayListWithCars;
 	}
 

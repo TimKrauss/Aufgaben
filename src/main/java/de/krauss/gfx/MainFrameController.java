@@ -24,7 +24,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -36,10 +35,11 @@ public class MainFrameController
 	private ListView<String> list_Autos;
 
 	@FXML
-	private Button btn_Hinzufügen, btn_Reservieren, btn_Löschen, btn_Reslöschen, btn_Exportieren;
+	private Button btn_Hinzufügen, btn_Reservieren, btn_Löschen, btn_Reslöschen, btn_Exportieren, btn_Update,
+			btn_DeleteAll;
 
 	@FXML
-	private Label label_Name, label_Marke, label_Tachostand, lbl_Res_start, lbl_Res_stop, label_Status, label_User;
+	private Label label_Name, label_Marke, label_Tachostand, lbl_Res_start, lbl_Res_stop;
 
 	@FXML
 	private ComboBox<String> combo_Res;
@@ -57,32 +57,6 @@ public class MainFrameController
 	public void setCarlist(CarList c)
 	{
 		carlist = c;
-	}
-
-	/**
-	 * Zeigt im GUI an ob verbunden oder nicht
-	 * 
-	 * @param verbunden Verbunden oder nicht
-	 * @param user      Der User der in die DB eingeloggt ist
-	 */
-	public void setDatenbankStatus(boolean verbunden, String user)
-	{
-		if (verbunden)
-		{
-			label_Status.setTextFill(Color.LIGHTGREEN);
-			label_Status.setText("ONLINE");
-
-			label_User.setTextFill(Color.LIGHTGREEN);
-			label_User.setText(user);
-
-		} else
-		{
-			label_Status.setTextFill(Color.RED);
-			label_Status.setText("OFFLINE");
-
-			label_User.setTextFill(Color.RED);
-			label_User.setText("Kein User");
-		}
 	}
 
 	/**
@@ -152,6 +126,8 @@ public class MainFrameController
 		initer.setLbl_Res_start(lbl_Res_start);
 		initer.setLbl_Res_stop(lbl_Res_stop);
 		initer.setMainFrameController(this);
+		initer.setBtn_DeleteAll(btn_DeleteAll);
+		initer.setBtn_Update(btn_Update);
 		initer.init();
 	}
 

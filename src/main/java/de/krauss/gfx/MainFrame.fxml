@@ -79,27 +79,10 @@
          </font>
       </Label>
       <Button fx:id="btn_Reslöschen" disable="true" layoutX="245.0" layoutY="289.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="200.0" style="-fx-background-color: grey;" text="Löschen" textFill="#ff9500" />
-      <Label layoutX="243.0" layoutY="358.0" prefHeight="22.0" prefWidth="108.0" text="Datenbank-Status:" textFill="#ffb400">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
-      <Label fx:id="label_Status" layoutX="356.0" layoutY="359.0" prefHeight="22.0" prefWidth="89.0" text="Offline" textFill="RED">
-         <font>
-            <Font name="System Italic" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="243.0" layoutY="396.0" prefHeight="22.0" prefWidth="108.0" text="Verbunden als: " textFill="#ffb400">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
-      <Label fx:id="label_User" layoutX="335.0" layoutY="395.0" prefHeight="25.0" prefWidth="108.0" text="No User" textFill="RED">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
       <Button fx:id="btn_Exportieren" layoutX="242.0" layoutY="463.0" mnemonicParsing="false" onAction="#exportieren" prefHeight="29.0" prefWidth="200.0" style="-fx-background-color: grey;" text="Fahrzeuge exportieren" textFill="#ff9500" />
-      <Button fx:id="btn_Exportieren1" layoutX="242.0" layoutY="427.0" mnemonicParsing="false" onAction="#importieren" prefHeight="29.0" prefWidth="200.0" style="-fx-background-color: grey;" text="Fahrzeuge importieren" textFill="#ff9500" />
+      <Separator layoutX="244.0" layoutY="414.0" prefHeight="11.0" prefWidth="202.0" />
+     <Button fx:id="btn_Exportieren1" layoutX="242.0" layoutY="426.0" mnemonicParsing="false" onAction="#importieren" prefHeight="29.0" prefWidth="200.0" style="-fx-background-color: grey;" text="Fahrzeuge importieren" textFill="#ff9500" />
+      <Button fx:id="btn_Update" layoutX="243.0" layoutY="340.0" mnemonicParsing="false" onAction="#importieren" prefHeight="29.0" prefWidth="200.0" style="-fx-background-color: grey;" text="Datenbank akutalisieren" textFill="#ff9500" />
+      <Button fx:id="btn_DeleteAll" layoutX="242.0" layoutY="378.0" mnemonicParsing="false" onAction="#importieren" prefHeight="29.0" prefWidth="200.0" style="-fx-background-color: grey;" text="Datenbank löschen" textFill="#ff9500" />
    </children>
 </AnchorPane>

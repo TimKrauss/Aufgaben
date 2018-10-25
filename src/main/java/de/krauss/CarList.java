@@ -268,4 +268,10 @@ public class CarList
 		}
 	}
 
+	public void deleteEverything()
+	{
+		orcb.delteAllDataFromBase();
+		cars.removeAll(cars);
+	}
+
 }

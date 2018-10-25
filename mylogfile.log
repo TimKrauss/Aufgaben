@@ -1,76 +1,13 @@
-2018-10-24 14:08:50,880 INFO  [Launcher] - Hallo Lieber Kunde!
-2018-10-24 14:08:50,889 INFO  [Launcher] - Möchten sie ein Auto anlegen? (ja oder nein)
-2018-10-24 14:08:50,889 INFO  [Launcher] - Oder bereits hinzugefügte Autos ansehen? (list)
-2018-10-24 14:08:55,755 INFO  [Launcher] - [1]  A6
-2018-10-24 14:08:55,755 INFO  [Launcher] - [2]  Golf
-2018-10-24 14:08:55,755 INFO  [Launcher] - [3]  RS6
-2018-10-24 14:08:55,755 INFO  [Launcher] - [4]  UP
-2018-10-24 14:08:55,755 INFO  [Launcher] - [5]  A4
-2018-10-24 14:08:55,755 INFO  [Launcher] - [6]  A3
-2018-10-24 14:08:55,755 INFO  [Launcher] - [7]  Tiguan
-2018-10-24 14:08:55,756 INFO  [Launcher] - [8]  Ibiza
-2018-10-24 14:08:55,756 INFO  [Launcher] - Welches Auto soll gelöscht werden?
-2018-10-24 14:08:58,935 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
-2018-10-24 14:08:58,936 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
-2018-10-24 14:08:58,936 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
-2018-10-24 14:08:58,936 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
-2018-10-24 14:08:58,936 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
-2018-10-24 14:09:16,491 INFO  [Launcher] - Ungültige Eingabe
-2018-10-24 14:09:19,354 INFO  [CarList] - Anzahl an Autos: 7
-2018-10-24 14:09:19,354 INFO  [CarList] - --------------------------------------
-2018-10-24 14:09:19,354 INFO  [CarList] - Auto 1
-2018-10-24 14:09:19,355 INFO  [CarList] - -Fahrzeugname:  A6
-2018-10-24 14:09:19,355 INFO  [CarList] - --Fahrzeugmarke:  Audi
-2018-10-24 14:09:19,355 INFO  [CarList] - ---Kilometerstand: 250000
-2018-10-24 14:09:19,355 INFO  [CarList] - Reservierungen:
-2018-10-24 14:09:19,355 INFO  [CarList] - [1] 20.11.2018 (12:00) -------> 20.12.2018 (12:00)
-2018-10-24 14:09:19,355 INFO  [CarList] - --------------------------------------
-2018-10-24 14:09:19,355 INFO  [CarList] - Auto 2
-2018-10-24 14:09:19,355 INFO  [CarList] - -Fahrzeugname:  Golf
-2018-10-24 14:09:19,355 INFO  [CarList] - --Fahrzeugmarke:  VW
-2018-10-24 14:09:19,355 INFO  [CarList] - ---Kilometerstand: 123456
-2018-10-24 14:09:19,356 INFO  [CarList] - Keine Reservierungen vorhanden.
-2018-10-24 14:09:19,356 INFO  [CarList] - --------------------------------------
-2018-10-24 14:09:19,356 INFO  [CarList] - Auto 3
-2018-10-24 14:09:19,356 INFO  [CarList] - -Fahrzeugname:  RS6
-2018-10-24 14:09:19,356 INFO  [CarList] - --Fahrzeugmarke:  Audi
-2018-10-24 14:09:19,356 INFO  [CarList] - ---Kilometerstand: 64134
-2018-10-24 14:09:19,356 INFO  [CarList] - Keine Reservierungen vorhanden.
-2018-10-24 14:09:19,356 INFO  [CarList] - --------------------------------------
-2018-10-24 14:09:19,356 INFO  [CarList] - Auto 4
-2018-10-24 14:09:19,356 INFO  [CarList] - -Fahrzeugname:  UP
-2018-10-24 14:09:19,356 INFO  [CarList] - --Fahrzeugmarke:  VW
-2018-10-24 14:09:19,356 INFO  [CarList] - ---Kilometerstand: 12564
-2018-10-24 14:09:19,356 INFO  [CarList] - Reservierungen:
-2018-10-24 14:09:19,357 INFO  [CarList] - [1] 20.11.2018 (12:00) -------> 20.12.2018 (12:00)
-2018-10-24 14:09:19,357 INFO  [CarList] - --------------------------------------
-2018-10-24 14:09:19,357 INFO  [CarList] - Auto 5
-2018-10-24 14:09:19,357 INFO  [CarList] - -Fahrzeugname:  A4
-2018-10-24 14:09:19,357 INFO  [CarList] - --Fahrzeugmarke:  Audi
-2018-10-24 14:09:19,357 INFO  [CarList] - ---Kilometerstand: 250000
-2018-10-24 14:09:19,357 INFO  [CarList] - Keine Reservierungen vorhanden.
-2018-10-24 14:09:19,357 INFO  [CarList] - --------------------------------------
-2018-10-24 14:09:19,357 INFO  [CarList] - Auto 6
-2018-10-24 14:09:19,357 INFO  [CarList] - -Fahrzeugname:  A3
-2018-10-24 14:09:19,357 INFO  [CarList] - --Fahrzeugmarke:  Audi
-2018-10-24 14:09:19,357 INFO  [CarList] - ---Kilometerstand: 123
-2018-10-24 14:09:19,358 INFO  [CarList] - Keine Reservierungen vorhanden.
-2018-10-24 14:09:19,358 INFO  [CarList] - --------------------------------------
-2018-10-24 14:09:19,358 INFO  [CarList] - Auto 7
-2018-10-24 14:09:19,358 INFO  [CarList] - -Fahrzeugname:  Tiguan
-2018-10-24 14:09:19,358 INFO  [CarList] - --Fahrzeugmarke:  VW
-2018-10-24 14:09:19,358 INFO  [CarList] - ---Kilometerstand: 456
-2018-10-24 14:09:19,358 INFO  [CarList] - Keine Reservierungen vorhanden.
-2018-10-24 14:09:19,358 INFO  [CarList] - --------------------------------------
-2018-10-24 14:09:19,358 INFO  [CarList] - Welches Auto wollen sie Reservieren? (1 - 7)
-2018-10-24 14:09:25,354 INFO  [Reservierung] - Wann soll die Reservierung starten? (tt.MM.yyyy HH:mm)
-2018-10-24 14:09:31,450 INFO  [Reservierung] - Wann soll die Reservierung enden? (tt.MM.yyyy HH:mm)
-2018-10-24 14:09:36,650 INFO  [Reservierung] - Auf welchen Namen soll diese Reservierung gespeichert werden?
-2018-10-24 14:09:40,786 INFO  [OracleDataBase] - Die hochzuladene Reservierung hatte schon eine RES_ID (-1)
-2018-10-24 14:09:40,790 INFO  [OracleDataBase] - Reservierung hochgeladen
-2018-10-24 14:09:40,790 INFO  [CarList] - Reserviert!
-2018-10-24 14:09:40,791 INFO  [Launcher] - Ein weiteres Auto hinzufügen? (ja oder nein)
-2018-10-24 14:09:40,791 INFO  [Launcher] - Bereits hinzugefügte Autos ansehen? (list)
-2018-10-24 14:09:40,791 INFO  [Launcher] - Ein bereits hinzugefügtes Auto reservieren? (reservieren)
-2018-10-24 14:09:40,791 INFO  [Launcher] - Eine bereits hinzugefügte Reservierung löschen? (rdel)
-2018-10-24 14:09:40,791 INFO  [Launcher] - Vorhandene Autos durchsuchen? (search)
+2018-10-25 09:34:42,670 INFO  [Launcher] - Hallo Lieber Kunde!
+2018-10-25 09:34:42,671 INFO  [Launcher] - Möchten sie ein Auto anlegen? (ja oder nein)
+2018-10-25 09:34:42,672 INFO  [Launcher] - Oder bereits hinzugefügte Autos ansehen? (list)
+2018-10-25 09:34:48,004 INFO  [Launcher] - Versuche Laden als TimeStamp-Long
+2018-10-25 09:34:48,004 INFO  [Launcher] - Versuche Laden als TimeStamp-Long
+2018-10-25 09:34:48,005 INFO  [Launcher] - Versuche Laden als TimeStamp-Long
+2018-10-25 09:34:48,005 INFO  [Launcher] - Versuche Laden als TimeStamp-Long
+2018-10-25 09:34:48,006 INFO  [Launcher] - 
+2018-10-25 09:34:48,006 INFO  [Launcher] - 
+2018-10-25 09:34:48,092 INFO  [OracleDataBase] - Reservierung hochgeladen
+2018-10-25 09:34:48,099 INFO  [OracleDataBase] - Reservierung hochgeladen
+2018-10-25 09:34:48,101 INFO  [OracleDataBase] - Reservierung hochgeladen
+2018-10-25 09:34:48,105 INFO  [OracleDataBase] - Reservierung hochgeladen
