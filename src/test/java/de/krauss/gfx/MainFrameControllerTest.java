@@ -68,7 +68,7 @@ public class MainFrameControllerTest extends ApplicationTest
 		write("12:00");
 
 		clickOn("#btn_Add");
-
+		clickOn("#btn_Update");
 		// Exportieren
 		clickOn("#btn_Exportieren");
 		clickOn("#check_Dump");
@@ -94,6 +94,7 @@ public class MainFrameControllerTest extends ApplicationTest
 	@Before
 	public void testAutohinzufügen()
 	{
+		clickOn("#btn_DeleteAll");
 		clickOn("#btn_Hinzufügen");
 
 		clickOn("#txtf_Name");
@@ -110,5 +111,6 @@ public class MainFrameControllerTest extends ApplicationTest
 		type(KeyCode.BACK_SPACE);
 
 		clickOn("#btn_Add");
+
 	}
 }

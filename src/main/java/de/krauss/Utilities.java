@@ -84,9 +84,6 @@ public class Utilities
 			Date oldStart = r.getResStart();
 			Date oldStop = r.getResStop();
 
-			logger.info("StartDate --> " + start_Date);
-			logger.info("StopDate --> " + stop_Date);
-
 			if (start_Date.before(new Date()))
 			{
 				logger.error("Keine Reservierungen in der Vergangenheit möglich");
@@ -147,7 +144,7 @@ public class Utilities
 				return kilo;
 			} catch (NumberFormatException e)
 			{
-				logger.info("Bitte gib eine gültige Kilometerzahl ein!");
+				logger.warn("Bitte gib eine gültige Kilometerzahl ein!");
 			} catch (IOException e)
 			{
 				logger.fatal("Fehler beim Lesen der User-Eigabe");
@@ -179,7 +176,7 @@ public class Utilities
 
 				if (f.before(new Date()))
 				{
-					logger.info("Kein Datum in der Vergangenheit bitte!");
+					logger.warn("Kein Datum in der Vergangenheit bitte!");
 				} else
 				{
 					return f;
@@ -187,7 +184,7 @@ public class Utilities
 
 			} catch (ParseException e)
 			{
-				logger.info("Bitte geben sie ein gültiges Datum ein! (dd.MM.yyyy HH:mm)");
+				logger.warn("Bitte geben sie ein gültiges Datum ein! (dd.MM.yyyy HH:mm)");
 			} catch (IOException e)
 			{
 				logger.fatal("Fehler beim Lesen der User-Eingabe");
@@ -200,7 +197,6 @@ public class Utilities
 	}
 
 	/**
-	 * Formatiert das Datum
 	 * 
 	 * @param d Das zu formatierende Datum
 	 * @return Das formatierte Datum

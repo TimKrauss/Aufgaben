@@ -63,6 +63,11 @@ public class FileManager implements Serializable
 			return null;
 		}
 
+		if (arrayListWithCars == null)
+		{
+			return null;
+		}
+
 		for (Car checkCar : checkList.getList())
 		{
 			for (Car newCar : arrayListWithCars)

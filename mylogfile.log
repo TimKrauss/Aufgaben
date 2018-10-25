@@ -1,5 +1,269 @@
-[2018-10-25 13:28:35 | de.krauss.Launcher$1 | INFO ] ==> [System] Hallo Lieber Kunde!
-[2018-10-25 13:28:35 | de.krauss.Launcher$1 | INFO ] ==> [System] Möchten sie ein Auto anlegen? (ja oder nein)
-[2018-10-25 13:28:35 | de.krauss.Launcher$1 | INFO ] ==> [System] Oder bereits hinzugefügte Autos ansehen? (list)
-[2018-10-25 13:28:40 | de.krauss.Launcher | INFO ] ==> [Usereingabe] nein
-[2018-10-25 13:28:40 | de.krauss.Launcher | INFO ] ==> [System] Dann eben nicht :(
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] list
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1 ] ==> [System] Hallo Lieber Kunde!
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] Anzahl an Autos: 0
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1 ] ==> [System] Möchten sie ein Auto anlegen? (ja oder nein)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] --------------------------------------
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1 ] ==> [System] Oder bereits hinzugefügte Autos ansehen? (list)
+[ERROR | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Toolkit not initialized
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] ja
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] Wie lautet der Fahrzeugname?
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] TEST
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] Fahrzeugname --> TEST
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] Wie lautet die Fahrzeugmarke?
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] Marke
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] Fahrzeugmarke --> Marke
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Utilities ] ==> [System] Wie viele Kilometer hat das Auto auf dem Buckel?
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 2
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] Kilometer: 2
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] 
+[ERROR | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Toolkit not initialized
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] reservieren
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] Anzahl an Autos: 1
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] --------------------------------------
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] Auto 1
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] -Fahrzeugname: TEST
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] --Fahrzeugmarke: Marke
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] ---Kilometerstand: 2
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] Keine Reservierungen vorhanden.
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] --------------------------------------
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] Welches Auto wollen sie Reservieren? (1 - 1)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 1
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Reservierung ] ==> [System] Wann soll die Reservierung starten? (tt.MM.yyyy HH:mm)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 12.12.2019 15:00
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Reservierung ] ==> [System] Wann soll die Reservierung enden? (tt.MM.yyyy HH:mm)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 13.12.2019 16:00
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Reservierung ] ==> [System] Auf welchen Namen soll diese Reservierung gespeichert werden?
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 
+[FATAL | 25.10.2018 16:39:49 | de.krauss.OracleDataBase ] ==> [System] ORA-01400: cannot insert NULL into ("TIM"."RES_AUTO"."OWNER")
+
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] Reserviert!
+[ERROR | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Toolkit not initialized
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] list
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] Anzahl an Autos: 1
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] --------------------------------------
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] Auto 1
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] -Fahrzeugname: TEST
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] --Fahrzeugmarke: Marke
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] ---Kilometerstand: 2
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] Reservierungen:
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] [1] 12.12.2019 (15:00) -------> 13.12.2019 (16:00)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.CarList ] ==> [System] --------------------------------------
+[ERROR | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Toolkit not initialized
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] rdel
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] ( 1 ) TEST
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Von welchem Auto wollen sie die Reservierung löschen? (Zahl eingeben)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 1
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Name: TEST
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] [1] 12.12.2019 (15:00) -------> 13.12.2019 (16:00)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Welche von den Reservierungen wollen sie löschen? (1 - 1)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 1
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Die Reservierung wurde gelöscht
+[ERROR | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Toolkit not initialized
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] search
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Nach welchem Merkmal möchten sie suchen?
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] [+1] Name
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] [+2] Marke
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] [+3] Tacho
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 1
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Bitte geben sie den Namen des Fahrzeuges an:
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] TEST
+[INFO  | 25.10.2018 16:39:49 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 25.10.2018 16:39:49 | de.krauss.search.Searcher ] ==> [System] Name: TEST
+[INFO  | 25.10.2018 16:39:49 | de.krauss.search.Searcher ] ==> [System] Marke: Marke
+[INFO  | 25.10.2018 16:39:49 | de.krauss.search.Searcher ] ==> [System] Tacho: 2
+[INFO  | 25.10.2018 16:39:49 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] search
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Nach welchem Merkmal möchten sie suchen?
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] [+1] Name
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] [+2] Marke
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] [+3] Tacho
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 2
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Bitte geben sie die Marke des Fahrzeuges an:
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] Marke
+[INFO  | 25.10.2018 16:39:49 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 25.10.2018 16:39:49 | de.krauss.search.Searcher ] ==> [System] Name: TEST
+[INFO  | 25.10.2018 16:39:49 | de.krauss.search.Searcher ] ==> [System] Marke: Marke
+[INFO  | 25.10.2018 16:39:49 | de.krauss.search.Searcher ] ==> [System] Tacho: 2
+[INFO  | 25.10.2018 16:39:49 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] search
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Nach welchem Merkmal möchten sie suchen?
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] [+1] Name
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] [+2] Marke
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] [+3] Tacho
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 3
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher ] ==> [System] Bitte geben sie den Kilometerstand an:
+[INFO  | 25.10.2018 16:39:49 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 2
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] Name: TEST
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] Marke: Marke
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] Tacho: 2
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher$1Test ] ==> [Usereingabe] search
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Nach welchem Merkmal möchten sie suchen?
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] [+1] Name
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] [+2] Marke
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] [+3] Tacho
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 1
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Bitte geben sie den Namen des Fahrzeuges an:
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher$1Test ] ==> [Usereingabe] TESTBLAH
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher$1Test ] ==> [Usereingabe] search
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Nach welchem Merkmal möchten sie suchen?
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] [+1] Name
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] [+2] Marke
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] [+3] Tacho
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 2
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Bitte geben sie die Marke des Fahrzeuges an:
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher$1Test ] ==> [Usereingabe] MarkeBLAH
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher$1Test ] ==> [Usereingabe] search
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Nach welchem Merkmal möchten sie suchen?
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] [+1] Name
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] [+2] Marke
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] [+3] Tacho
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 3
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Bitte geben sie den Kilometerstand an:
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 7
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher$1Test ] ==> [Usereingabe] del
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] [1] TEST
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Welches Auto soll gelöscht werden?
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher$1Test ] ==> [Usereingabe] 1
+[ERROR | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Toolkit not initialized
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher$1Test ] ==> [Usereingabe] nein
+[INFO  | 25.10.2018 16:39:50 | de.krauss.Launcher ] ==> [System] Dann eben nicht :(
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.DumpFileHandler ] ==> [System] Datei () nicht gefunden!
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.JAXBFileHandler ] ==> [System] Fehler beim Einlesen der JAXB-XML-Datei.
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.JSonFileHandler ] ==> [System] 
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.TxtFileHandler ] ==> [System] Das Textfile wurde nicht gefunden!
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.XStreamFileHandler ] ==> [System] 
+[INFO  | 25.10.2018 16:39:50 | de.krauss.FileManager ] ==> [System] Gleicher Autoname gefunden! ( JUnit_Name )
+[INFO  | 25.10.2018 16:39:50 | de.krauss.FileManager ] ==> [System] Dennoch wird das Auto erstmal hinzugefügt
+[INFO  | 25.10.2018 16:39:50 | de.krauss.FileManager ] ==> [System] Gleicher Autoname gefunden! ( JUnit_Name )
+[INFO  | 25.10.2018 16:39:50 | de.krauss.FileManager ] ==> [System] Dennoch wird das Auto erstmal hinzugefügt
+[INFO  | 25.10.2018 16:39:50 | de.krauss.FileManager ] ==> [System] Gleicher Autoname gefunden! ( JUnit_Name )
+[INFO  | 25.10.2018 16:39:50 | de.krauss.FileManager ] ==> [System] Dennoch wird das Auto erstmal hinzugefügt
+[INFO  | 25.10.2018 16:39:50 | de.krauss.handler.TxtFileHandler ] ==> [System] 
+[INFO  | 25.10.2018 16:39:50 | de.krauss.handler.TxtFileHandler ] ==> [System] 
+[INFO  | 25.10.2018 16:39:50 | de.krauss.FileManager ] ==> [System] Gleicher Autoname gefunden! ( JUnit_Name )
+[INFO  | 25.10.2018 16:39:50 | de.krauss.FileManager ] ==> [System] Dennoch wird das Auto erstmal hinzugefügt
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] Name: NAME
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] Marke: MARKE
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] Tacho: 1
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] Name: NAME
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] Marke: MARKE
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] Tacho: 1
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] Name: NAME
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] Marke: MARKE
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] Tacho: 1
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] Name: JUnit_Name
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] Marke: JUnit_Marke
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] Tacho: 10
+[INFO  | 25.10.2018 16:39:50 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 25.10.2018 16:39:50 | de.krauss.OracleDataBase ] ==> [System] Reservierung hochgeladen
+[INFO  | 25.10.2018 16:39:50 | de.krauss.OracleDataBase ] ==> [System] Reservierung hochgeladen
+[WARN  | 25.10.2018 16:39:50 | de.krauss.OracleDataBase ] ==> [System] Getrennte Verbindung
+[FATAL | 25.10.2018 16:39:50 | de.krauss.OracleDataBase ] ==> [System] Getrennte Verbindung
+[FATAL | 25.10.2018 16:39:50 | de.krauss.OracleDataBase ] ==> [System] Getrennte Verbindung
+[FATAL | 25.10.2018 16:39:50 | de.krauss.OracleDataBase ] ==> [System] Getrennte Verbindung
+[WARN  | 25.10.2018 16:39:50 | de.krauss.OracleDataBase ] ==> [System] Getrennte Verbindung
+[WARN  | 25.10.2018 16:39:50 | de.krauss.OracleDataBase ] ==> [System] Getrennte Verbindung
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.DumpFileHandler ] ==> [System] Die gesuchte Datei wurde nicht gefunden
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.DumpFileHandler ] ==> [System] Datei () nicht gefunden!
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.DumpFileHandler ] ==> [System] Probleme mit dem Einlesen der Datei
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.JAXBFileHandler ] ==> [System] Fehler beim Speichern in der Datei schreiben
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.JAXBFileHandler ] ==> [System] Fehler beim Einlesen der JAXB-XML-Datei.
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.JAXBFileHandler ] ==> [System] Fehler beim Einlesen der JAXB-XML-Datei.
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.JAXBFileHandler ] ==> [System] Fehler beim Einlesen der JAXB-XML-Datei.
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.JSonFileHandler ] ==> [System]  (Result too large)
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.JSonFileHandler ] ==> [System]  (Result too large)
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.JSonFileHandler ] ==> [System] java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 1 path $
+[FATAL | 25.10.2018 16:39:50 | de.krauss.OracleDataBase ] ==> [System] ORA-01400: cannot insert NULL into ("TIM"."RES_AUTO"."OWNER")
+
+[WARN  | 25.10.2018 16:39:50 | de.krauss.handler.TxtFileHandler ] ==> [System] File not Found
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.TxtFileHandler ] ==> [System] Das Textfile wurde nicht gefunden!
+[INFO  | 25.10.2018 16:39:50 | de.krauss.handler.TxtFileHandler ] ==> [System] 
+[INFO  | 25.10.2018 16:39:50 | de.krauss.handler.TxtFileHandler ] ==> [System] 
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.TxtFileHandler ] ==> [System] Das Textfile wurde nicht gefunden!
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.XStreamFileHandler ] ==> [System] Fehler beim Schreiben der XML-Datei
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.XStreamFileHandler ] ==> [System] 
+[FATAL | 25.10.2018 16:39:50 | de.krauss.handler.XStreamFileHandler ] ==> [System] 
+[INFO  | 25.10.2018 16:40:05 | de.krauss.OracleDataBase ] ==> [System] Reservierung hochgeladen
+[WARN  | 25.10.2018 16:40:10 | de.krauss.Utilities ] ==> [System] Bitte geben sie ein gültiges Datum ein! (dd.MM.yyyy HH:mm)
+[WARN  | 25.10.2018 16:40:10 | de.krauss.Utilities ] ==> [System] Kein Datum in der Vergangenheit bitte!
+[ERROR | 25.10.2018 16:40:10 | de.krauss.Utilities ] ==> [System] StopDatum liegt zwischen einer anderen Reservierung
+[ERROR | 25.10.2018 16:40:10 | de.krauss.Utilities ] ==> [System] StartDatum liegt zwischen einer anderen Reservierung
+[ERROR | 25.10.2018 16:40:10 | de.krauss.Utilities ] ==> [System] StartDatum liegt zwischen einer anderen Reservierung
+[ERROR | 25.10.2018 16:40:10 | de.krauss.Utilities ] ==> [System] Start Datum nach Stop Datum
+[WARN  | 25.10.2018 16:40:10 | de.krauss.Utilities ] ==> [System] Bitte eine gültige Zahl eingeben
+[INFO  | 25.10.2018 16:40:10 | de.krauss.Utilities ] ==> [System] Wie viele Kilometer hat das Auto auf dem Buckel?
+[WARN  | 25.10.2018 16:40:10 | de.krauss.Utilities ] ==> [System] Bitte gib eine gültige Kilometerzahl ein!

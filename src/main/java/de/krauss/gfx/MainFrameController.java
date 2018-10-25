@@ -60,7 +60,7 @@ public class MainFrameController
 	}
 
 	/**
-	 * 
+	 * Öffnet ein FileChooser und importiert die Autos aus der Datei
 	 */
 	@FXML
 	public void importieren()

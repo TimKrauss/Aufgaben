@@ -36,8 +36,7 @@ public class Launcher extends Application implements Serializable
 	private FileManager fm;
 
 	/**
-	 * Kümmert sich um die Eingabe des User in der Konsole // ICH WEIß DU WIRST
-	 * MECKERN
+	 * Kümmert sich um die Eingabe des User in der Konsole MECKERN
 	 * 
 	 * @param reader ließt die Usereingabe
 	 */
@@ -48,7 +47,6 @@ public class Launcher extends Application implements Serializable
 		try
 		{
 			txt = reader.readLine();
-			fileLogger.info(txt);
 		} catch (IOException e1)
 		{
 			logger.fatal(e1.getMessage());
@@ -173,8 +171,33 @@ public class Launcher extends Application implements Serializable
 	 */
 	public BufferedReader createReader(Reader in)
 	{
-		BufferedReader r = new BufferedReader(in);
-		return r;
+		BufferedReader reader = new BufferedReader(in);
+
+		class Test extends BufferedReader
+		{
+			public Test(Reader in)
+			{
+				super(in);
+			}
+
+			@Override
+			public String readLine()
+			{
+				try
+				{
+					String r = reader.readLine();
+					fileLogger.info(r);
+					return r;
+				} catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+				return null;
+			}
+
+		}
+		Test t = new Test(in);
+		return t;
 	}
 
 	/**
@@ -351,14 +374,20 @@ public class Launcher extends Application implements Serializable
 	{
 		// Mit diesem Befehl läuft die Operation über den FX-Thread, so dass Fehler
 		// vermieden werden
-		Platform.runLater(new Runnable()
+		try
 		{
-			@Override
-			public void run()
+			Platform.runLater(new Runnable()
 			{
-				controller.setList(carlist.getList());
-			}
-		});
+				@Override
+				public void run()
+				{
+					controller.setList(carlist.getList());
+				}
+			});
+		} catch (IllegalStateException e)
+		{
+			logger.error(e.getMessage());
+		}
 	}
 
 }

@@ -21,7 +21,7 @@ public class OracleDataBase
 	private final static String passwort = "Test123";
 	private Connection connection = null;
 	private Statement runQueryStatement = null;
-	private Logger logger = Logger.getLogger(OracleDataBase.class);
+	private static Logger logger = Logger.getLogger("System");
 
 	/**
 	 * Stellt die Connection her
@@ -365,6 +365,12 @@ public class OracleDataBase
 		return username;
 	}
 
+	/**
+	 * Führt einen SQL-Befehl aus
+	 * 
+	 * @param query Der Befehl zum ausführen
+	 * @return Das Resultset
+	 */
 	public ResultSet runQuery(String query)
 	{
 		try
@@ -379,6 +385,9 @@ public class OracleDataBase
 		return null;
 	}
 
+	/**
+	 * Schließt das Statement welches für die Query benutzt wird
+	 */
 	public void closeStatement()
 	{
 		try
@@ -390,6 +399,11 @@ public class OracleDataBase
 		}
 	}
 
+	/**
+	 * 
+	 * @param int1 Die ID des Autos welches man möchte
+	 * @return Gibt das Auto zurück
+	 */
 	public Car getCarByID(int int1)
 	{
 		ResultSet rs = runQuery("SELECT * FROM AUTOS WHERE ID=" + int1);
