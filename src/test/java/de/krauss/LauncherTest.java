@@ -54,7 +54,24 @@ public class LauncherTest
 		st.append("reservieren\n");
 		st.append("1\n");
 		st.append(START_DATUM + "\n");
-		st.append(STOP_DATUM);
+		st.append(STOP_DATUM + "\n");
+		st.append("Junit");
+
+		stri = new StringReader(st.toString());
+		reader = launcher.createReader(stri);
+		launcher.handleUserInpunt(reader);
+
+		// Reservierung hinzufügen
+		st = new StringBuilder();
+		st.append("reservieren\n");
+		st.append("1\n");
+		st.append("13.12.2019 16:00" + "\n");
+		st.append("12.12.2019 15:00" + "\n");
+		st.append("awd" + "\n");
+		st.append("nein" + "\n");
+		st.append("12.12.2019 15:00" + "\n");
+		st.append("13.12.2099 16:00" + "\n");
+		st.append("ja");
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);

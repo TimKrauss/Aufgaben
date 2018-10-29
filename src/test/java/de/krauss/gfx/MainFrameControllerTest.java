@@ -87,6 +87,7 @@ public class MainFrameControllerTest extends ApplicationTest
 		type(KeyCode.DOWN);
 		clickOn("#btn_Reslöschen");
 		clickOn("#btn_Löschen");
+		clickOn("#btn_Import");
 		orcb.closeConnection();
 
 	}

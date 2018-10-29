@@ -36,6 +36,12 @@ public class Utilities
 			Date oldStart = r.getResStart();
 			Date oldStop = r.getResStop();
 
+			if (oldStart.equals(start_Date))
+			{
+				controll.showErrorMessage("Das Startdatum ist identisch mit dem einer anderen Reservierung");
+				return false;
+			}
+
 			if (start_Date.before(new Date()))
 			{
 				controll.showErrorMessage("Keine Reservierungen in der Vergangenheit möglich");
@@ -79,6 +85,12 @@ public class Utilities
 	 */
 	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car c)
 	{
+		if (start_Date == null)
+		{
+			logger.fatal("Start-Date ist Null");
+			return false;
+		}
+
 		for (Reservierung r : c.getReservs())
 		{
 			Date oldStart = r.getResStart();
