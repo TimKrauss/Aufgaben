@@ -6,11 +6,14 @@ import java.io.StringReader;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.krauss.search.Searcher;
+
 public class LauncherTest
 {
 	private Launcher launcher;
 	private BufferedReader reader;
 	private OracleDataBase orc;
+	private UserHandler handler;
 	private static final String NAME = "TEST", MARKE = "Marke";
 	private static final String START_DATUM = "12.12.2019 15:00", STOP_DATUM = "13.12.2019 16:00";
 	private static final int TACHO = 2;
@@ -21,12 +24,23 @@ public class LauncherTest
 		launcher = new Launcher();
 		launcher.init();
 		orc = new OracleDataBase();
+		handler = new UserHandler();
+
+		CarList list = new CarList();
+		list.setOrcb(orc);
+
+		Searcher searcher = new Searcher();
+		searcher.setOrcb(orc);
+
+		handler.setSearcher(searcher);
+		handler.setCarlist(list);
 	}
 
 	@Test
 	public void test() throws Exception
 	{
 		orc.delteAllDataFromBase();
+
 		StringBuilder st = new StringBuilder();
 		StringReader stri = null;
 		launcher.start(null);
@@ -36,7 +50,7 @@ public class LauncherTest
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);
-		launcher.handleUserInpunt(reader);
+		handler.handleUserInpunt(reader, launcher);
 
 //		Auto hinzufügen (handleMethode vorschalten)
 		st = new StringBuilder();
@@ -47,7 +61,7 @@ public class LauncherTest
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);
-		launcher.handleUserInpunt(reader);
+		handler.handleUserInpunt(reader, launcher);
 
 //		Reservierung hinzufügen
 		st = new StringBuilder();
@@ -59,7 +73,7 @@ public class LauncherTest
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);
-		launcher.handleUserInpunt(reader);
+		handler.handleUserInpunt(reader, launcher);
 
 		// Reservierung hinzufügen
 		st = new StringBuilder();
@@ -75,7 +89,7 @@ public class LauncherTest
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);
-		launcher.handleUserInpunt(reader);
+		handler.handleUserInpunt(reader, launcher);
 
 //		Auflisten
 		st = new StringBuilder();
@@ -83,7 +97,7 @@ public class LauncherTest
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);
-		launcher.handleUserInpunt(reader);
+		handler.handleUserInpunt(reader, launcher);
 
 //		StandardCall
 		launcher.standardCall();
@@ -96,7 +110,7 @@ public class LauncherTest
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);
-		launcher.handleUserInpunt(reader);
+		handler.handleUserInpunt(reader, launcher);
 
 //		getReader
 
@@ -108,7 +122,7 @@ public class LauncherTest
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);
-		launcher.handleUserInpunt(reader);
+		handler.handleUserInpunt(reader, launcher);
 
 		st = new StringBuilder();
 		st.append("search\n");
@@ -117,7 +131,7 @@ public class LauncherTest
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);
-		launcher.handleUserInpunt(reader);
+		handler.handleUserInpunt(reader, launcher);
 
 		st = new StringBuilder();
 		st.append("search\n");
@@ -126,7 +140,7 @@ public class LauncherTest
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);
-		launcher.handleUserInpunt(reader);
+		handler.handleUserInpunt(reader, launcher);
 
 //		Fehlerhafte Suche
 		st = new StringBuilder();
@@ -136,7 +150,7 @@ public class LauncherTest
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);
-		launcher.handleUserInpunt(reader);
+		handler.handleUserInpunt(reader, launcher);
 
 		st = new StringBuilder();
 		st.append("search\n");
@@ -145,7 +159,7 @@ public class LauncherTest
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);
-		launcher.handleUserInpunt(reader);
+		handler.handleUserInpunt(reader, launcher);
 
 		st = new StringBuilder();
 		st.append("search\n");
@@ -154,7 +168,7 @@ public class LauncherTest
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);
-		launcher.handleUserInpunt(reader);
+		handler.handleUserInpunt(reader, launcher);
 
 //		Auto löschen
 		st = new StringBuilder();
@@ -163,7 +177,7 @@ public class LauncherTest
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);
-		launcher.handleUserInpunt(reader);
+		handler.handleUserInpunt(reader, launcher);
 
 //		Nein
 		st = new StringBuilder();
@@ -171,7 +185,7 @@ public class LauncherTest
 
 		stri = new StringReader(st.toString());
 		reader = launcher.createReader(stri);
-		launcher.handleUserInpunt(reader);
+		handler.handleUserInpunt(reader, launcher);
 
 //		Alles Explodieren lassen
 		st = new StringBuilder();

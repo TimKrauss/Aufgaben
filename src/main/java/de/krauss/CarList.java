@@ -17,7 +17,13 @@ public class CarList
 {
 	@XmlElement(name = "carlist")
 	private ArrayList<Car> cars;
-	private OracleDataBase orcb = new OracleDataBase();
+	private OracleDataBase orcb;
+
+	public void setOrcb(OracleDataBase orcb)
+	{
+		this.orcb = orcb;
+	}
+
 	private Logger logger = Logger.getLogger("System");
 
 	/**
@@ -74,11 +80,10 @@ public class CarList
 	/**
 	 * Erstellt ein Auto und fügt der Cars-Arraylist das Auto hinzu
 	 * 
-	 * @param r    Der Reader mit welchen die Usereingaben gelesen werden können
-	 * @param orcb Die Datenbank in welcher das Auto hinzufügen soll
+	 * @param reader Der Reader mit welchen die Usereingaben gelesen werden können
 	 * @return Ob das Auto hinzufügen erfolgreich war
 	 */
-	public boolean addCarWithReader(BufferedReader r)
+	public boolean addCarWithReader(BufferedReader reader)
 	{
 		Car newCar = new Car();
 		try
@@ -86,15 +91,15 @@ public class CarList
 
 			logger.info("Wie lautet der Fahrzeugname?");
 
-			newCar.setCarName(r.readLine());
+			newCar.setCarName(reader.readLine());
 			logger.info("Fahrzeugname --> " + newCar.getCarName());
 
 			logger.info("Wie lautet die Fahrzeugmarke?");
 
-			newCar.setCarMarke(r.readLine());
+			newCar.setCarMarke(reader.readLine());
 			logger.info("Fahrzeugmarke --> " + newCar.getCarMarke());
 
-			newCar.setCarTacho(Utilities.addTacho(r));
+			newCar.setCarTacho(Utilities.addTacho(reader));
 			logger.info("Kilometer: " + newCar.getCarTacho());
 
 			// LOKALE LISTE
@@ -117,25 +122,38 @@ public class CarList
 	/**
 	 * Fügt der Arraylist ein Auto hinzu
 	 * 
-	 * @param c Das Auto welches hinzugefügt werden soll
+	 * @param car Das Auto welches hinzugefügt werden soll
 	 */
-	public void addCar(Car c)
+	public void addCar(Car car)
 	{
-		cars.add(c);
-		orcb.addCar(c);
+		if (car == null)
+		{
+			logger.warn("Auto == null");
+			return;
+		}
+
+		if (car.getCarName() == null || car.getCarName().equals(""))
+		{
+			logger.warn("Füge Auto nicht hinzu da es keinen Namen hat");
+		} else
+		{
+			cars.add(car);
+			orcb.addCar(car);
+		}
+
 	}
 
 	/**
 	 * 
-	 * @param i Die Nummer des Autos welches zurück gegeben werden soll
+	 * @param integer Die Nummer des Autos welches zurück gegeben werden soll
 	 * @return Gibt das ausgewählte Auto zurück
 	 */
-	public Car getCar(int i)
+	public Car getCar(int integer)
 	{
 		Car car = null;
 		try
 		{
-			car = cars.get(i);
+			car = cars.get(integer);
 		} catch (IndexOutOfBoundsException e)
 		{
 			logger.warn(e.getMessage());
@@ -164,8 +182,6 @@ public class CarList
 	 * Reserviert ein Fahrzeug
 	 * 
 	 * @param reader Der Reader mit welchen die Usereingaben gelesen werden können
-	 * @param orcb   Die Datenbank in welche die REservierung hinzugefügt werden
-	 *               soll
 	 * @return Ob das reservieren erfolgreich war
 	 */
 	public boolean reservieren(BufferedReader reader)
@@ -213,8 +229,6 @@ public class CarList
 
 	/**
 	 * Ließt alle Autos in die Datenbank ein
-	 * 
-	 * @param orcb
 	 */
 	public void addCarsFromDataBase()
 	{

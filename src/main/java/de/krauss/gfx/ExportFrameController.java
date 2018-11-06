@@ -38,7 +38,7 @@ public class ExportFrameController
 	private Stage stage;
 	private File expoDir = new File(System.getProperty("user.home") + "/Desktop/");
 	private CarList carlist;
-	private FileManager fm;
+	private FileManager fileManager;
 
 	/**
 	 * Schließt das Exportieren ab und schließt das kleine Fenster
@@ -55,19 +55,22 @@ public class ExportFrameController
 
 		if (check_Dump.isSelected())
 		{
-			fm.safe(carlist, FileManager.DUMP_FILE, new File(expoDir.getAbsolutePath() + "/" + fName + ".dump"));
+			fileManager.safe(carlist, FileManager.DUMP_FILE,
+					new File(expoDir.getAbsolutePath() + "/" + fName + ".dump"));
 		}
 		if (check_JSon.isSelected())
 		{
-			fm.safe(carlist, FileManager.JSON_FILE, new File(expoDir.getAbsolutePath() + "/" + fName + ".json"));
+			fileManager.safe(carlist, FileManager.JSON_FILE,
+					new File(expoDir.getAbsolutePath() + "/" + fName + ".json"));
 		}
 		if (check_Txt.isSelected())
 		{
-			fm.safe(carlist, FileManager.TXT_FILE, new File(expoDir.getAbsolutePath() + "/" + fName + ".txt"));
+			fileManager.safe(carlist, FileManager.TXT_FILE, new File(expoDir.getAbsolutePath() + "/" + fName + ".txt"));
 		}
 		if (check_XML.isSelected())
 		{
-			fm.safe(carlist, FileManager.XSTREAM_FILE, new File(expoDir.getAbsolutePath() + "/" + fName + ".xml"));
+			fileManager.safe(carlist, FileManager.XSTREAM_FILE,
+					new File(expoDir.getAbsolutePath() + "/" + fName + ".xml"));
 		}
 
 		stage.getScene().getWindow().hide();
@@ -76,12 +79,12 @@ public class ExportFrameController
 	/**
 	 * Initalisiert alle von dem Fenster nötigen Elemente
 	 * 
-	 * @param m Setzt die Instanz des FileManagers
+	 * @param filmanager Setzt die Instanz des FileManagers
 	 */
-	public void init(FileManager m)
+	public void init(FileManager filmanager)
 	{
 
-		fm = m;
+		fileManager = filmanager;
 		lbl_Pfad.setText(expoDir.getName());
 
 		btn_fileChooser.setOnAction(new EventHandler<ActionEvent>()

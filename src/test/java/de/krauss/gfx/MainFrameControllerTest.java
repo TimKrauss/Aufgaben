@@ -38,7 +38,11 @@ public class MainFrameControllerTest extends ApplicationTest
 		fis.close();
 		orcb = new OracleDataBase();
 		controller.setFileManager(new FileManager());
-		controller.setCarlist(new CarList());
+
+		CarList list = new CarList();
+		list.setOrcb(orcb);
+		controller.setCarlist(list);
+
 		controller.init();
 		orcb.delteAllDataFromBase();
 		arg0.toFront();
@@ -68,7 +72,7 @@ public class MainFrameControllerTest extends ApplicationTest
 		write("12:00");
 
 		clickOn("#btn_Add");
-		clickOn("#btn_Update");
+
 		// Exportieren
 		clickOn("#btn_Exportieren");
 		clickOn("#check_Dump");
@@ -78,6 +82,29 @@ public class MainFrameControllerTest extends ApplicationTest
 		clickOn("#txtf_Name");
 		write("GhostTry");
 		clickOn("#btn_Export");
+
+		// Searcher
+		clickOn("#btn_Search");
+		clickOn("#rb_Name");
+		clickOn("#txtf_Name");
+		write("G");
+		clickOn("#btn_StartSearch");
+
+		clickOn("#rb_Marke");
+		clickOn("#txtf_Marke");
+		write("VW");
+		clickOn("#btn_StartSearch");
+
+		clickOn("#rb_Tacho");
+		clickOn("#txtf_Tacho");
+		write("5");
+		clickOn("#btn_StartSearch");
+
+		clickOn("#txtf_Tacho");
+		write("5");
+		clickOn("#btn_StartSearch");
+		clickOn("#btn_closeSearcher");
+
 	}
 
 	@After
@@ -85,7 +112,12 @@ public class MainFrameControllerTest extends ApplicationTest
 	{
 		clickOn("#list_Autos");
 		type(KeyCode.DOWN);
+
 		clickOn("#btn_Reslöschen");
+
+		clickOn("#list_Autos");
+		type(KeyCode.DOWN);
+
 		clickOn("#btn_Löschen");
 		clickOn("#btn_Import");
 		orcb.closeConnection();

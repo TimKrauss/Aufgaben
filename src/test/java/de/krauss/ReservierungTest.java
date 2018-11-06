@@ -12,7 +12,7 @@ public class ReservierungTest
 	private static final Date beforeStartDate = new Date();
 	private static final Date startDate = new Date();
 	private static final Date stopDate = new Date();
-	private static final int ID = 5;
+	private static final int reservierungID = 5;
 
 	@Before
 	public void init()
@@ -26,11 +26,11 @@ public class ReservierungTest
 	{
 		reservierung.setResStart(startDate);
 		reservierung.setResStop(stopDate);
-		reservierung.setRES_ID(ID);
+		reservierung.setRES_ID(reservierungID);
 
 		Assert.assertEquals(startDate, reservierung.getResStart());
 		Assert.assertEquals(stopDate, reservierung.getResStop());
-		Assert.assertEquals(ID, reservierung.getRES_ID());
+		Assert.assertEquals(reservierungID, reservierung.getRES_ID());
 
 //		Assert.assertTrue(reservierung.isReserved(startDate));
 //

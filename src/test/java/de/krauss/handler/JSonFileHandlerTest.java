@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import de.krauss.Car;
 import de.krauss.CarList;
+import de.krauss.OracleDataBase;
 
 public class JSonFileHandlerTest
 {
@@ -19,10 +20,12 @@ public class JSonFileHandlerTest
 	private static final File existButNotArrayList = new File(
 			System.getProperty("user.home") + "/Desktop/Cars/Cars.txt");
 
+	private OracleDataBase orcb = new OracleDataBase();
+
 	@Test
 	public void test()
 	{
-
+		carlist.setOrcb(orcb);
 		car.setCarName(NAME);
 		car.setCarMarke(MARKE);
 		car.setCarTacho(TACHO);
@@ -37,6 +40,8 @@ public class JSonFileHandlerTest
 
 		ArrayList<Car> cars = dumpFileHandler.load(dumpFileHandler.getDefaultFile());
 		Assert.assertNotNull(cars);
+
+		orcb.closeConnection();
 	}
 
 }

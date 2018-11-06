@@ -9,6 +9,7 @@ import org.junit.Test;
 import de.krauss.Car;
 import de.krauss.CarList;
 import de.krauss.Launcher;
+import de.krauss.OracleDataBase;
 import de.krauss.Reservierung;
 
 public class TxtFileHandlerTest
@@ -20,10 +21,12 @@ public class TxtFileHandlerTest
 	private static final int TACHO = 5;
 //	private static final File EXISTBUTNOTARRAYLIST = NEW FILE(
 //			System.getProperty("USER.HOME") + "/DESKTOP/CARS/CARS.TXT");
+	private OracleDataBase orcb = new OracleDataBase();
 
 	@Test
 	public void test()
 	{
+		carlist.setOrcb(orcb);
 		car.setCarName(NAME);
 		car.setCarMarke(MARKE);
 		car.setCarTacho(TACHO);

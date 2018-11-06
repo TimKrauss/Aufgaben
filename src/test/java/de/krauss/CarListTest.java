@@ -18,6 +18,7 @@ public class CarListTest
 	{
 		car = new Car();
 		carlist = new CarList();
+		carlist.setOrcb(orcb);
 		arrayList = new ArrayList<>();
 	}
 
@@ -26,6 +27,13 @@ public class CarListTest
 	{
 		Assert.assertEquals(arrayList, carlist.getList());
 
+		carlist.addCar(car);
+		Assert.assertEquals(null, carlist.getCar(0));
+
+		car.setCarMarke("VW");
+		car.setCarName("Test");
+		car.setCarTacho(123);
+		car.setCarID(0);
 		carlist.addCar(car);
 		Assert.assertEquals(car, carlist.getCar(0));
 

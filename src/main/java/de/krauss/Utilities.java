@@ -24,17 +24,17 @@ public class Utilities
 	 * 
 	 * @param start_Date Anfang der neuen Reservierung
 	 * @param stop_Date  Ende der neuen Reservierung
-	 * @param c          Das Auto welches zu der Zeit frei seien soll
+	 * @param car          Das Auto welches zu der Zeit frei seien soll
 	 * @param controll   Zum Ausgeben der ErrorMeldung auf dem GUI
 	 * @return Ob das Auto zu der Zeit schon reserviert ist
 	 */
-	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car c, AddResvController controll)
+	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car car, AddResvController controll)
 	{
 
-		for (Reservierung r : c.getReservs())
+		for (Reservierung resv : car.getReservs())
 		{
-			Date oldStart = r.getResStart();
-			Date oldStop = r.getResStop();
+			Date oldStart = resv.getResStart();
+			Date oldStop = resv.getResStop();
 
 			if (oldStart.equals(start_Date))
 			{
@@ -80,10 +80,10 @@ public class Utilities
 	 * 
 	 * @param start_Date Anfang der neuen Reservierung
 	 * @param stop_Date  Ende der neuen Reservierung
-	 * @param c          Das Auto welches zu der Zeit frei seien soll
+	 * @param car          Das Auto welches zu der Zeit frei seien soll
 	 * @return Ob das Auto zu der Zeit schon reserviert ist
 	 */
-	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car c)
+	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car car)
 	{
 		if (start_Date == null)
 		{
@@ -91,10 +91,10 @@ public class Utilities
 			return false;
 		}
 
-		for (Reservierung r : c.getReservs())
+		for (Reservierung resv : car.getReservs())
 		{
-			Date oldStart = r.getResStart();
-			Date oldStop = r.getResStop();
+			Date oldStart = resv.getResStart();
+			Date oldStop = resv.getResStop();
 
 			if (start_Date.before(new Date()))
 			{
@@ -132,10 +132,10 @@ public class Utilities
 	/**
 	 * Sorgt für eine Fehlerfreie Eingabe des Tachostandes
 	 * 
-	 * @param r Der Reader mit welchen die Usereingaben gelesen werden können
+	 * @param reader Der Reader mit welchen die Usereingaben gelesen werden können
 	 * @return Den Tachostand als Double
 	 */
-	public static int addTacho(BufferedReader r)
+	public static int addTacho(BufferedReader reader)
 	{
 		logger.info("Wie viele Kilometer hat das Auto auf dem Buckel?");
 
@@ -145,7 +145,7 @@ public class Utilities
 		{
 			try
 			{
-				String line = r.readLine();
+				String line = reader.readLine();
 				if (line == null)
 				{
 					logger.fatal("Keine Zeile mehr zu lesen");
@@ -177,21 +177,21 @@ public class Utilities
 		{
 			try
 			{
-				String s = reader.readLine();
+				String string = reader.readLine();
 
 				DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 				df.setLenient(false);
 
 				df.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"));
 
-				Date f = df.parse(s);
+				Date date = df.parse(string);
 
-				if (f.before(new Date()))
+				if (date.before(new Date()))
 				{
 					logger.warn("Kein Datum in der Vergangenheit bitte!");
 				} else
 				{
-					return f;
+					return date;
 				}
 
 			} catch (ParseException e)
@@ -210,12 +210,12 @@ public class Utilities
 
 	/**
 	 * 
-	 * @param d Das zu formatierende Datum
+	 * @param date Das zu formatierende Datum
 	 * @return Das formatierte Datum
 	 */
-	public static String format(Date d)
+	public static String format(Date date)
 	{
-		return sdf.format(d);
+		return sdf.format(date);
 	}
 
 	/**

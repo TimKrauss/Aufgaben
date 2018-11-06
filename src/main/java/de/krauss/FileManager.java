@@ -36,28 +36,29 @@ public class FileManager implements Serializable
 	/**
 	 * Übergibt die Autos + Reservierungen OHNE RES_ID,CAR_ID,RES:CAR_ID
 	 * 
-	 * @param option Die Methode mit welcher eingelesen werden soll
-	 * @param f      Die Datei aus welcher eingelesen werden soll
+	 * @param option    Die Methode mit welcher eingelesen werden soll
+	 * @param file      Die Datei aus welcher eingelesen werden soll
+	 * @param checkList Die Carlist welche überprüft werden soll
 	 * @return Die eingelesene Arraylist
 	 */
-	public ArrayList<Car> load(int option, File f, CarList checkList)
+	public ArrayList<Car> load(int option, File file, CarList checkList)
 	{
 		switch (option)
 		{
 		case DUMP_FILE:
-			arrayListWithCars = dumpFileHandler.load(f);
+			arrayListWithCars = dumpFileHandler.load(file);
 			break;
 		case JAXB_FILE:
-			arrayListWithCars = jaxbFileHandler.load(f);
+			arrayListWithCars = jaxbFileHandler.load(file);
 			break;
 		case TXT_FILE:
-			arrayListWithCars = txtFileHandler.load(f);
+			arrayListWithCars = txtFileHandler.load(file);
 			break;
 		case XSTREAM_FILE:
-			arrayListWithCars = xStreamFileHandler.load(f);
+			arrayListWithCars = xStreamFileHandler.load(file);
 			break;
 		case JSON_FILE:
-			arrayListWithCars = jSonFileHandler.load(f);
+			arrayListWithCars = jSonFileHandler.load(file);
 			break;
 		default:
 			return null;
@@ -146,26 +147,26 @@ public class FileManager implements Serializable
 	 * 
 	 * @param cars   Liste der Autos welche gespeichert werden soll
 	 * @param option Option mit welcher Methode die Autos gepseichert werden sollen
-	 * @param f      Die Datei in welcher die Autos gespeichert werden sollen.s
+	 * @param file   Die Datei in welcher die Autos gespeichert werden sollen.s
 	 */
-	public void safe(CarList cars, int option, File f)
+	public void safe(CarList cars, int option, File file)
 	{
 		switch (option)
 		{
 		case DUMP_FILE:
-			dumpFileHandler.safe(cars, f);
+			dumpFileHandler.safe(cars, file);
 			break;
 		case JAXB_FILE:
-			jaxbFileHandler.safe(cars, f);
+			jaxbFileHandler.safe(cars, file);
 			break;
 		case TXT_FILE:
-			txtFileHandler.safe(cars, f);
+			txtFileHandler.safe(cars, file);
 			break;
 		case XSTREAM_FILE:
-			xStreamFileHandler.safe(cars, f);
+			xStreamFileHandler.safe(cars, file);
 			break;
 		case JSON_FILE:
-			jSonFileHandler.safe(cars, f);
+			jSonFileHandler.safe(cars, file);
 			break;
 		default:
 			logger.warn("Fahrzeuge speichern wurde abgebrochen");
@@ -176,7 +177,6 @@ public class FileManager implements Serializable
 	/**
 	 * Konstruktor zur Initalisierung der Handler
 	 * 
-	 * @param l Reader zum Lesen der Usereingaben
 	 */
 	public FileManager()
 	{

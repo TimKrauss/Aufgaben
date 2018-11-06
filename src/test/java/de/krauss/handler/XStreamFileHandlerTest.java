@@ -8,6 +8,7 @@ import org.junit.Test;
 import de.krauss.Car;
 import de.krauss.CarList;
 import de.krauss.Launcher;
+import de.krauss.OracleDataBase;
 
 public class XStreamFileHandlerTest
 {
@@ -19,10 +20,12 @@ public class XStreamFileHandlerTest
 	private static final File existButNotArrayList = new File(
 			System.getProperty("user.home") + "/Desktop/Cars/dumpfile");
 
+	private OracleDataBase orcb = new OracleDataBase();
+
 	@Test
 	public void test()
 	{
-
+		carlist.setOrcb(orcb);
 		car.setCarName(NAME);
 		car.setCarMarke(MARKE);
 		car.setCarTacho(TACHO);
@@ -35,6 +38,8 @@ public class XStreamFileHandlerTest
 		Assert.assertNull(dumpFileHandler.load(new File("")));
 		Assert.assertNull(dumpFileHandler.load(existButNotArrayList));
 		Assert.assertNotNull(dumpFileHandler.load(new File(Launcher.HOME_DIR + "Cars.xml")));
+
+		orcb.closeConnection();
 	}
 
 }

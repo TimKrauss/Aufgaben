@@ -14,12 +14,13 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 
 public class Initializer
 {
 
-	private ListView<String> list_Autos;
+	private ListView<Car> list_Autos;
 
 	private Button btn_Reservieren, btn_Löschen, btn_Reslöschen, btn_DeleteAll, btn_Update;
 
@@ -55,6 +56,9 @@ public class Initializer
 				carlist.getList().clear();
 				carlist.addCarsFromDataBase();
 				controller.setList(carlist.getList());
+				SearcherFrameController sc = SearcherFrameController.createWindow();
+				sc.setDatabase(carlist.getOracleDatabase());
+				sc.init();
 			}
 		});
 	}
@@ -77,15 +81,30 @@ public class Initializer
 	 */
 	private void initList()
 	{
-		list_Autos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>()
-		{
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
-			{
-				// change the label text value to the newly selected
-				// item.
 
-				int opt = list_Autos.getSelectionModel().getSelectedIndex();
-				if (opt == -1)
+		list_Autos.setCellFactory(param -> new ListCell<Car>()
+		{
+			@Override
+			protected void updateItem(Car item, boolean empty)
+			{
+				super.updateItem(item, empty);
+
+				if (empty || item == null || item.getCarName() == null)
+				{
+					setText("");
+				} else
+				{
+					setText(item.getCarName());
+				}
+			}
+		});
+
+		list_Autos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Car>()
+		{
+			public void changed(ObservableValue<? extends Car> observable, Car oldValue, Car newValue)
+			{
+				int option = list_Autos.getSelectionModel().getSelectedIndex();
+				if (option == -1)
 				{
 					combo_Res.setItems(FXCollections.observableArrayList());
 					combo_Res.setDisable(true);
@@ -94,7 +113,7 @@ public class Initializer
 					btn_Reslöschen.setDisable(true);
 					return;
 				}
-				Car c = carlist.getCar(opt);
+				Car car = newValue;
 
 				ArrayList<String> res_Name = new ArrayList<>();
 
@@ -104,7 +123,7 @@ public class Initializer
 				lbl_Res_start.setText("");
 				lbl_Res_stop.setText("");
 
-				if (c.getReservs().size() == 0)
+				if (car.getReservs().size() == 0)
 				{
 					combo_Res.setDisable(true);
 					btn_Reslöschen.setDisable(true);
@@ -114,16 +133,16 @@ public class Initializer
 					btn_Reslöschen.setDisable(false);
 				}
 
-				for (int count = 0; count < c.getReservs().size(); count++)
+				for (int count = 0; count < car.getReservs().size(); count++)
 				{
 					res_Name.add((count + 1) + "# Reservierung");
 				}
 
 				combo_Res.setItems(FXCollections.observableArrayList(res_Name));
 				combo_Res.getSelectionModel().select(0);
-				label_Name.setText(c.getCarName());
-				label_Marke.setText(c.getCarMarke());
-				label_Tachostand.setText(c.getCarTacho() + "");
+				label_Name.setText(car.getCarName());
+				label_Marke.setText(car.getCarMarke());
+				label_Tachostand.setText(car.getCarTacho() + "");
 				btn_Löschen.setDisable(false);
 				btn_Reservieren.setDisable(false);
 			}
@@ -141,10 +160,10 @@ public class Initializer
 			public void handle(ActionEvent event)
 			{
 				Car selCar = carlist.getCar(list_Autos.getSelectionModel().getSelectedIndex());
-				Reservierung r = selCar.getReservs().get(combo_Res.getSelectionModel().getSelectedIndex());
+				Reservierung reservierung = selCar.getReservs().get(combo_Res.getSelectionModel().getSelectedIndex());
 
 				// DATENBANK + LOKAL
-				carlist.deleteReservierungFromCar(selCar, r);
+				carlist.deleteReservierungFromCar(selCar, reservierung);
 
 				controller.setList(carlist.getList());
 			}
@@ -186,7 +205,7 @@ public class Initializer
 		carlist = car;
 	}
 
-	public void setList_Autos(ListView<String> list_Autos)
+	public void setList_Autos(ListView<Car> list_Autos)
 	{
 		this.list_Autos = list_Autos;
 	}

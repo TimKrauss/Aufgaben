@@ -12,7 +12,7 @@ public class OracleDataBaseTest
 	private Car car, car2;
 	private static final String CAR_NAME = "NAME", CAR_MARKE = "MARKE";
 	private static final int CAR_TACHO = 1, CAR_ID = 200;
-	private Reservierung res;
+	private Reservierung reservierung;
 
 	@Before
 	public void init()
@@ -31,11 +31,11 @@ public class OracleDataBaseTest
 		car2.setCarName(CAR_NAME);
 		car2.setCarTacho(CAR_TACHO);
 
-		res = new Reservierung();
-		res.setResStart(new Date());
-		res.setResStop(new Date());
-		res.setCarID(CAR_ID);
-		res.setOwner("Tim");
+		reservierung = new Reservierung();
+		reservierung.setResStart(new Date());
+		reservierung.setResStop(new Date());
+		reservierung.setCarID(CAR_ID);
+		reservierung.setOwner("Tim");
 	}
 
 	@Test
@@ -46,14 +46,14 @@ public class OracleDataBaseTest
 		Assert.assertTrue(orb.addCar(car));
 		Assert.assertTrue(orb.addCar(car2));
 
-		Assert.assertTrue(orb.uploadRes(res));
-		Assert.assertTrue(orb.uploadRes(res));
+		Assert.assertTrue(orb.uploadRes(reservierung));
+		Assert.assertTrue(orb.uploadRes(reservierung));
 		Car car2 = orb.loadDatabase().get(0);
 		Assert.assertEquals(car.getCarName(), car2.getCarName());
 		Assert.assertEquals(car.getCarMarke(), car2.getCarMarke());
 		Assert.assertEquals(car.getCarTacho(), car2.getCarTacho());
 
-		Assert.assertTrue(orb.deleteReservierung(res));
+		Assert.assertTrue(orb.deleteReservierung(reservierung));
 
 		Assert.assertTrue(orb.deleteCarFromDatabase(CAR_ID));
 
@@ -61,10 +61,10 @@ public class OracleDataBaseTest
 
 		Assert.assertFalse(orb.delteAllDataFromBase());
 
-		Assert.assertFalse(orb.addCar(car));
+		Assert.assertTrue(orb.addCar(car));
 
-		Assert.assertFalse(orb.uploadRes(res));
-		Assert.assertFalse(orb.deleteReservierung(res));
+		Assert.assertFalse(orb.uploadRes(reservierung));
+		Assert.assertFalse(orb.deleteReservierung(reservierung));
 
 		Assert.assertFalse(orb.deleteCarFromDatabase(CAR_ID));
 		orb.delteAllDataFromBase();

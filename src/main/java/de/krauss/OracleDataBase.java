@@ -8,8 +8,6 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import org.apache.log4j.Logger;
 
 import oracle.jdbc.pool.OracleDataSource;
@@ -26,7 +24,6 @@ public class OracleDataBase
 	/**
 	 * Stellt die Connection her
 	 * 
-	 * @param l Den Logger zur UserAusgabe
 	 */
 	public OracleDataBase()
 	{
@@ -67,7 +64,7 @@ public class OracleDataBase
 			smt2.close();
 			return true;
 
-		} catch (Exception e)
+		} catch (SQLException e)
 		{
 			logger.warn(e.getMessage());
 		}
@@ -88,9 +85,10 @@ public class OracleDataBase
 			rsvdel.executeQuery("DELETE FROM res_auto WHERE Carnr=" + id);
 			rsvdel.close();
 
-			Statement smt2 = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-			smt2.executeQuery("DELETE FROM autos WHERE id=" + id);
-			smt2.close();
+			Statement statement2 = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			statement2.executeQuery("DELETE FROM autos WHERE id=" + id);
+			statement2.close();
 			return true;
 
 		} catch (Exception e)
@@ -113,7 +111,6 @@ public class OracleDataBase
 				connection.close();
 				return true;
 			}
-			return false;
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
@@ -162,7 +159,7 @@ public class OracleDataBase
 			logger.fatal(e);
 		} catch (NullPointerException e)
 		{
-			JOptionPane.showMessageDialog(null, "Keine Datenbank erreichbar", "Keine Datenbank", JOptionPane.OK_OPTION);
+			logger.fatal("Keine Datenbank vorhanden!");
 			System.exit(1);
 		}
 		return null;
@@ -185,17 +182,17 @@ public class OracleDataBase
 
 			while (rset.next())
 			{
-				for (Car c : cars)
+				for (Car car : cars)
 				{
-					if (c.getCarID() == rset.getInt("carnr"))
+					if (car.getCarID() == rset.getInt("carnr"))
 					{
-						Reservierung r = new Reservierung();
+						Reservierung resv = new Reservierung();
 
-						r.setResStart(rset.getTimestamp("startd"));
-						r.setResStop(rset.getTimestamp("stopd"));
-						r.setCarID(rset.getInt("CARNR"));
-						r.setRES_ID(rset.getInt("id"));
-						c.addResv(r);
+						resv.setResStart(rset.getTimestamp("startd"));
+						resv.setResStop(rset.getTimestamp("stopd"));
+						resv.setCarID(rset.getInt("CARNR"));
+						resv.setRES_ID(rset.getInt("id"));
+						car.addResv(resv);
 					}
 				}
 			}
@@ -210,44 +207,35 @@ public class OracleDataBase
 	/**
 	 * Fügt der Datenbank ein Auto hinzu
 	 * 
-	 * @param c Auto welches hinzugefügt werden soll
+	 * @param car Auto welches hinzugefügt werden soll
 	 * @return Ob das hinzufügen des Autos fumktioniert hat
 	 */
-	public boolean addCar(Car c)
+	public boolean addCar(Car car)
 	{
-		try
+		if (car.getCarID() == 0)
 		{
-			if (c.getCarID() == 0)
-			{
-				c.setCarID(getNextCarID());
-			}
-
-			String query = "INSERT INTO AUTOS(NAME, MARKE, TACHO,ID) VALUES ('" + c.getCarName() + "','"
-					+ c.getCarMarke() + "'," + c.getCarTacho() + "," + c.getCarID() + ")";
-
-			Statement smt;
-			smt = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-			smt.executeQuery(query);
-			smt.close();
-
-			for (Reservierung r : c.getReservs())
-			{
-				if (c.getReservs().size() == 0)
-					break;
-
-				r.setCarID(c.getCarID());
-				uploadRes(r);
-			}
-			return true;
-		} catch (SQLException e)
-		{
-			logger.fatal(e.getMessage());
+			car.setCarID(getNextCarID());
 		}
-		return false;
 
+		String query = "INSERT INTO AUTOS(NAME, MARKE, TACHO,ID) VALUES ('" + car.getCarName() + "','"
+				+ car.getCarMarke() + "'," + car.getCarTacho() + "," + car.getCarID() + ")";
+
+		runQuery(query);
+
+		for (Reservierung resv : car.getReservs())
+		{
+			if (car.getReservs().size() == 0)
+				break;
+
+			resv.setCarID(car.getCarID());
+			uploadRes(resv);
+		}
+		closeStatement();
+		return true;
 	}
 
 	/**
+	 * Wird aufgerufen falls ein Auto hochgeladen wird.
 	 * 
 	 * @return Gibt die nächste freie Car-ID zurück
 	 */
@@ -282,18 +270,15 @@ public class OracleDataBase
 	{
 		try
 		{
-			Statement stmSequence = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
-					ResultSet.CONCUR_READ_ONLY);
-			ResultSet seq = stmSequence.executeQuery("select RESV_SEQ.NEXTVAL from DUAL");
-			if (seq.next())
+			ResultSet resultSet = runQuery("select RESV_SEQ.NEXTVAL from DUAL");
+			if (resultSet.next())
 			{
-				int reInt = seq.getInt("NEXTVAL");
-				seq.close();
-				stmSequence.close();
+				int reInt = resultSet.getInt("NEXTVAL");
+				resultSet.close();
 				return reInt;
 			}
-			stmSequence.close();
-			seq.close();
+			resultSet.close();
+			closeStatement();
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
@@ -304,10 +289,10 @@ public class OracleDataBase
 	/**
 	 * Fügt der Datenbank eine Reservierung hinzu
 	 * 
-	 * @param r Reservierung welche hinzugefügt werden soll
+	 * @param resv Reservierung welche hinzugefügt werden soll
 	 * @return Ob das Hochladen der Reservierung fuktioniert hat
 	 */
-	public boolean uploadRes(Reservierung r)
+	public boolean uploadRes(Reservierung resv)
 	{
 		String query = "INSERT INTO RES_AUTO(STARTD,STOPD,CARNR,OWNER,ID) VALUES (?,?,?,?,?)";
 
@@ -315,14 +300,14 @@ public class OracleDataBase
 		{
 			PreparedStatement smt = connection.prepareStatement(query);
 
-			smt.setTimestamp(1, new Timestamp(r.getResStart().getTime()));
-			smt.setTimestamp(2, new Timestamp(r.getResStop().getTime()));
-			smt.setInt(3, r.getCarID());
-			smt.setString(4, r.getOwner());
+			smt.setTimestamp(1, new Timestamp(resv.getResStart().getTime()));
+			smt.setTimestamp(2, new Timestamp(resv.getResStop().getTime()));
+			smt.setInt(3, resv.getCarID());
+			smt.setString(4, resv.getOwner());
 
-			r.setRES_ID(getNextReservierungID());
+			resv.setRES_ID(getNextReservierungID());
 
-			smt.setInt(5, r.getRES_ID());
+			smt.setInt(5, resv.getRES_ID());
 
 			smt.executeQuery();
 			smt.close();
@@ -338,15 +323,15 @@ public class OracleDataBase
 	/**
 	 * Löscht eine Reservierung aus der Datenbank
 	 * 
-	 * @param del Die zu löschende Reservierung
+	 * @param resvToDel Die zu löschende Reservierung
 	 * @return Ob das Löschen der Reservierung funktioniert hat
 	 */
-	public boolean deleteReservierung(Reservierung del)
+	public boolean deleteReservierung(Reservierung resvToDel)
 	{
 		try
 		{
 			Statement smt = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-			smt.executeQuery("DELETE FROM res_auto WHERE id=" + del.getRES_ID());
+			smt.executeQuery("DELETE FROM res_auto WHERE id=" + resvToDel.getRES_ID());
 			smt.close();
 			return true;
 		} catch (SQLException e)
@@ -401,32 +386,32 @@ public class OracleDataBase
 
 	/**
 	 * 
-	 * @param int1 Die ID des Autos welches man möchte
+	 * @param carId Die ID des Autos welches man möchte
 	 * @return Gibt das Auto zurück
 	 */
-	public Car getCarByID(int int1)
+	public Car getCarByID(int carId)
 	{
-		ResultSet rs = runQuery("SELECT * FROM AUTOS WHERE ID=" + int1);
+		ResultSet resultSet = runQuery("SELECT * FROM AUTOS WHERE ID=" + carId);
 
 		Car car = new Car();
 
 		try
 		{
-			while (rs.next())
+			while (resultSet.next())
 			{
-				car.setCarName(rs.getString("name"));
-				car.setCarMarke(rs.getString("marke"));
-				car.setCarTacho(rs.getInt(("tacho")));
-				car.setCarID(rs.getInt("id"));
+				car.setCarName(resultSet.getString("name"));
+				car.setCarMarke(resultSet.getString("marke"));
+				car.setCarTacho(resultSet.getInt(("tacho")));
+				car.setCarID(resultSet.getInt("id"));
 			}
-			rs.close();
+			resultSet.close();
 		} catch (SQLException e)
 		{
 			logger.fatal(e.getMessage());
 		}
 		try
 		{
-			rs.close();
+			resultSet.close();
 		} catch (SQLException e)
 		{
 			logger.fatal(e.getMessage());

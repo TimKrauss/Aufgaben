@@ -32,10 +32,10 @@ import javafx.stage.WindowEvent;
 public class MainFrameController
 {
 	@FXML
-	private ListView<String> list_Autos;
+	private ListView<Car> list_Autos;
 
 	@FXML
-	private Button btn_Hinzufügen, btn_Reservieren, btn_Löschen, btn_Reslöschen, btn_Exportieren, btn_Update,
+	private Button btn_Hinzufügen, btn_Reservieren, btn_Löschen, btn_Reslöschen, btn_Exportieren, btn_Search,
 			btn_DeleteAll;
 
 	@FXML
@@ -47,16 +47,16 @@ public class MainFrameController
 	private CarList carlist;
 	private static Logger logger = Logger.getLogger("System");
 	private static Stage primaryStage;
-	private FileManager fm;
+	private FileManager fileManager;
 	private Initializer initer;
 
 	/**
 	 * 
-	 * @param c Setzt die Carlist
+	 * @param carlist Setzt die Carlist
 	 */
-	public void setCarlist(CarList c)
+	public void setCarlist(CarList carlist)
 	{
-		carlist = c;
+		this.carlist = carlist;
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class MainFrameController
 			return;
 
 		ArrayList<Car> newCars = null;
-		newCars = fm.load(fm.detectOption(importFile), importFile, carlist);
+		newCars = fileManager.load(fileManager.detectOption(importFile), importFile, carlist);
 
 		if (newCars == null)
 		{
@@ -95,17 +95,17 @@ public class MainFrameController
 	public void exportieren()
 	{
 		ExportFrameController controll = ExportFrameController.createWindow();
-		controll.init(fm);
+		controll.init(fileManager);
 		controll.setCarlist(carlist);
 	}
 
 	/**
 	 * 
-	 * @param m Setzt die Instanz des Filemanager
+	 * @param manager Setzt die Instanz des Filemanager
 	 */
-	public void setFileManager(FileManager m)
+	public void setFileManager(FileManager manager)
 	{
-		fm = m;
+		fileManager = manager;
 	}
 
 	/**
@@ -127,8 +127,11 @@ public class MainFrameController
 		initer.setLbl_Res_stop(lbl_Res_stop);
 		initer.setMainFrameController(this);
 		initer.setBtn_DeleteAll(btn_DeleteAll);
-		initer.setBtn_Update(btn_Update);
+		initer.setBtn_Update(btn_Search);
 		initer.init();
+
+		// Liste aktualiesieren
+		setList(carlist.getList());
 	}
 
 	/**
@@ -145,23 +148,23 @@ public class MainFrameController
 	/**
 	 * Fügt dem ausgewählten Auto eine Reservierung hinzu
 	 * 
-	 * @param r Reservierung welche hinzugefügt werden soll
+	 * @param resv Reservierung welche hinzugefügt werden soll
 	 */
-	public void addReservierungToSelCar(Reservierung r)
+	public void addReservierungToSelCar(Reservierung resv)
 	{
-		try
-		{
-			Car c = getSelectedCar();
-			r.setCarID(c.getCarID());
+		Car car = getSelectedCar();
 
-			// DATENBANK + LOKAL
-			carlist.addReservierung(r, c);
-
-			setList(carlist.getList());
-		} catch (Exception e)
+		if (car == null)
 		{
-			logger.info("Kein Auto ausgewählt");
+			return;
 		}
+
+		resv.setCarID(car.getCarID());
+
+		// DATENBANK + LOKAL
+		carlist.addReservierung(resv, car);
+
+		setList(carlist.getList());
 	}
 
 	/**
@@ -204,13 +207,10 @@ public class MainFrameController
 	 */
 	public void setList(ArrayList<Car> cars)
 	{
-		ArrayList<String> names = new ArrayList<>();
-
-		for (Car c : cars)
-		{
-			names.add(c.getCarName());
-		}
-		list_Autos.setItems(FXCollections.observableArrayList(names));
+		list_Autos.getItems().clear();
+		list_Autos.refresh();
+		list_Autos.setItems(FXCollections.observableArrayList(cars));
+		list_Autos.refresh();
 	}
 
 	/**
@@ -269,6 +269,7 @@ public class MainFrameController
 		} catch (Exception e) // All Exceptions da ich nicht weiß, welche man genau fangen sollte
 		{
 			logger.warn(e.getMessage());
+			logger.warn("Wahrscheinlich kein Auto ausgewählt");
 		}
 		return car;
 	}

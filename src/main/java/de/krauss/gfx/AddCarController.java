@@ -38,9 +38,9 @@ public class AddCarController
 	 * 
 	 * Listener hinzu
 	 * 
-	 * @param con Setzt die Instanz des MainframeControllers
+	 * @param controller Setzt die Instanz des MainframeControllers
 	 */
-	public void addListenerToButton(MainFrameController con)
+	public void addListenerToButton(MainFrameController controller)
 	{
 		btn_Add.setOnAction(new EventHandler<ActionEvent>()
 		{
@@ -84,7 +84,7 @@ public class AddCarController
 					// DATENANK + LOKAL
 					carlist.addCar(c);
 
-					con.setList(carlist.getList());
+					controller.setList(carlist.getList());
 					((Node) (event.getSource())).getScene().getWindow().hide();
 
 					// Auto hinzufügen

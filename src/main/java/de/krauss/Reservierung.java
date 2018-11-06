@@ -90,24 +90,24 @@ public class Reservierung implements Serializable
 			logger.info("Wann soll die Reservierung enden? (tt.MM.yyyy HH:mm)");
 
 			stop = Utilities.enterDate(reader);
-			Reservierung r = new Reservierung(start, stop);
+			Reservierung reservierung = new Reservierung(start, stop);
 
 			if (Utilities.isCarAvaible(start, stop, resCar))
 			{
 				try
 				{
 					logger.info("Auf welchen Namen soll diese Reservierung gespeichert werden?");
-					r.setOwner(reader.readLine());
+					reservierung.setOwner(reader.readLine());
 				} catch (IOException e)
 				{
 					logger.warn(e.getMessage());
 					logger.info("Reservierung  wurde auf Unbekannt gesetzt");
-					r.setOwner("Unbekannt");
+					reservierung.setOwner("Unbekannt");
 				}
 
-				r.setCarID(resCar.getCarID());
-				r.setRES_ID(-1);
-				return r;
+				reservierung.setCarID(resCar.getCarID());
+				reservierung.setRES_ID(-1);
+				return reservierung;
 			}
 
 			while (true)

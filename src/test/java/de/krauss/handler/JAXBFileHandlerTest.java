@@ -8,6 +8,7 @@ import org.junit.Test;
 import de.krauss.Car;
 import de.krauss.CarList;
 import de.krauss.Launcher;
+import de.krauss.OracleDataBase;
 
 public class JAXBFileHandlerTest
 {
@@ -19,10 +20,12 @@ public class JAXBFileHandlerTest
 	private static final File existButNotArrayList = new File(
 			System.getProperty("user.home") + "/Desktop/Cars/Cars.txt");
 
+	private OracleDataBase orcb = new OracleDataBase();
+
 	@Test
 	public void test()
 	{
-
+		carlist.setOrcb(orcb);
 		car.setCarName(NAME);
 		car.setCarMarke(MARKE);
 		car.setCarTacho(TACHO);
@@ -34,6 +37,8 @@ public class JAXBFileHandlerTest
 		Assert.assertNull(dumpFileHandler.load(new File(Launcher.HOME_DIR + "Object")));
 		Assert.assertNull(dumpFileHandler.load(new File("")));
 		Assert.assertNull(dumpFileHandler.load(existButNotArrayList));
+
+		orcb.closeConnection();
 	}
 
 }
