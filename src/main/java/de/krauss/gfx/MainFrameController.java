@@ -128,6 +128,8 @@ public class MainFrameController
 		initer.setMainFrameController(this);
 		initer.setBtn_DeleteAll(btn_DeleteAll);
 		initer.setBtn_Update(btn_Search);
+		initer.setMainFrameController(this);
+		initer.setBtn_Löschen(btn_Löschen);
 		initer.init();
 
 		// Liste aktualiesieren
@@ -150,7 +152,7 @@ public class MainFrameController
 	 * 
 	 * @param resv Reservierung welche hinzugefügt werden soll
 	 */
-	public void addReservierungToSelCar(Reservierung resv)
+	public void addReservierungToSelectedCar(Reservierung resv)
 	{
 		Car car = getSelectedCar();
 
@@ -272,6 +274,15 @@ public class MainFrameController
 			logger.warn("Wahrscheinlich kein Auto ausgewählt");
 		}
 		return car;
+	}
+
+	/**
+	 * 
+	 * @return Gibt die ListView-Instanz zurück
+	 */
+	public ListView<Car> getListView()
+	{
+		return list_Autos;
 	}
 
 }

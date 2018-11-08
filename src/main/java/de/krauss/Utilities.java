@@ -10,6 +10,7 @@ import java.util.TimeZone;
 
 import org.apache.log4j.Logger;
 
+import de.krauss.gfx.ALLINONEFrameController;
 import de.krauss.gfx.AddResvController;
 
 public class Utilities
@@ -24,12 +25,20 @@ public class Utilities
 	 * 
 	 * @param start_Date Anfang der neuen Reservierung
 	 * @param stop_Date  Ende der neuen Reservierung
-	 * @param car          Das Auto welches zu der Zeit frei seien soll
+	 * @param car        Das Auto welches zu der Zeit frei seien soll
 	 * @param controll   Zum Ausgeben der ErrorMeldung auf dem GUI
 	 * @return Ob das Auto zu der Zeit schon reserviert ist
 	 */
 	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car car, AddResvController controll)
 	{
+		boolean onAddResvController = true;
+		boolean existsError = false;
+		String messageToDisplay = "";
+
+		if (controll == null || !controll.isWindowCreated())
+		{
+			onAddResvController = false;
+		}
 
 		for (Reservierung resv : car.getReservs())
 		{
@@ -38,57 +47,65 @@ public class Utilities
 
 			if (oldStart.equals(start_Date))
 			{
-				controll.showErrorMessage("Das Startdatum ist identisch mit dem einer anderen Reservierung");
-				return false;
+				messageToDisplay = "Das Startdatum ist identisch mit dem einer anderen Reservierung";
+				existsError = true;
 			}
 
 			if (start_Date.before(new Date()))
 			{
-				controll.showErrorMessage("Keine Reservierungen in der Vergangenheit möglich");
-				return false;
+				messageToDisplay = "Keine Reservierungen in der Vergangenheit möglich";
+				existsError = true;
 			}
 
 			if (start_Date.after(stop_Date))
 			{
-				controll.showErrorMessage("Start Datum nach Stop Datum");
-				return false;
+				messageToDisplay = "Start Datum nach Stop Datum";
+				existsError = true;
 			}
 
 			if (start_Date.after(oldStart) && start_Date.before(oldStop))
 			{
-				controll.showErrorMessage("StartDatum liegt zwischen einer anderen Reservierung");
-				return false;
+				messageToDisplay = "StartDatum liegt zwischen einer anderen Reservierung";
+				existsError = true;
 			}
 
 			if (stop_Date.after(oldStart) && stop_Date.before(oldStop))
 			{
-				controll.showErrorMessage("StopDatum liegt zwischen einer anderen Reservierung");
-				return false;
+				messageToDisplay = "StopDatum liegt zwischen einer anderen Reservierung";
+				existsError = true;
 			}
 
 			if (start_Date.before(oldStart) && stop_Date.after(oldStop))
 			{
-				controll.showErrorMessage("Zeitraum überschneidet sich mit einer anderen Reservierung");
-				return false;
+				messageToDisplay = "Zeitraum überschneidet sich mit einer anderen Reservierung";
+				existsError = true;
 			}
+		}
+
+		if (existsError)
+		{
+			if (onAddResvController)
+			{
+				if (controll != null)
+					controll.showErrorMessage(messageToDisplay);
+			} else
+			{
+				logger.warn(messageToDisplay);
+			}
+			return false;
 		}
 		return true;
 	}
 
-	/**
-	 * Guckt ob das Auto zu der Zeit noch frei ist
-	 * 
-	 * @param start_Date Anfang der neuen Reservierung
-	 * @param stop_Date  Ende der neuen Reservierung
-	 * @param car          Das Auto welches zu der Zeit frei seien soll
-	 * @return Ob das Auto zu der Zeit schon reserviert ist
-	 */
-	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car car)
+	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car car, ALLINONEFrameController controll)
 	{
-		if (start_Date == null)
+		boolean onAddResvController = true;
+		boolean existsError = false;
+		String messageToDisplay = "";
+
+		if (controll == null)
 		{
-			logger.fatal("Start-Date ist Null");
-			return false;
+			onAddResvController = false;
 		}
 
 		for (Reservierung resv : car.getReservs())
@@ -96,35 +113,54 @@ public class Utilities
 			Date oldStart = resv.getResStart();
 			Date oldStop = resv.getResStop();
 
+			if (oldStart.equals(start_Date))
+			{
+				messageToDisplay = "Das Startdatum ist identisch mit dem einer anderen Reservierung";
+				existsError = true;
+			}
+
 			if (start_Date.before(new Date()))
 			{
-				logger.error("Keine Reservierungen in der Vergangenheit möglich");
-				return false;
+				messageToDisplay = "Keine Reservierungen in der Vergangenheit möglich";
+				existsError = true;
 			}
 
 			if (start_Date.after(stop_Date))
 			{
-				logger.error("Start Datum nach Stop Datum");
-				return false;
+				messageToDisplay = "Start Datum nach Stop Datum";
+				existsError = true;
 			}
 
 			if (start_Date.after(oldStart) && start_Date.before(oldStop))
 			{
-				logger.error("StartDatum liegt zwischen einer anderen Reservierung");
-				return false;
+				messageToDisplay = "StartDatum liegt zwischen einer anderen Reservierung";
+				existsError = true;
 			}
 
 			if (stop_Date.after(oldStart) && stop_Date.before(oldStop))
 			{
-				logger.error("StopDatum liegt zwischen einer anderen Reservierung");
-				return false;
+				messageToDisplay = "StopDatum liegt zwischen einer anderen Reservierung";
+				existsError = true;
 			}
 
 			if (start_Date.before(oldStart) && stop_Date.after(oldStop))
 			{
-				logger.error("Zeitraum überschneidet sich mit einer anderen Reservierung");
-				return false;
+				messageToDisplay = "Zeitraum überschneidet sich mit einer anderen Reservierung";
+				existsError = true;
 			}
+		}
+
+		if (existsError)
+		{
+			if (onAddResvController)
+			{
+				if (controll != null)
+					controll.showErrorMessage(messageToDisplay);
+			} else
+			{
+				logger.warn(messageToDisplay);
+			}
+			return false;
 		}
 		return true;
 	}
@@ -137,8 +173,6 @@ public class Utilities
 	 */
 	public static int addTacho(BufferedReader reader)
 	{
-		logger.info("Wie viele Kilometer hat das Auto auf dem Buckel?");
-
 		int kilo = 0;
 
 		while (true)

@@ -65,7 +65,12 @@
             <Font name="System Bold Italic" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="btn_closeSearcher" layoutX="117.0" layoutY="393.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="35.0" prefWidth="179.0" style="-fx-background-color: darkgrey;" text="Beenden" textFill="#ffa100">
+      <Button fx:id="btn_closeSearcher" layoutX="14.0" layoutY="393.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="35.0" prefWidth="179.0" style="-fx-background-color: darkgrey;" text="Beenden" textFill="#ffa100">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_SelectCarInList" layoutX="216.0" layoutY="393.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="179.0" style="-fx-background-color: darkgrey;" text="Select Car in List" textFill="#ffa100">
          <font>
             <Font name="System Bold Italic" size="17.0" />
          </font>

@@ -26,11 +26,11 @@ public class ReservierungTest
 	{
 		reservierung.setResStart(startDate);
 		reservierung.setResStop(stopDate);
-		reservierung.setRES_ID(reservierungID);
+		reservierung.setResvID(reservierungID);
 
 		Assert.assertEquals(startDate, reservierung.getResStart());
 		Assert.assertEquals(stopDate, reservierung.getResStop());
-		Assert.assertEquals(reservierungID, reservierung.getRES_ID());
+		Assert.assertEquals(reservierungID, reservierung.getResvID());
 
 //		Assert.assertTrue(reservierung.isReserved(startDate));
 //

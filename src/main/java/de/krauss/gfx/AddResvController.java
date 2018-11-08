@@ -132,7 +132,7 @@ public class AddResvController
 
 				if (Utilities.isCarAvaible(start_Date, stop_Date, main.getSelectedCar(), getController()))
 				{
-					main.addReservierungToSelCar(resv);
+					main.addReservierungToSelectedCar(resv);
 					((Node) (event.getSource())).getScene().getWindow().hide();
 				}
 
@@ -140,6 +140,15 @@ public class AddResvController
 			}
 		});
 
+	}
+
+	public boolean isWindowCreated()
+	{
+		if (date_Stop == null)
+		{
+			return false;
+		}
+		return true;
 	}
 
 	/**

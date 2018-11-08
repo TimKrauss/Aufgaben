@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 import org.apache.log4j.Logger;
 
+import de.krauss.gfx.ALLINONEFrameController;
 import de.krauss.gfx.MainFrameController;
 import de.krauss.search.Searcher;
 import javafx.application.Application;
@@ -31,6 +32,7 @@ public class Launcher extends Application implements Serializable
 	private Searcher searcher;
 	private MainFrameController controller;
 	private Thread userReaderThread;
+
 	private FileManager fileManager;
 	private UserHandler userHandler;
 	private OracleDataBase dataBase = new OracleDataBase();
@@ -174,6 +176,10 @@ public class Launcher extends Application implements Serializable
 		controller.setCarlist(carlist);
 		controller.setFileManager(fileManager);
 		controller.init();
+
+		ALLINONEFrameController controller = ALLINONEFrameController.createWindow();
+		controller.setOrcb(dataBase);
+		controller.init(carlist);
 	}
 
 	/**

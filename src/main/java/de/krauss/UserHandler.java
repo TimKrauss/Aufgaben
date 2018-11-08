@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.activity.InvalidActivityException;
-
 import org.apache.log4j.Logger;
 
 import de.krauss.search.Searcher;
@@ -18,7 +16,7 @@ public class UserHandler
 	private Logger logger = Logger.getLogger("System");
 
 	/**
-	 * Kümmert sich um die Eingabe des User in der Konsole MECKERN
+	 * Kümmert sich um die Eingabe des User in der Konsole
 	 * 
 	 * @param reader   ließt die Usereingabe
 	 * @param launcher Für die Standard-Ausgaben
@@ -54,57 +52,11 @@ public class UserHandler
 			deleteCar(reader);
 			break;
 		case "rdel":
-			rLöschen(reader);
+			reservierungLöschen(reader);
 			break;
 
 		case "search":
-			logger.info("Nach welchem Merkmal möchten sie suchen?");
-			logger.info("[" + Searcher.NAME + "] Name");
-			logger.info("[" + Searcher.MARKE + "] Marke");
-			logger.info("[" + Searcher.Tacho + "] Tacho");
-
-			int choose = 0;
-
-			while (true)
-			{
-				try
-				{
-					choose = Integer.parseInt(reader.readLine());
-
-					if (choose > 0 || choose < 4)
-					{
-						switch (choose)
-						{
-						case Searcher.NAME:
-							logger.info("Bitte geben sie den Namen des Fahrzeuges an:");
-							searcher.search(choose, reader.readLine());
-							break;
-						case Searcher.MARKE:
-							logger.info("Bitte geben sie die Marke des Fahrzeuges an:");
-							searcher.search(choose, reader.readLine());
-							break;
-						case Searcher.Tacho:
-							logger.info("Bitte geben sie den Kilometerstand an:");
-							searcher.search(choose, reader.readLine());
-							break;
-						default:
-							break;
-						}
-
-						break;
-					}
-				} catch (NumberFormatException e)
-				{
-					logger.fatal("Bitte eine Zahl ohne Buchstaben eingeben");
-				} catch (InvalidActivityException e)
-				{
-					logger.fatal("Bitte eine gültige Zahl eingeben");
-				} catch (IOException e)
-				{
-					logger.fatal("Reader hat Probleme beim Lesen der UserEingabe");
-				}
-
-			}
+			searcher.searchWithReader(reader);
 			break;
 		default:
 			logger.info("Ungültige Eingabe");
@@ -120,7 +72,7 @@ public class UserHandler
 	 * @param reader Der Reader mit welchen die Usereingaben gelesen werden können
 	 * @return Ob das löschen erfolgreich war
 	 */
-	public boolean rLöschen(BufferedReader reader)
+	public boolean reservierungLöschen(BufferedReader reader)
 	{
 		ArrayList<Car> resCars = new ArrayList<>();
 		int resnum = 1;
@@ -218,9 +170,9 @@ public class UserHandler
 		carlist = car;
 	}
 
-	public void setSearcher(Searcher ser)
+	public void setSearcher(Searcher sEARCHER)
 	{
-		searcher = ser;
+		searcher = sEARCHER;
 	}
 
 }

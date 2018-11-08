@@ -7,6 +7,8 @@ import java.util.Date;
 
 import org.apache.log4j.Logger;
 
+import de.krauss.gfx.AddResvController;
+
 public class Reservierung implements Serializable
 {
 
@@ -15,9 +17,9 @@ public class Reservierung implements Serializable
 	 */
 	private static Logger logger = Logger.getLogger("System");
 	private static final long serialVersionUID = 13273646095955764L;
-	private Date resStart, resStop;
-	private int CAR_ID = 0;
-	private int RES_ID = 0;
+	private Date resvStart, resvStop;
+	private int carId = 0;
+	private int resvID = 0;
 	private String owner;
 
 	/**
@@ -28,8 +30,8 @@ public class Reservierung implements Serializable
 	 */
 	public Reservierung(Date start, Date stop)
 	{
-		resStart = start;
-		resStop = stop;
+		resvStart = start;
+		resvStop = stop;
 	}
 
 	/**
@@ -47,7 +49,7 @@ public class Reservierung implements Serializable
 	 */
 	public Date getResStart()
 	{
-		return resStart;
+		return resvStart;
 	}
 
 	/**
@@ -56,7 +58,7 @@ public class Reservierung implements Serializable
 	 */
 	public void setResStart(Date resStart)
 	{
-		this.resStart = resStart;
+		this.resvStart = resStart;
 	}
 
 	/**
@@ -65,7 +67,7 @@ public class Reservierung implements Serializable
 	 */
 	public Date getResStop()
 	{
-		return resStop;
+		return resvStop;
 	}
 
 	/**
@@ -92,7 +94,7 @@ public class Reservierung implements Serializable
 			stop = Utilities.enterDate(reader);
 			Reservierung reservierung = new Reservierung(start, stop);
 
-			if (Utilities.isCarAvaible(start, stop, resCar))
+			if (Utilities.isCarAvaible(start, stop, resCar, new AddResvController()))
 			{
 				try
 				{
@@ -106,7 +108,7 @@ public class Reservierung implements Serializable
 				}
 
 				reservierung.setCarID(resCar.getCarID());
-				reservierung.setRES_ID(-1);
+				reservierung.setResvID(-1);
 				return reservierung;
 			}
 
@@ -149,7 +151,7 @@ public class Reservierung implements Serializable
 	 */
 	public void setResStop(Date resStop)
 	{
-		this.resStop = resStop;
+		this.resvStop = resStop;
 	}
 
 	/**
@@ -158,41 +160,50 @@ public class Reservierung implements Serializable
 	 */
 	public int getCarID()
 	{
-		return CAR_ID;
+		return carId;
 	}
 
 	/**
 	 * 
-	 * @param iD Setzt die Car_ID
+	 * @param carID Setzt die Car_ID
 	 */
-	public void setCarID(int iD)
+	public void setCarID(int carID)
 	{
-		CAR_ID = iD;
+		this.carId = carID;
 	}
 
 	/**
 	 * 
 	 * @return Gibt die ReservierungsID zurück
 	 */
-	public int getRES_ID()
+	public int getResvID()
 	{
-		return RES_ID;
+		return resvID;
 	}
 
 	/**
 	 * 
-	 * @param rES_ID Setzt die ReservierungsID
+	 * @param resvID Setzt die ReservierungsID
 	 */
-	public void setRES_ID(int rES_ID)
+	public void setResvID(int resvID)
 	{
-		RES_ID = rES_ID;
+		this.resvID = resvID;
 	}
 
-	public void setOwner(String replace)
+	/**
+	 * Setzt den Owner der Reservierung
+	 * 
+	 * @param owner Setzt den Owner
+	 */
+	public void setOwner(String owner)
 	{
-		owner = replace;
+		this.owner = owner;
 	}
 
+	/**
+	 * 
+	 * @return Gibt den Owner zurück
+	 */
 	public String getOwner()
 	{
 		return owner;

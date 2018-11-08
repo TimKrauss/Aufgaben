@@ -43,10 +43,13 @@ public class Initializer
 		initCombo();
 		initReslöschen();
 		initDeleteAll();
-		initUpdate();
+		initSearchFrame();
 	}
 
-	private void initUpdate()
+	/**
+	 * 
+	 */
+	private void initSearchFrame()
 	{
 		btn_Update.setOnAction(new EventHandler<ActionEvent>()
 		{
@@ -55,10 +58,9 @@ public class Initializer
 			{
 				carlist.getList().clear();
 				carlist.addCarsFromDataBase();
-				controller.setList(carlist.getList());
 				SearcherFrameController sc = SearcherFrameController.createWindow();
 				sc.setDatabase(carlist.getOracleDatabase());
-				sc.init();
+				sc.init(controller.getListView(), carlist);
 			}
 		});
 	}
@@ -114,6 +116,9 @@ public class Initializer
 					return;
 				}
 				Car car = newValue;
+
+				btn_Löschen.setDisable(false);
+				btn_Reservieren.setDisable(false);
 
 				ArrayList<String> res_Name = new ArrayList<>();
 

@@ -191,7 +191,7 @@ public class OracleDataBase
 						resv.setResStart(rset.getTimestamp("startd"));
 						resv.setResStop(rset.getTimestamp("stopd"));
 						resv.setCarID(rset.getInt("CARNR"));
-						resv.setRES_ID(rset.getInt("id"));
+						resv.setResvID(rset.getInt("id"));
 						car.addResv(resv);
 					}
 				}
@@ -305,9 +305,9 @@ public class OracleDataBase
 			smt.setInt(3, resv.getCarID());
 			smt.setString(4, resv.getOwner());
 
-			resv.setRES_ID(getNextReservierungID());
+			resv.setResvID(getNextReservierungID());
 
-			smt.setInt(5, resv.getRES_ID());
+			smt.setInt(5, resv.getResvID());
 
 			smt.executeQuery();
 			smt.close();
@@ -331,7 +331,7 @@ public class OracleDataBase
 		try
 		{
 			Statement smt = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-			smt.executeQuery("DELETE FROM res_auto WHERE id=" + resvToDel.getRES_ID());
+			smt.executeQuery("DELETE FROM res_auto WHERE id=" + resvToDel.getResvID());
 			smt.close();
 			return true;
 		} catch (SQLException e)

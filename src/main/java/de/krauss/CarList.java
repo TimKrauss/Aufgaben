@@ -27,10 +27,6 @@ public class CarList
 	private Logger logger = Logger.getLogger("System");
 
 	/**
-	 * Log4j logger
-	 */
-
-	/**
 	 * Konstruktor in welchem die Cars-Arraylist gespeichert wird
 	 */
 	public CarList()
@@ -99,14 +95,11 @@ public class CarList
 			newCar.setCarMarke(reader.readLine());
 			logger.info("Fahrzeugmarke --> " + newCar.getCarMarke());
 
+			logger.info("Wie viele Kilometer hat das Auto auf dem Buckel?");
 			newCar.setCarTacho(Utilities.addTacho(reader));
 			logger.info("Kilometer: " + newCar.getCarTacho());
 
-			// LOKALE LISTE
-			cars.add(newCar);
-
-			// DATENBANK
-			orcb.addCar(newCar);
+			addCar(newCar);
 
 			System.err.println("Auto hinzugefügt!");
 			logger.info("");
@@ -122,38 +115,38 @@ public class CarList
 	/**
 	 * Fügt der Arraylist ein Auto hinzu
 	 * 
-	 * @param car Das Auto welches hinzugefügt werden soll
+	 * @param carToAdd Das Auto welches hinzugefügt werden soll
 	 */
-	public void addCar(Car car)
+	public void addCar(Car carToAdd)
 	{
-		if (car == null)
+		if (carToAdd == null)
 		{
 			logger.warn("Auto == null");
 			return;
 		}
 
-		if (car.getCarName() == null || car.getCarName().equals(""))
+		if (carToAdd.getCarName() == null || carToAdd.getCarName().equals(""))
 		{
 			logger.warn("Füge Auto nicht hinzu da es keinen Namen hat");
 		} else
 		{
-			cars.add(car);
-			orcb.addCar(car);
+			cars.add(carToAdd);
+			orcb.addCar(carToAdd);
 		}
 
 	}
 
 	/**
 	 * 
-	 * @param integer Die Nummer des Autos welches zurück gegeben werden soll
+	 * @param idFromCar Die Nummer des Autos welches zurück gegeben werden soll
 	 * @return Gibt das ausgewählte Auto zurück
 	 */
-	public Car getCar(int integer)
+	public Car getCar(int idFromCar)
 	{
 		Car car = null;
 		try
 		{
-			car = cars.get(integer);
+			car = cars.get(idFromCar);
 		} catch (IndexOutOfBoundsException e)
 		{
 			logger.warn(e.getMessage());
@@ -161,21 +154,21 @@ public class CarList
 		return car;
 	}
 
-	public void addReservierung(Reservierung r, Car c)
+	public void addReservierung(Reservierung reservierung, Car car)
 	{
-		r.setCarID(c.getCarID());
+		reservierung.setCarID(car.getCarID());
 
-		orcb.uploadRes(r);
-		c.addResv(r);
+		orcb.uploadRes(reservierung);
+		car.addResv(reservierung);
 	}
 
-	public void deleteCar(Car c)
+	public void deleteCar(Car carToDelete)
 	{
 		// DATENBANK
-		orcb.deleteCarFromDatabase(c.getCarID());
+		orcb.deleteCarFromDatabase(carToDelete.getCarID());
 
 		// LOKAL
-		cars.remove(c);
+		cars.remove(carToDelete);
 	}
 
 	/**
@@ -214,7 +207,7 @@ public class CarList
 			if (res == null)
 				return false;
 
-			res.setRES_ID(-1);
+			res.setResvID(-1);
 
 			// LOKAL
 			resCar.addResv(res);
@@ -258,22 +251,41 @@ public class CarList
 
 	}
 
+	/**
+	 * 
+	 * @return Gibt die Instanz der OracleDataBase zurück
+	 */
 	public OracleDataBase getOracleDatabase()
 	{
 		return orcb;
 	}
 
+	/**
+	 * 
+	 * @return Gibt die ArrayList, welche die Autos beinhaltet, zurück
+	 */
 	public ArrayList<Car> getList()
 	{
 		return cars;
 	}
 
+	/**
+	 * Löscht die Reservierung von einem Auto
+	 * 
+	 * @param fromCar  Car welches die Reservierung momentan beinhaltet
+	 * @param toDelete Die Reservierung welche gelöscht werden soll
+	 */
 	public void deleteReservierungFromCar(Car fromCar, Reservierung toDelete)
 	{
 		orcb.deleteReservierung(toDelete);
 		fromCar.getReservs().remove(toDelete);
 	}
 
+	/**
+	 * Fügt eine ArrayList mit Autos zu der Carlist hinzu
+	 * 
+	 * @param newCars Die Liste welche die neuen Autos beinhaltet
+	 */
 	public void addCars(ArrayList<Car> newCars)
 	{
 		for (Car car : newCars)
@@ -282,6 +294,9 @@ public class CarList
 		}
 	}
 
+	/**
+	 * Löscht alle Einträge aus der Datenbank
+	 */
 	public void deleteEverything()
 	{
 		orcb.delteAllDataFromBase();

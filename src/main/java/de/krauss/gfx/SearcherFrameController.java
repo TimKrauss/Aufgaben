@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import de.krauss.Car;
+import de.krauss.CarList;
 import de.krauss.Launcher;
 import de.krauss.OracleDataBase;
 import de.krauss.search.Searcher;
@@ -25,11 +26,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import javafx.util.StringConverter;
 
 public class SearcherFrameController
@@ -41,7 +42,7 @@ public class SearcherFrameController
 	private ComboBox<Car> cb_Select;
 
 	@FXML
-	private Button btn_StartSearch;
+	private Button btn_StartSearch, btn_SelectCarInList;
 
 	@FXML
 	private CheckBox rb_Name, rb_Marke, rb_Tacho;
@@ -73,14 +74,6 @@ public class SearcherFrameController
 
 			primaryStage.setTitle("Searcher");
 			primaryStage.setResizable(false);
-			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>()
-			{
-				@Override
-				public void handle(WindowEvent arg0)
-				{
-					System.exit(1);
-				}
-			});
 			primaryStage.getIcons().add(new Image("icon.png"));
 
 			primaryStage.show();
@@ -108,9 +101,39 @@ public class SearcherFrameController
 	/**
 	 * Initaliziert die Elemente auf dem Frame
 	 */
-	public void init()
+	public void init(ListView<Car> list, CarList l)
 	{
 		btn_StartSearch.setDisable(false);
+
+		btn_SelectCarInList.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				Car selectedCar = cb_Select.getSelectionModel().getSelectedItem();
+				list.getSelectionModel().clearSelection();
+				list.getFocusModel().focusNext();
+
+				Platform.runLater(new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						try
+						{
+							Thread.sleep(250);
+						} catch (InterruptedException e)
+						{
+							e.printStackTrace();
+						}
+
+						list.getSelectionModel().select(selectedCar);
+						list.getFocusModel().focus(list.getSelectionModel().getSelectedIndex());
+						list.scrollTo(selectedCar);
+					}
+				});
+			}
+		});
 
 		rb_Name.selectedProperty().addListener(new ChangeListener<Boolean>()
 		{
