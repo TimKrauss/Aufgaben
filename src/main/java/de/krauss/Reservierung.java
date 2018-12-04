@@ -7,8 +7,6 @@ import java.util.Date;
 
 import org.apache.log4j.Logger;
 
-import de.krauss.gfx.AddResvController;
-
 public class Reservierung implements Serializable
 {
 
@@ -94,7 +92,7 @@ public class Reservierung implements Serializable
 			stop = Utilities.enterDate(reader);
 			Reservierung reservierung = new Reservierung(start, stop);
 
-			if (Utilities.isCarAvaible(start, stop, resCar, new AddResvController()))
+			if (Utilities.isCarAvaible(start, stop, resCar, null))
 			{
 				try
 				{

@@ -12,10 +12,8 @@ import javax.xml.bind.annotation.XmlElement;
 import org.apache.log4j.Logger;
 
 import de.krauss.gfx.ALLINONEFrameController;
-import de.krauss.gfx.MainFrameController;
 import de.krauss.search.Searcher;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.stage.Stage;
 
 public class Launcher extends Application implements Serializable
@@ -30,12 +28,11 @@ public class Launcher extends Application implements Serializable
 
 	public static final String HOME_DIR = System.getProperty("user.home") + "/Desktop/Cars/";
 	private Searcher searcher;
-	private MainFrameController controller;
 	private Thread userReaderThread;
 
-	private FileManager fileManager;
 	private UserHandler userHandler;
 	private OracleDataBase dataBase = new OracleDataBase();
+	private ALLINONEFrameController controller;
 
 	/**
 	 * 
@@ -47,9 +44,9 @@ public class Launcher extends Application implements Serializable
 		BufferedReader reader = new BufferedReader(inputReader);
 
 		// Überschreibe die Readline
-		class Test extends BufferedReader
+		class OverWrittenReader extends BufferedReader
 		{
-			public Test(Reader inputReader)
+			public OverWrittenReader(Reader inputReader)
 			{
 				super(inputReader);
 			}
@@ -70,7 +67,7 @@ public class Launcher extends Application implements Serializable
 			}
 
 		}
-		Test test = new Test(inputReader);
+		OverWrittenReader test = new OverWrittenReader(inputReader);
 		return test;
 	}
 
@@ -152,10 +149,6 @@ public class Launcher extends Application implements Serializable
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
-
-		// Initialisiere FileManager
-		fileManager = new FileManager();
-
 		// Initialisiere Searcher
 		searcher = new Searcher();
 		searcher.setOrcb(dataBase);
@@ -172,37 +165,19 @@ public class Launcher extends Application implements Serializable
 			return;
 
 		// START & INIT WINDOW
-		controller = MainFrameController.createWindow();
-		controller.setCarlist(carlist);
-		controller.setFileManager(fileManager);
-		controller.init();
 
-		ALLINONEFrameController controller = ALLINONEFrameController.createWindow();
+		controller = ALLINONEFrameController.createWindow();
 		controller.setOrcb(dataBase);
-		controller.init(carlist);
+		controller.init(carlist, searcher);
 	}
 
-	/**
-	 * Updatet die im Frame angezeigte Liste im FX-Thread
-	 */
 	public void updateList()
 	{
-		// Mit diesem Befehl läuft die Operation über den FX-Thread, so dass Fehler
-		// vermieden werden
-		try
+		if (controller == null)
 		{
-			Platform.runLater(new Runnable()
-			{
-				@Override
-				public void run()
-				{
-					controller.setList(carlist.getList());
-				}
-			});
-		} catch (IllegalStateException e)
-		{
-			logger.error(e.getMessage());
+			return;
 		}
-	}
 
+		controller.updateList();
+	}
 }

@@ -93,7 +93,7 @@ public class Searcher
 		try
 		{
 			boolean anyCarFound = false;
-			ResultSet resultSet = getDataBase().runQuery(query);
+			ResultSet resultSet = orcb.runQuery(query);
 
 			while (resultSet.next())
 			{

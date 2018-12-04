@@ -11,7 +11,6 @@ import java.util.TimeZone;
 import org.apache.log4j.Logger;
 
 import de.krauss.gfx.ALLINONEFrameController;
-import de.krauss.gfx.AddResvController;
 
 public class Utilities
 {
@@ -29,74 +28,6 @@ public class Utilities
 	 * @param controll   Zum Ausgeben der ErrorMeldung auf dem GUI
 	 * @return Ob das Auto zu der Zeit schon reserviert ist
 	 */
-	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car car, AddResvController controll)
-	{
-		boolean onAddResvController = true;
-		boolean existsError = false;
-		String messageToDisplay = "";
-
-		if (controll == null || !controll.isWindowCreated())
-		{
-			onAddResvController = false;
-		}
-
-		for (Reservierung resv : car.getReservs())
-		{
-			Date oldStart = resv.getResStart();
-			Date oldStop = resv.getResStop();
-
-			if (oldStart.equals(start_Date))
-			{
-				messageToDisplay = "Das Startdatum ist identisch mit dem einer anderen Reservierung";
-				existsError = true;
-			}
-
-			if (start_Date.before(new Date()))
-			{
-				messageToDisplay = "Keine Reservierungen in der Vergangenheit möglich";
-				existsError = true;
-			}
-
-			if (start_Date.after(stop_Date))
-			{
-				messageToDisplay = "Start Datum nach Stop Datum";
-				existsError = true;
-			}
-
-			if (start_Date.after(oldStart) && start_Date.before(oldStop))
-			{
-				messageToDisplay = "StartDatum liegt zwischen einer anderen Reservierung";
-				existsError = true;
-			}
-
-			if (stop_Date.after(oldStart) && stop_Date.before(oldStop))
-			{
-				messageToDisplay = "StopDatum liegt zwischen einer anderen Reservierung";
-				existsError = true;
-			}
-
-			if (start_Date.before(oldStart) && stop_Date.after(oldStop))
-			{
-				messageToDisplay = "Zeitraum überschneidet sich mit einer anderen Reservierung";
-				existsError = true;
-			}
-		}
-
-		if (existsError)
-		{
-			if (onAddResvController)
-			{
-				if (controll != null)
-					controll.showErrorMessage(messageToDisplay);
-			} else
-			{
-				logger.warn(messageToDisplay);
-			}
-			return false;
-		}
-		return true;
-	}
-
 	public static boolean isCarAvaible(Date start_Date, Date stop_Date, Car car, ALLINONEFrameController controll)
 	{
 		boolean onAddResvController = true;

@@ -7,8 +7,6 @@ import java.util.Date;
 import org.junit.Assert;
 import org.junit.Test;
 
-import de.krauss.gfx.AddResvController;
-
 public class UtilitiesTest
 {
 
@@ -27,27 +25,26 @@ public class UtilitiesTest
 		Assert.assertNotNull(date_1);
 
 		Date date_2 = Utilities.enterDate(new BufferedReader(new StringReader("15.12.2021 12:00"))); // 14.12.21 12:30 -
-		AddResvController controll = new AddResvController(); // 15.12.21
-																// 12:00
-		Utilities.isCarAvaible(date_1, date_2, resCar, controll);
+		// 12:00
+		Utilities.isCarAvaible(date_1, date_2, resCar, null);
 
 		resCar.addResv(new Reservierung(date_1, date_2));
 
 		Date date_3 = Utilities.enterDate(new BufferedReader(new StringReader("12.12.2021 11:00")));
 		Date date_4 = Utilities.enterDate(new BufferedReader(new StringReader("14.12.2021 14:00")));
-		Assert.assertFalse(Utilities.isCarAvaible(date_3, date_4, resCar, controll));
+		Assert.assertFalse(Utilities.isCarAvaible(date_3, date_4, resCar, null));
 
 		date_3 = Utilities.enterDate(new BufferedReader(new StringReader("15.12.2021 11:00")));
 		date_4 = Utilities.enterDate(new BufferedReader(new StringReader("15.12.2021 14:00")));
-		Assert.assertFalse(Utilities.isCarAvaible(date_3, date_4, resCar, controll));
+		Assert.assertFalse(Utilities.isCarAvaible(date_3, date_4, resCar, null));
 
 		date_3 = Utilities.enterDate(new BufferedReader(new StringReader("14.12.2021 16:00")));
 		date_4 = Utilities.enterDate(new BufferedReader(new StringReader("14.12.2021 18:00")));
-		Assert.assertFalse(Utilities.isCarAvaible(date_3, date_4, resCar, controll));
+		Assert.assertFalse(Utilities.isCarAvaible(date_3, date_4, resCar, null));
 
 		date_3 = Utilities.enterDate(new BufferedReader(new StringReader("14.12.2021 16:00")));
 		date_4 = Utilities.enterDate(new BufferedReader(new StringReader("14.12.2021 11:00")));
-		Assert.assertFalse(Utilities.isCarAvaible(date_3, date_4, resCar, controll));
+		Assert.assertFalse(Utilities.isCarAvaible(date_3, date_4, resCar, null));
 
 		CarList carList = new CarList();
 		carList.getList().add(new Car());
