@@ -8,7 +8,7 @@ import java.io.IOException;
 import org.apache.log4j.Logger;
 
 import de.krauss.Launcher;
-import de.krauss.UserManager;
+import de.krauss.user.UserManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -111,7 +111,6 @@ public class RegisterFrameController
 					return;
 				}
 
-				// PASSWORT HASHEN TODO
 				userManager.addUser(username, userManager.hashPasswort(password), 0);
 				toShowAfter.show();
 				((Node) (event.getSource())).getScene().getWindow().hide();
@@ -125,13 +124,18 @@ public class RegisterFrameController
 			if (newValue.length() > 7)
 			{
 				safety += addLevel;
-				System.out.println("20 PROZENT");
 			}
 
 			if (!newValue.equals(newValue.toLowerCase()))
 			{
 				safety += addLevel;
 			}
+
+			if (!newValue.matches("[a-zA-Z]"))
+			{
+				safety += addLevel;
+			}
+
 			pb_PasswordSecure.setProgress(safety);
 		});
 

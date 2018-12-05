@@ -1,4 +1,4 @@
-package de.krauss;
+package de.krauss.user;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

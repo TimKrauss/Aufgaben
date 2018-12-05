@@ -14,12 +14,17 @@ import org.apache.log4j.Logger;
 import de.krauss.gfx.ALLINONEFrameController;
 import de.krauss.gfx.LoginFrameController;
 import de.krauss.search.Searcher;
+import de.krauss.user.User;
+import de.krauss.user.UserHandler;
+import de.krauss.user.UserManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Launcher extends Application implements Serializable
 {
 	private static final long serialVersionUID = 1636324934042718631L;
+
+	// TODO Konfigurations-Seite
 
 	@XmlElement(name = "carlist")
 	private CarList carlist;

@@ -1,4 +1,4 @@
-package de.krauss;
+package de.krauss.user;
 
 public class User
 {

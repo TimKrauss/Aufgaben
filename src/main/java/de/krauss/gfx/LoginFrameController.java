@@ -8,8 +8,8 @@ import java.io.IOException;
 import org.apache.log4j.Logger;
 
 import de.krauss.Launcher;
-import de.krauss.User;
-import de.krauss.UserManager;
+import de.krauss.user.User;
+import de.krauss.user.UserManager;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -106,7 +106,6 @@ public class LoginFrameController
 					return;
 				}
 
-				// TODO Do Login
 				User user = manager.login(username, manager.hashPasswort(passwordText));
 
 				if (user == null)

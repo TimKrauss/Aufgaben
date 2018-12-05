@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.krauss.search.Searcher;
+import de.krauss.user.UserHandler;
 
 public class LauncherTest
 {

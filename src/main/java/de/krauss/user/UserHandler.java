@@ -1,4 +1,4 @@
-package de.krauss;
+package de.krauss.user;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+import de.krauss.Car;
+import de.krauss.CarList;
+import de.krauss.Launcher;
+import de.krauss.Reservierung;
+import de.krauss.Utilities;
 import de.krauss.search.Searcher;
 import javafx.application.Platform;
 
