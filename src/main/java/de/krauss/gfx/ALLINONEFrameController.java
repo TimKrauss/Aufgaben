@@ -12,6 +12,8 @@ import de.krauss.Car;
 import de.krauss.CarList;
 import de.krauss.Launcher;
 import de.krauss.OracleDataBase;
+import de.krauss.User;
+import de.krauss.gfx.init.ManagerInitialize;
 import de.krauss.search.Searcher;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -78,6 +80,7 @@ public class ALLINONEFrameController
 	private ArrayList<Tab> list_Tabs;
 	private CarList carlist;
 	private OracleDataBase orcb;
+	private User user;
 
 	/**
 	 * Initializiert das komplette Frame
@@ -116,6 +119,7 @@ public class ALLINONEFrameController
 		initer.getInitializeOverview().setTxtf_Marke(txtf_Marke);
 		initer.getInitializeOverview().setTxtf_Name(txtf_Name);
 		initer.getInitializeOverview().setTxtf_Tacho(txtf_Tacho);
+
 		// Search
 		initer.getInitializerSearch().setTxtfs_Name(txtfs_Name);
 		initer.getInitializerSearch().setTxtfs_Marke(txtfs_Marke);
@@ -292,5 +296,15 @@ public class ALLINONEFrameController
 	public void setOrcb(OracleDataBase database)
 	{
 		orcb = database;
+	}
+
+	public User getUser()
+	{
+		return user;
+	}
+
+	public void setUser(User user)
+	{
+		this.user = user;
 	}
 }

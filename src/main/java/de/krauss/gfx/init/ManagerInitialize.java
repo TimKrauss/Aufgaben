@@ -1,11 +1,8 @@
-package de.krauss.gfx;
+package de.krauss.gfx.init;
 
 import de.krauss.CarList;
 import de.krauss.OracleDataBase;
-import de.krauss.gfx.init.InitializeAutoAdden;
-import de.krauss.gfx.init.InitializeOverview;
-import de.krauss.gfx.init.InitializeReservieren;
-import de.krauss.gfx.init.InitializeSearch;
+import de.krauss.gfx.ALLINONEFrameController;
 
 public class ManagerInitialize
 {

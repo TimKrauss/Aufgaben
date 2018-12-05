@@ -45,6 +45,7 @@ public class InitializeSearch
 	 */
 	private void initBtnStartSearch(ALLINONEFrameController controller)
 	{
+
 		btn_StartSearch.setOnAction(new EventHandler<ActionEvent>()
 		{
 			String tachoStand = "";

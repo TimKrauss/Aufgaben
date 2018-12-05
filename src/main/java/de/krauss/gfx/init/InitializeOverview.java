@@ -9,7 +9,6 @@ import de.krauss.Car;
 import de.krauss.CarList;
 import de.krauss.Reservierung;
 import de.krauss.gfx.ALLINONEFrameController;
-import de.krauss.gfx.ManagerInitialize;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

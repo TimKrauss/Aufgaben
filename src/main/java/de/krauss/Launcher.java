@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlElement;
 import org.apache.log4j.Logger;
 
 import de.krauss.gfx.ALLINONEFrameController;
+import de.krauss.gfx.LoginFrameController;
 import de.krauss.search.Searcher;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -33,6 +34,8 @@ public class Launcher extends Application implements Serializable
 	private UserHandler userHandler;
 	private OracleDataBase dataBase = new OracleDataBase();
 	private ALLINONEFrameController controller;
+	private UserManager userManager;
+	private User user;
 
 	/**
 	 * 
@@ -153,6 +156,9 @@ public class Launcher extends Application implements Serializable
 		searcher = new Searcher();
 		searcher.setOrcb(dataBase);
 
+		// Init UserManager
+		userManager = new UserManager();
+
 		// Initalisiere CarList
 		carlist = new CarList();
 		carlist.setOrcb(dataBase);
@@ -166,9 +172,9 @@ public class Launcher extends Application implements Serializable
 
 		// START & INIT WINDOW
 
-		controller = ALLINONEFrameController.createWindow();
-		controller.setOrcb(dataBase);
-		controller.init(carlist, searcher);
+		LoginFrameController loginFrameController = LoginFrameController.createWindow();
+		loginFrameController.init(userManager, this);
+
 	}
 
 	public void updateList()
@@ -179,5 +185,18 @@ public class Launcher extends Application implements Serializable
 		}
 
 		controller.updateList();
+	}
+
+	public void startAllInOneFrame()
+	{
+		controller = ALLINONEFrameController.createWindow();
+		controller.setOrcb(dataBase);
+		controller.setUser(user);
+		controller.init(carlist, searcher);
+	}
+
+	public void setUser(User user2)
+	{
+		user = user2;
 	}
 }

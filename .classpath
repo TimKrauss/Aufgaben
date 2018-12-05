@@ -33,5 +33,6 @@
 	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/TestFX/testfx-spock-4.0.15-alpha.jar"/>
 	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/TestFX/testfx-junit-4.0.4-alpha.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="C:/Users/krausst/Documents/Eclipse/GIT/Aufgaben/lib/commons-codec-1.11.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

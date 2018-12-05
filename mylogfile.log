@@ -1,6 +1,11 @@
-[INFO  | 04.12.2018 14:34:52 | de.krauss.Launcher$1 ] ==> [System] Hallo Lieber Kunde!
-[INFO  | 04.12.2018 14:34:52 | de.krauss.Launcher$1 ] ==> [System] Möchten sie ein Auto anlegen? (ja oder nein)
-[INFO  | 04.12.2018 14:34:52 | de.krauss.Launcher$1 ] ==> [System] Oder bereits hinzugefügte Autos ansehen? (list)
-[INFO  | 04.12.2018 14:35:15 | de.krauss.gfx.init.InitializeOverview$6$1 ] ==> [System] -1
-[INFO  | 04.12.2018 14:35:28 | de.krauss.search.Searcher ] ==> [System] Es wurde kein Auto mit diesem Suchkriterium gefunden
-[INFO  | 04.12.2018 14:35:29 | de.krauss.search.Searcher ] ==> [System] Es wurde kein Auto mit diesem Suchkriterium gefunden
+[INFO  | 05.12.2018 15:52:50 | de.krauss.Launcher$1 ] ==> [System] Hallo Lieber Kunde!
+[INFO  | 05.12.2018 15:52:50 | de.krauss.Launcher$1 ] ==> [System] Möchten sie ein Auto anlegen? (ja oder nein)
+[INFO  | 05.12.2018 15:52:50 | de.krauss.Launcher$1 ] ==> [System] Oder bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 05.12.2018 15:52:53 | de.krauss.Launcher$1OverWrittenReader ] ==> [Usereingabe] list
+[INFO  | 05.12.2018 15:52:53 | de.krauss.CarList ] ==> [System] Anzahl an Autos: 0
+[INFO  | 05.12.2018 15:52:53 | de.krauss.CarList ] ==> [System] --------------------------------------
+[INFO  | 05.12.2018 15:52:53 | de.krauss.Launcher ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 05.12.2018 15:52:53 | de.krauss.Launcher ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 05.12.2018 15:52:53 | de.krauss.Launcher ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 05.12.2018 15:52:53 | de.krauss.Launcher ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 05.12.2018 15:52:53 | de.krauss.Launcher ] ==> [System] Vorhandene Autos durchsuchen? (search)
