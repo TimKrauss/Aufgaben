@@ -3,11 +3,15 @@ package de.krauss;
 import java.io.BufferedReader;
 import java.io.StringReader;
 
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.krauss.car.CarList;
 import de.krauss.search.Searcher;
 import de.krauss.user.UserHandler;
+import de.krauss.utils.OracleDataBase;
+import de.krauss.utils.Utilities;
 
 public class LauncherTest
 {
@@ -18,6 +22,7 @@ public class LauncherTest
 	private static final String NAME = "TEST", MARKE = "Marke";
 	private static final String START_DATUM = "12.12.2019 15:00", STOP_DATUM = "13.12.2019 16:00";
 	private static final int TACHO = 2;
+	private static Logger logger = Logger.getLogger("System");
 
 	@Before
 	public void init() throws Exception
@@ -50,7 +55,7 @@ public class LauncherTest
 		st.append("list\n");
 
 		stri = new StringReader(st.toString());
-		reader = launcher.createReader(stri);
+		reader = Utilities.createReader(stri, logger);
 		handler.handleUserInpunt(reader, launcher);
 
 //		Auto hinzufügen (handleMethode vorschalten)
@@ -61,7 +66,7 @@ public class LauncherTest
 		st.append(TACHO);
 
 		stri = new StringReader(st.toString());
-		reader = launcher.createReader(stri);
+		reader = Utilities.createReader(stri, logger);
 		handler.handleUserInpunt(reader, launcher);
 
 //		Reservierung hinzufügen
@@ -73,7 +78,7 @@ public class LauncherTest
 		st.append("Junit");
 
 		stri = new StringReader(st.toString());
-		reader = launcher.createReader(stri);
+		reader = Utilities.createReader(stri, logger);
 		handler.handleUserInpunt(reader, launcher);
 
 		// Reservierung hinzufügen
@@ -89,7 +94,7 @@ public class LauncherTest
 		st.append("ja");
 
 		stri = new StringReader(st.toString());
-		reader = launcher.createReader(stri);
+		reader = Utilities.createReader(stri, logger);
 		handler.handleUserInpunt(reader, launcher);
 
 //		Auflisten
@@ -97,11 +102,8 @@ public class LauncherTest
 		st.append("list\n");
 
 		stri = new StringReader(st.toString());
-		reader = launcher.createReader(stri);
+		reader = Utilities.createReader(stri, logger);
 		handler.handleUserInpunt(reader, launcher);
-
-//		StandardCall
-		launcher.standardCall();
 
 //		Reservierung löschen
 		st = new StringBuilder();
@@ -110,7 +112,7 @@ public class LauncherTest
 		st.append("1\n");
 
 		stri = new StringReader(st.toString());
-		reader = launcher.createReader(stri);
+		reader = Utilities.createReader(stri, logger);
 		handler.handleUserInpunt(reader, launcher);
 
 //		getReader
@@ -122,7 +124,7 @@ public class LauncherTest
 		st.append(NAME);
 
 		stri = new StringReader(st.toString());
-		reader = launcher.createReader(stri);
+		reader = Utilities.createReader(stri, logger);
 		handler.handleUserInpunt(reader, launcher);
 
 		st = new StringBuilder();
@@ -131,7 +133,7 @@ public class LauncherTest
 		st.append(MARKE);
 
 		stri = new StringReader(st.toString());
-		reader = launcher.createReader(stri);
+		reader = Utilities.createReader(stri, logger);
 		handler.handleUserInpunt(reader, launcher);
 
 		st = new StringBuilder();
@@ -140,7 +142,7 @@ public class LauncherTest
 		st.append(TACHO + "");
 
 		stri = new StringReader(st.toString());
-		reader = launcher.createReader(stri);
+		reader = Utilities.createReader(stri, logger);
 		handler.handleUserInpunt(reader, launcher);
 
 //		Fehlerhafte Suche
@@ -150,7 +152,7 @@ public class LauncherTest
 		st.append(NAME + "BLAH");
 
 		stri = new StringReader(st.toString());
-		reader = launcher.createReader(stri);
+		reader = Utilities.createReader(stri, logger);
 		handler.handleUserInpunt(reader, launcher);
 
 		st = new StringBuilder();
@@ -159,7 +161,7 @@ public class LauncherTest
 		st.append(MARKE + "BLAH");
 
 		stri = new StringReader(st.toString());
-		reader = launcher.createReader(stri);
+		reader = Utilities.createReader(stri, logger);
 		handler.handleUserInpunt(reader, launcher);
 
 		st = new StringBuilder();
@@ -168,7 +170,7 @@ public class LauncherTest
 		st.append(TACHO + 5 + "");
 
 		stri = new StringReader(st.toString());
-		reader = launcher.createReader(stri);
+		reader = Utilities.createReader(stri, logger);
 		handler.handleUserInpunt(reader, launcher);
 
 //		Auto löschen
@@ -177,7 +179,7 @@ public class LauncherTest
 		st.append("1\n");
 
 		stri = new StringReader(st.toString());
-		reader = launcher.createReader(stri);
+		reader = Utilities.createReader(stri, logger);
 		handler.handleUserInpunt(reader, launcher);
 
 //		Nein
@@ -185,7 +187,7 @@ public class LauncherTest
 		st.append("nein\n");
 
 		stri = new StringReader(st.toString());
-		reader = launcher.createReader(stri);
+		reader = Utilities.createReader(stri, logger);
 		handler.handleUserInpunt(reader, launcher);
 
 //		Alles Explodieren lassen
@@ -193,7 +195,7 @@ public class LauncherTest
 		st.append("nein\n");
 
 		stri = new StringReader(st.toString());
-		reader = launcher.createReader(stri);
+		reader = Utilities.createReader(stri, logger);
 	}
 
 }

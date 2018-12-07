@@ -1,10 +1,12 @@
-package de.krauss;
+package de.krauss.search;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.krauss.car.Car;
 import de.krauss.search.Searcher;
+import de.krauss.utils.OracleDataBase;
 
 public class SearcherTest
 {

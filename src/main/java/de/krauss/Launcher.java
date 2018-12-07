@@ -1,22 +1,23 @@
 package de.krauss;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlElement;
 
 import org.apache.log4j.Logger;
 
+import de.krauss.car.CarList;
 import de.krauss.gfx.ALLINONEFrameController;
 import de.krauss.gfx.LoginFrameController;
 import de.krauss.search.Searcher;
 import de.krauss.user.User;
 import de.krauss.user.UserHandler;
 import de.krauss.user.UserManager;
+import de.krauss.utils.OracleDataBase;
+import de.krauss.utils.Utilities;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -24,8 +25,7 @@ public class Launcher extends Application implements Serializable
 {
 	private static final long serialVersionUID = 1636324934042718631L;
 
-	// TODO Konfigurations-Seite (Enorm Viel - KonfigKlasse+ObjektSerialisierung +
-	// TAB)
+	// TODO Konfigurations-Seite (Enorm Viel - KonfigKlasse+ObjektSerialisierung)
 	// TODO IMPORT / EXPORT überarbeiten
 
 	@XmlElement(name = "carlist")
@@ -45,43 +45,6 @@ public class Launcher extends Application implements Serializable
 	private User user;
 
 	/**
-	 * 
-	 * @param inputReader Der InputStream, welchen der Reader lesen soll
-	 * @return Den funktionierende Reader
-	 */
-	public BufferedReader createReader(Reader inputReader)
-	{
-		BufferedReader reader = new BufferedReader(inputReader);
-
-		// Überschreibe die Readline
-		class OverWrittenReader extends BufferedReader
-		{
-			public OverWrittenReader(Reader inputReader)
-			{
-				super(inputReader);
-			}
-
-			@Override
-			public String readLine()
-			{
-				try
-				{
-					String zeile = reader.readLine();
-					fileLogger.info(zeile);
-					return zeile;
-				} catch (IOException e)
-				{
-					logger.warn(e.getLocalizedMessage());
-				}
-				return null;
-			}
-
-		}
-		OverWrittenReader test = new OverWrittenReader(inputReader);
-		return test;
-	}
-
-	/**
 	 * Startet das Programm
 	 * 
 	 * @param args Die Start-Paramter
@@ -89,66 +52,6 @@ public class Launcher extends Application implements Serializable
 	public static void main(String[] args)
 	{
 		Application.launch(args);
-	}
-
-	/**
-	 * Gibt die ganzen Standardfragen nacheinadner aus
-	 * 
-	 * @return Ob das Ausgeben erfolgreich war
-	 */
-	public boolean standardCall()
-	{
-		logger.info("Ein weiteres Auto hinzufügen? (ja oder nein)");
-		logger.info("Bereits hinzugefügte Autos ansehen? (list)");
-		logger.info("Ein bereits hinzugefügtes Auto reservieren? (reservieren)");
-		logger.info("Eine bereits hinzugefügte Reservierung löschen? (rdel)");
-		logger.info("Vorhandene Autos durchsuchen? (search)");
-		return true;
-	}
-
-	/**
-	 * Startet einen Reader für Konsolen eingaben
-	 * 
-	 * @param inputStream der InputStream von welchem gelewesen werden soll
-	 */
-	public void startReaderThread(InputStream inputStream)
-	{
-		userHandler = new UserHandler();
-
-		userHandler.setCarlist(carlist);
-		userHandler.setSearcher(searcher);
-
-		userReaderThread = new Thread(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				// Erstellt den ReaderThread, der die Eingaben des Users liest
-				BufferedReader reader = createReader(new InputStreamReader(inputStream));
-
-				// Gibt dem Kunden ein das Willkommen aus
-				logger.info("Hallo Lieber Kunde!");
-				logger.info("Möchten sie ein Auto anlegen? (ja oder nein)");
-				logger.info("Oder bereits hinzugefügte Autos ansehen? (list)");
-
-				// Endlosschleife welche die Eingaben bearbeitet
-				while (true)
-				{
-					userHandler.handleUserInpunt(reader, getLauncherInstanz());
-				}
-			}
-		});
-		// Startet den Thread zum Lesen
-		userReaderThread.start();
-	}
-
-	/**
-	 * 
-	 * @return Gibt die Instanz dieses Launchers zurück
-	 */
-	private Launcher getLauncherInstanz()
-	{
-		return this;
 	}
 
 	/**
@@ -184,6 +87,45 @@ public class Launcher extends Application implements Serializable
 
 	}
 
+	/**
+	 * Startet einen Reader für Konsolen eingaben
+	 * 
+	 * @param inputStream der InputStream von welchem gelewesen werden soll
+	 */
+	public void startReaderThread(InputStream inputStream)
+	{
+		userHandler = new UserHandler();
+
+		userHandler.setCarlist(carlist);
+		userHandler.setSearcher(searcher);
+
+		userReaderThread = new Thread(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				// Erstellt den ReaderThread, der die Eingaben des Users liest
+				BufferedReader reader = Utilities.createReader(new InputStreamReader(inputStream), fileLogger);
+
+				// Gibt dem Kunden ein das Willkommen aus
+				logger.info("Hallo Lieber Kunde!");
+				logger.info("Möchten sie ein Auto anlegen? (ja oder nein)");
+				logger.info("Oder bereits hinzugefügte Autos ansehen? (list)");
+
+				// Endlosschleife welche die Eingaben bearbeitet
+				while (true)
+				{
+					userHandler.handleUserInpunt(reader, getLauncherInstanz());
+				}
+			}
+		});
+		// Startet den Thread zum Lesen
+		userReaderThread.start();
+	}
+
+	/**
+	 * Updatet die Liste im GUI
+	 */
 	public void updateList()
 	{
 		if (controller == null)
@@ -200,6 +142,17 @@ public class Launcher extends Application implements Serializable
 		controller.setOrcb(dataBase);
 		controller.setUser(user);
 		controller.init(list, searcher2);
+	}
+
+	// SETTER && GETTER
+
+	/**
+	 * 
+	 * @return Gibt die Instanz dieses Launchers zurück
+	 */
+	private Launcher getLauncherInstanz()
+	{
+		return this;
 	}
 
 	public void setUser(User user2)

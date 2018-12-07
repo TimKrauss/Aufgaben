@@ -12,11 +12,11 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.StreamException;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
-import de.krauss.Car;
-import de.krauss.CarList;
-import de.krauss.FileManager;
 import de.krauss.Launcher;
-import de.krauss.Reservierung;
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
+import de.krauss.car.Reservierung;
+import de.krauss.utils.FileManager;
 
 public class XStreamFileHandler implements FileHandler
 {

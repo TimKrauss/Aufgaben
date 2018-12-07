@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import de.krauss.Car;
-import de.krauss.CarList;
 import de.krauss.Launcher;
-import de.krauss.OracleDataBase;
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
 import de.krauss.gfx.init.ManagerInitialize;
 import de.krauss.search.Searcher;
 import de.krauss.user.User;
+import de.krauss.utils.OracleDataBase;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
@@ -45,7 +45,7 @@ public class ALLINONEFrameController
 	private ListView<Tab> listView_Tabs;
 
 	@FXML
-	private Tab tab_Main, tab_Reservieren, tab_Suchen, tab_Hinzufügen;
+	private Tab tab_Main, tab_Reservieren, tab_Suchen, tab_Hinzufügen, tab_Admin;
 
 	@FXML
 	private TabPane pane_Tabpane;
@@ -83,6 +83,52 @@ public class ALLINONEFrameController
 	private User user;
 
 	/**
+	 * Erstellt das Fenster
+	 * 
+	 * @return Gibt den Controller für das Fenster zurück
+	 */
+	public static ALLINONEFrameController createWindow()
+	{
+		try
+		{
+			FXMLLoader loader = new FXMLLoader();
+
+			File file = new File(Launcher.class.getResource("/frames/ALLINONEFrame.fxml").getFile());
+			FileInputStream fis = new FileInputStream(file);
+			Pane pane = loader.load(fis);
+			primaryStage = new Stage();
+			Scene scene = new Scene(pane);
+			scene.getStylesheets().add("NoTabs.css");
+			primaryStage.setScene(scene);
+
+			ALLINONEFrameController controller = loader.getController();
+
+			primaryStage.setTitle("Fuhrpark");
+			primaryStage.setResizable(false);
+			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>()
+			{
+				@Override
+				public void handle(WindowEvent arg0)
+				{
+					System.exit(1);
+				}
+			});
+			primaryStage.getIcons().add(new Image("icon.png"));
+
+			primaryStage.show();
+			fis.close();
+			return controller;
+		} catch (FileNotFoundException e)
+		{
+			logger.warn(e.getLocalizedMessage());
+		} catch (IOException e)
+		{
+			logger.warn(e.getLocalizedMessage());
+		}
+		return null;
+	}
+
+	/**
 	 * Initializiert das komplette Frame
 	 * 
 	 * @param carlist  Die CarList, welche alle Autos beinhaltet
@@ -94,6 +140,7 @@ public class ALLINONEFrameController
 		this.carlist = carlist;
 
 		ManagerInitialize initer = new ManagerInitialize();
+		initer.setUser(user);
 
 		// Auto hinzufügen
 		initer.getInitializeAutoAdden().setTxtf_Name(txtf_Name);
@@ -155,6 +202,7 @@ public class ALLINONEFrameController
 		list_Tabs.add(tab_Hinzufügen);
 		list_Tabs.add(tab_Reservieren);
 		list_Tabs.add(tab_Suchen);
+		list_Tabs.add(tab_Admin);
 		listView_Tabs.setItems(FXCollections.observableArrayList(list_Tabs));
 
 		listView_Tabs.getSelectionModel().select(tab_Main);
@@ -165,52 +213,6 @@ public class ALLINONEFrameController
 		{
 			list_Autos.getSelectionModel().select(0);
 		}
-	}
-
-	/**
-	 * Erstellt das Fenster
-	 * 
-	 * @return Gibt den Controller für das Fenster zurück
-	 */
-	public static ALLINONEFrameController createWindow()
-	{
-		try
-		{
-			FXMLLoader loader = new FXMLLoader();
-
-			File file = new File(Launcher.class.getResource("/frames/ALLINONEFrame.fxml").getFile());
-			FileInputStream fis = new FileInputStream(file);
-			Pane pane = loader.load(fis);
-			primaryStage = new Stage();
-			Scene scene = new Scene(pane);
-			scene.getStylesheets().add("NoTabs.css");
-			primaryStage.setScene(scene);
-
-			ALLINONEFrameController controller = loader.getController();
-
-			primaryStage.setTitle("Fuhrpark");
-			primaryStage.setResizable(false);
-			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>()
-			{
-				@Override
-				public void handle(WindowEvent arg0)
-				{
-					System.exit(1);
-				}
-			});
-			primaryStage.getIcons().add(new Image("icon.png"));
-
-			primaryStage.show();
-			fis.close();
-			return controller;
-		} catch (FileNotFoundException e)
-		{
-			logger.warn(e.getLocalizedMessage());
-		} catch (IOException e)
-		{
-			logger.warn(e.getLocalizedMessage());
-		}
-		return null;
 	}
 
 	/**
@@ -271,6 +273,8 @@ public class ALLINONEFrameController
 		carlist.getList().addAll(orcb.loadDatabase());
 		updateList();
 	}
+
+	// SETTER && GETTER
 
 	/**
 	 * Setzt den Tab auf eine der

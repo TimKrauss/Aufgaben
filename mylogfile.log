@@ -1,13 +1,328 @@
-[INFO  | 07.12.2018 12:06:45 | de.krauss.Launcher$1 ] ==> [System] Hallo Lieber Kunde!
-[INFO  | 07.12.2018 12:06:45 | de.krauss.Launcher$1 ] ==> [System] Möchten sie ein Auto anlegen? (ja oder nein)
-[INFO  | 07.12.2018 12:06:45 | de.krauss.Launcher$1 ] ==> [System] Oder bereits hinzugefügte Autos ansehen? (list)
-[WARN  | 07.12.2018 12:06:49 | de.krauss.gfx.RegisterFrameController ] ==> [System] Der Benutzername ist ungültig
-[WARN  | 07.12.2018 12:06:53 | de.krauss.gfx.RegisterFrameController ] ==> [System] Bitte ein Passwort angeben
-[INFO  | 07.12.2018 12:06:57 | de.krauss.gfx.RegisterFrameController ] ==> [System] Groß / Klein
-[INFO  | 07.12.2018 12:06:57 | de.krauss.gfx.RegisterFrameController ] ==> [System] Groß / Klein
-[INFO  | 07.12.2018 12:06:58 | de.krauss.gfx.RegisterFrameController ] ==> [System] Groß / Klein
-[INFO  | 07.12.2018 12:06:58 | de.krauss.gfx.RegisterFrameController ] ==> [System] Groß / Klein
-[WARN  | 07.12.2018 12:06:59 | de.krauss.gfx.RegisterFrameController ] ==> [System] Passwörter stimmen nicht über ein
-[WARN  | 07.12.2018 12:07:02 | de.krauss.gfx.RegisterFrameController ] ==> [System] Der Benutzername existiert schon
-[WARN  | 07.12.2018 12:07:12 | de.krauss.gfx.LoginFrameController ] ==> [System] Ungültige Angabe der LoginDaten
-[INFO  | 07.12.2018 12:07:15 | de.krauss.user.UserManager ] ==> [System] Succesfull logged in: Jonas123
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] list
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Launcher$1 ] ==> [System] Hallo Lieber Kunde!
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Anzahl an Autos: 0
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Launcher$1 ] ==> [System] Möchten sie ein Auto anlegen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] --------------------------------------
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Launcher$1 ] ==> [System] Oder bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] ja
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Wie lautet der Fahrzeugname?
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] TEST
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Fahrzeugname --> TEST
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Wie lautet die Fahrzeugmarke?
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] Marke
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Fahrzeugmarke --> Marke
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Wie viele Kilometer hat das Auto auf dem Buckel?
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 2
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Kilometer: 2
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] 
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] reservieren
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Anzahl an Autos: 1
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] --------------------------------------
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Auto 1
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] -Fahrzeugname: TEST
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] --Fahrzeugmarke: Marke
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] ---Kilometerstand: 2
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Keine Reservierungen vorhanden.
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] --------------------------------------
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Welches Auto wollen sie Reservieren? (1 - 1)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 1
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.Reservierung ] ==> [System] Wann soll die Reservierung starten? (tt.MM.yyyy HH:mm)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 12.12.2019 15:00
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.Reservierung ] ==> [System] Wann soll die Reservierung enden? (tt.MM.yyyy HH:mm)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 13.12.2019 16:00
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.Reservierung ] ==> [System] Auf welchen Namen soll diese Reservierung gespeichert werden?
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] Junit
+[INFO  | 07.12.2018 12:45:51 | de.krauss.OracleDataBase ] ==> [System] Reservierung hochgeladen
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Reserviert!
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] reservieren
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Anzahl an Autos: 1
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] --------------------------------------
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Auto 1
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] -Fahrzeugname: TEST
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] --Fahrzeugmarke: Marke
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] ---Kilometerstand: 2
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Reservierungen:
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] [1] 12.12.2019 (15:00) -------> 13.12.2019 (16:00)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] --------------------------------------
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Welches Auto wollen sie Reservieren? (1 - 1)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 1
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.Reservierung ] ==> [System] Wann soll die Reservierung starten? (tt.MM.yyyy HH:mm)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 13.12.2019 16:00
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.Reservierung ] ==> [System] Wann soll die Reservierung enden? (tt.MM.yyyy HH:mm)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 12.12.2019 15:00
+[WARN  | 07.12.2018 12:45:51 | de.krauss.Utilities ] ==> [System] Start Datum nach Stop Datum
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.Reservierung ] ==> [System] Möchten sie das Reservieren abbrechen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] awd
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.Reservierung ] ==> [System] Bitte eine gültige Antwort eingeben
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.Reservierung ] ==> [System] Möchten sie das Reservieren abbrechen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] nein
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.Reservierung ] ==> [System] Wann soll die Reservierung starten? (tt.MM.yyyy HH:mm)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 12.12.2019 15:00
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.Reservierung ] ==> [System] Wann soll die Reservierung enden? (tt.MM.yyyy HH:mm)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 13.12.2099 16:00
+[WARN  | 07.12.2018 12:45:51 | de.krauss.Utilities ] ==> [System] Das Startdatum ist identisch mit dem einer anderen Reservierung
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.Reservierung ] ==> [System] Möchten sie das Reservieren abbrechen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] ja
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] list
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Anzahl an Autos: 1
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] --------------------------------------
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Auto 1
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] -Fahrzeugname: TEST
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] --Fahrzeugmarke: Marke
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] ---Kilometerstand: 2
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] Reservierungen:
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] [1] 12.12.2019 (15:00) -------> 13.12.2019 (16:00)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.car.CarList ] ==> [System] --------------------------------------
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] rdel
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] ( 1 ) TEST
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Von welchem Auto wollen sie die Reservierung löschen? (Zahl eingeben)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 1
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Name: TEST
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] [1] 12.12.2019 (15:00) -------> 13.12.2019 (16:00)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Welche von den Reservierungen wollen sie löschen? (1 - 1)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 1
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Die Reservierung wurde gelöscht
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.user.UserHandler ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] search
+[INFO  | 07.12.2018 12:45:51 | de.krauss.search.Searcher ] ==> [System] Nach welchem Merkmal möchten sie suchen?
+[INFO  | 07.12.2018 12:45:51 | de.krauss.search.Searcher ] ==> [System] [1] Name
+[INFO  | 07.12.2018 12:45:51 | de.krauss.search.Searcher ] ==> [System] [2] Marke
+[INFO  | 07.12.2018 12:45:51 | de.krauss.search.Searcher ] ==> [System] [3] Tacho
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 1
+[INFO  | 07.12.2018 12:45:51 | de.krauss.search.Searcher ] ==> [System] Bitte geben sie den Namen des Fahrzeuges an:
+[INFO  | 07.12.2018 12:45:51 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] TEST
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Name: TEST
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Marke: Marke
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Tacho: 2
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] search
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Nach welchem Merkmal möchten sie suchen?
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] [1] Name
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] [2] Marke
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] [3] Tacho
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 2
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Bitte geben sie die Marke des Fahrzeuges an:
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] Marke
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Name: TEST
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Marke: Marke
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Tacho: 2
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] search
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Nach welchem Merkmal möchten sie suchen?
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] [1] Name
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] [2] Marke
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] [3] Tacho
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 3
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Bitte geben sie den Kilometerstand an:
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 2
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Name: TEST
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Marke: Marke
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Tacho: 2
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] search
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Nach welchem Merkmal möchten sie suchen?
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] [1] Name
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] [2] Marke
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] [3] Tacho
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 1
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Bitte geben sie den Namen des Fahrzeuges an:
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] TESTBLAH
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Es wurde kein Auto mit diesem Suchkriterium gefunden
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] search
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Nach welchem Merkmal möchten sie suchen?
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] [1] Name
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] [2] Marke
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] [3] Tacho
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 2
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Bitte geben sie die Marke des Fahrzeuges an:
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] MarkeBLAH
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Es wurde kein Auto mit diesem Suchkriterium gefunden
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] search
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Nach welchem Merkmal möchten sie suchen?
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] [1] Name
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] [2] Marke
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] [3] Tacho
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 3
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Bitte geben sie den Kilometerstand an:
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 7
+[INFO  | 07.12.2018 12:45:52 | de.krauss.search.Searcher ] ==> [System] Es wurde kein Auto mit diesem Suchkriterium gefunden
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] del
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] [1] TEST
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Welches Auto soll gelöscht werden?
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] 1
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.Utilities$1OverWrittenReader ] ==> [System] nein
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Dann eben nicht :(
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein weiteres Auto hinzufügen? (ja oder nein)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Ein bereits hinzugefügtes Auto reservieren? (reservieren)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Eine bereits hinzugefügte Reservierung löschen? (rdel)
+[INFO  | 07.12.2018 12:45:52 | de.krauss.user.UserHandler ] ==> [System] Vorhandene Autos durchsuchen? (search)
+[WARN  | 07.12.2018 12:45:52 | de.krauss.car.CarList ] ==> [System] Füge Auto nicht hinzu da es keinen Namen hat
+[WARN  | 07.12.2018 12:45:52 | de.krauss.car.CarList ] ==> [System] Index: 0, Size: 0
+[FATAL | 07.12.2018 12:45:52 | de.krauss.handler.DumpFileHandler ] ==> [System] Datei () nicht gefunden!
+[FATAL | 07.12.2018 12:45:52 | de.krauss.handler.JAXBFileHandler ] ==> [System] Fehler beim Einlesen der JAXB-XML-Datei.
+[FATAL | 07.12.2018 12:45:52 | de.krauss.handler.JSonFileHandler ] ==> [System] 
+[FATAL | 07.12.2018 12:45:52 | de.krauss.handler.TxtFileHandler ] ==> [System] Das Textfile wurde nicht gefunden!
+[FATAL | 07.12.2018 12:45:52 | de.krauss.handler.XStreamFileHandler ] ==> [System] 
+[INFO  | 07.12.2018 12:45:52 | de.krauss.FileManager ] ==> [System] Gleicher Autoname gefunden! ( JUnit_Name )
+[INFO  | 07.12.2018 12:45:52 | de.krauss.FileManager ] ==> [System] Dennoch wird das Auto erstmal hinzugefügt
+[INFO  | 07.12.2018 12:45:52 | de.krauss.FileManager ] ==> [System] Gleicher Autoname gefunden! ( JUnit_Name )
+[INFO  | 07.12.2018 12:45:52 | de.krauss.FileManager ] ==> [System] Dennoch wird das Auto erstmal hinzugefügt
+[INFO  | 07.12.2018 12:45:52 | de.krauss.FileManager ] ==> [System] Gleicher Autoname gefunden! ( JUnit_Name )
+[INFO  | 07.12.2018 12:45:52 | de.krauss.FileManager ] ==> [System] Dennoch wird das Auto erstmal hinzugefügt
+[INFO  | 07.12.2018 12:45:52 | de.krauss.handler.TxtFileHandler ] ==> [System] 
+[INFO  | 07.12.2018 12:45:52 | de.krauss.handler.TxtFileHandler ] ==> [System] 
+[INFO  | 07.12.2018 12:45:52 | de.krauss.FileManager ] ==> [System] Gleicher Autoname gefunden! ( JUnit_Name )
+[INFO  | 07.12.2018 12:45:52 | de.krauss.FileManager ] ==> [System] Dennoch wird das Auto erstmal hinzugefügt
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] Name: NAME
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] Marke: MARKE
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] Tacho: 1
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] Name: NAME
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] Marke: MARKE
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] Tacho: 1
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] Name: NAME
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] Marke: MARKE
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] Tacho: 1
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] Name: Test
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] Marke: VW
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] Tacho: 123
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] Name: JUnit_Name
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] Marke: JUnit_Marke
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] Tacho: 10
+[INFO  | 07.12.2018 12:45:53 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:45:53 | de.krauss.OracleDataBase ] ==> [System] Reservierung hochgeladen
+[INFO  | 07.12.2018 12:45:53 | de.krauss.OracleDataBase ] ==> [System] Reservierung hochgeladen
+[WARN  | 07.12.2018 12:45:53 | de.krauss.OracleDataBase ] ==> [System] Getrennte Verbindung
+[FATAL | 07.12.2018 12:45:53 | de.krauss.OracleDataBase ] ==> [System] Getrennte Verbindung
+[FATAL | 07.12.2018 12:45:53 | de.krauss.OracleDataBase ] ==> [System] Getrennte Verbindung
+[FATAL | 07.12.2018 12:45:53 | de.krauss.OracleDataBase ] ==> [System] Getrennte Verbindung
+[WARN  | 07.12.2018 12:45:53 | de.krauss.OracleDataBase ] ==> [System] Getrennte Verbindung
+[WARN  | 07.12.2018 12:45:53 | de.krauss.OracleDataBase ] ==> [System] Getrennte Verbindung
+[FATAL | 07.12.2018 12:45:53 | de.krauss.handler.DumpFileHandler ] ==> [System] Die gesuchte Datei wurde nicht gefunden
+[FATAL | 07.12.2018 12:45:53 | de.krauss.handler.DumpFileHandler ] ==> [System] Datei () nicht gefunden!
+[FATAL | 07.12.2018 12:45:53 | de.krauss.handler.DumpFileHandler ] ==> [System] Probleme mit dem Einlesen der Datei
+[FATAL | 07.12.2018 12:45:53 | de.krauss.handler.JAXBFileHandler ] ==> [System] Fehler beim Speichern in der Datei schreiben
+[FATAL | 07.12.2018 12:45:53 | de.krauss.handler.JAXBFileHandler ] ==> [System] Fehler beim Einlesen der JAXB-XML-Datei.
+[FATAL | 07.12.2018 12:45:53 | de.krauss.handler.JAXBFileHandler ] ==> [System] Fehler beim Einlesen der JAXB-XML-Datei.
+[FATAL | 07.12.2018 12:45:53 | de.krauss.handler.JAXBFileHandler ] ==> [System] Fehler beim Einlesen der JAXB-XML-Datei.
+[FATAL | 07.12.2018 12:45:53 | de.krauss.handler.JSonFileHandler ] ==> [System]  (Result too large)
+[FATAL | 07.12.2018 12:45:53 | de.krauss.handler.JSonFileHandler ] ==> [System]  (Result too large)
+[FATAL | 07.12.2018 12:45:53 | de.krauss.handler.JSonFileHandler ] ==> [System] java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 1 path $
+[FATAL | 07.12.2018 12:45:53 | de.krauss.OracleDataBase ] ==> [System] ORA-01400: cannot insert NULL into ("TIM"."RES_AUTO"."OWNER")
+
+[WARN  | 07.12.2018 12:45:53 | de.krauss.handler.TxtFileHandler ] ==> [System] File not Found
+[FATAL | 07.12.2018 12:45:53 | de.krauss.handler.TxtFileHandler ] ==> [System] Das Textfile wurde nicht gefunden!
+[INFO  | 07.12.2018 12:45:53 | de.krauss.handler.TxtFileHandler ] ==> [System] 
+[INFO  | 07.12.2018 12:45:53 | de.krauss.handler.TxtFileHandler ] ==> [System] 
+[FATAL | 07.12.2018 12:45:53 | de.krauss.handler.TxtFileHandler ] ==> [System] Das Textfile wurde nicht gefunden!
+[FATAL | 07.12.2018 12:45:53 | de.krauss.handler.XStreamFileHandler ] ==> [System] Fehler beim Schreiben der XML-Datei
+[FATAL | 07.12.2018 12:45:53 | de.krauss.handler.XStreamFileHandler ] ==> [System] 
+[FATAL | 07.12.2018 12:45:53 | de.krauss.handler.XStreamFileHandler ] ==> [System] 
+[WARN  | 07.12.2018 12:46:00 | de.krauss.gfx.RegisterFrameController ] ==> [System] Passwörter stimmen nicht über ein
+[WARN  | 07.12.2018 12:46:04 | de.krauss.gfx.LoginFrameController ] ==> [System] Ungültige Angabe der LoginDaten
+[INFO  | 07.12.2018 12:46:06 | de.krauss.user.UserManager ] ==> [System] Succesfull logged in: JUnitTester
+[WARN  | 07.12.2018 12:46:10 | de.krauss.gfx.ALLINONEFrameController ] ==> [System] Bitte eine Marke angeben!
+[WARN  | 07.12.2018 12:46:12 | de.krauss.gfx.ALLINONEFrameController ] ==> [System] Bitte einen gültigen Tachostand angeben!
+[WARN  | 07.12.2018 12:46:17 | de.krauss.gfx.ALLINONEFrameController ] ==> [System] Überprüfe bitte nochmal alle Eingaben
+[INFO  | 07.12.2018 12:46:19 | de.krauss.OracleDataBase ] ==> [System] Reservierung hochgeladen
+[INFO  | 07.12.2018 12:46:21 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:46:21 | de.krauss.search.Searcher ] ==> [System] Name: Ghost-Hand
+[INFO  | 07.12.2018 12:46:21 | de.krauss.search.Searcher ] ==> [System] Marke: VW (Die Marke)
+[INFO  | 07.12.2018 12:46:21 | de.krauss.search.Searcher ] ==> [System] Tacho: 5
+[INFO  | 07.12.2018 12:46:21 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:46:23 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:46:23 | de.krauss.search.Searcher ] ==> [System] Name: Ghost-Hand
+[INFO  | 07.12.2018 12:46:23 | de.krauss.search.Searcher ] ==> [System] Marke: VW (Die Marke)
+[INFO  | 07.12.2018 12:46:23 | de.krauss.search.Searcher ] ==> [System] Tacho: 5
+[INFO  | 07.12.2018 12:46:23 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:46:24 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:46:24 | de.krauss.search.Searcher ] ==> [System] Name: Ghost-Hand
+[INFO  | 07.12.2018 12:46:24 | de.krauss.search.Searcher ] ==> [System] Marke: VW (Die Marke)
+[INFO  | 07.12.2018 12:46:24 | de.krauss.search.Searcher ] ==> [System] Tacho: 5
+[INFO  | 07.12.2018 12:46:24 | de.krauss.search.Searcher ] ==> [System] --------------
+[INFO  | 07.12.2018 12:46:25 | de.krauss.search.Searcher ] ==> [System] Es wurde kein Auto mit diesem Suchkriterium gefunden
+[INFO  | 07.12.2018 12:46:28 | de.krauss.gfx.init.InitializeOverview$6$1 ] ==> [System] -1
+[WARN  | 07.12.2018 12:46:28 | de.krauss.Utilities ] ==> [System] Bitte geben sie ein gültiges Datum ein! (dd.MM.yyyy HH:mm)
+[WARN  | 07.12.2018 12:46:28 | de.krauss.Utilities ] ==> [System] Kein Datum in der Vergangenheit bitte!
+[WARN  | 07.12.2018 12:46:28 | de.krauss.Utilities ] ==> [System] StopDatum liegt zwischen einer anderen Reservierung
+[WARN  | 07.12.2018 12:46:28 | de.krauss.Utilities ] ==> [System] StartDatum liegt zwischen einer anderen Reservierung
+[WARN  | 07.12.2018 12:46:28 | de.krauss.Utilities ] ==> [System] StopDatum liegt zwischen einer anderen Reservierung
+[WARN  | 07.12.2018 12:46:28 | de.krauss.Utilities ] ==> [System] StartDatum liegt zwischen einer anderen Reservierung
+[WARN  | 07.12.2018 12:46:28 | de.krauss.Utilities ] ==> [System] Bitte eine gültige Zahl eingeben
+[WARN  | 07.12.2018 12:46:28 | de.krauss.Utilities ] ==> [System] Bitte gib eine gültige Kilometerzahl ein!

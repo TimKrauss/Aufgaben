@@ -2,7 +2,7 @@ package de.krauss.gfx.init;
 
 import java.util.ArrayList;
 
-import de.krauss.Car;
+import de.krauss.car.Car;
 import de.krauss.gfx.ALLINONEFrameController;
 import de.krauss.search.Searcher;
 import javafx.beans.value.ChangeListener;

@@ -7,8 +7,8 @@ import java.io.IOException;
 
 import org.apache.log4j.Logger;
 
-import de.krauss.CarList;
 import de.krauss.Launcher;
+import de.krauss.car.CarList;
 import de.krauss.search.Searcher;
 import de.krauss.user.User;
 import de.krauss.user.UserManager;

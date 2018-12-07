@@ -14,9 +14,9 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import de.krauss.Car;
-import de.krauss.CarList;
 import de.krauss.Launcher;
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
 
 public class JAXBFileHandler implements FileHandler
 {

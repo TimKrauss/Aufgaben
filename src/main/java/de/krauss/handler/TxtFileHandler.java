@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
 
-import de.krauss.Car;
-import de.krauss.CarList;
 import de.krauss.Launcher;
-import de.krauss.Reservierung;
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
+import de.krauss.car.Reservierung;
 
 public class TxtFileHandler implements FileHandler
 {

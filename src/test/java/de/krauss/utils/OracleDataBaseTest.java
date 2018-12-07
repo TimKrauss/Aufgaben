@@ -1,10 +1,14 @@
-package de.krauss;
+package de.krauss.utils;
 
 import java.util.Date;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import de.krauss.car.Car;
+import de.krauss.car.Reservierung;
+import de.krauss.utils.OracleDataBase;
 
 public class OracleDataBaseTest
 {

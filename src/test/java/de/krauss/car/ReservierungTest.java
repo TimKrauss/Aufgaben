@@ -1,10 +1,12 @@
-package de.krauss;
+package de.krauss.car;
 
 import java.util.Date;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import de.krauss.car.Reservierung;
 
 public class ReservierungTest
 {

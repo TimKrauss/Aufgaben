@@ -1,8 +1,9 @@
 package de.krauss.gfx.init;
 
-import de.krauss.CarList;
-import de.krauss.OracleDataBase;
+import de.krauss.car.CarList;
 import de.krauss.gfx.ALLINONEFrameController;
+import de.krauss.user.User;
+import de.krauss.utils.OracleDataBase;
 
 public class ManagerInitialize
 {
@@ -10,6 +11,8 @@ public class ManagerInitialize
 	private InitializeSearch initializeSearch = new InitializeSearch();
 	private InitializeOverview initializeOverview = new InitializeOverview();
 	private InitializeAutoAdden initializeAutoAdden = new InitializeAutoAdden();
+
+	private User user;
 
 	/**
 	 * Startet die Initaliasierung von Liste,ComboBox, den Button reslöschen
@@ -48,6 +51,16 @@ public class ManagerInitialize
 	public InitializeAutoAdden getInitializeAutoAdden()
 	{
 		return initializeAutoAdden;
+	}
+
+	public void setUser(User user)
+	{
+		this.user = user;
+	}
+
+	public User getUser()
+	{
+		return user;
 	}
 
 }

@@ -1,4 +1,4 @@
-package de.krauss;
+package de.krauss.utils;
 
 import java.io.File;
 import java.io.Serializable;
@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
 import de.krauss.handler.DumpFileHandler;
 import de.krauss.handler.FileHandler;
 import de.krauss.handler.JAXBFileHandler;

@@ -6,12 +6,12 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import de.krauss.Car;
-import de.krauss.CarList;
 import de.krauss.Launcher;
-import de.krauss.Reservierung;
-import de.krauss.Utilities;
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
+import de.krauss.car.Reservierung;
 import de.krauss.search.Searcher;
+import de.krauss.utils.Utilities;
 import javafx.application.Platform;
 
 public class UserHandler
@@ -67,8 +67,23 @@ public class UserHandler
 			logger.info("Ungültige Eingabe");
 			break;
 		}
-		launcher.standardCall();
+		standardCall();
 		launcher.updateList();
+	}
+
+	/**
+	 * Gibt die ganzen Standardfragen nacheinadner aus
+	 * 
+	 * @return Ob das Ausgeben erfolgreich war
+	 */
+	public boolean standardCall()
+	{
+		logger.info("Ein weiteres Auto hinzufügen? (ja oder nein)");
+		logger.info("Bereits hinzugefügte Autos ansehen? (list)");
+		logger.info("Ein bereits hinzugefügtes Auto reservieren? (reservieren)");
+		logger.info("Eine bereits hinzugefügte Reservierung löschen? (rdel)");
+		logger.info("Vorhandene Autos durchsuchen? (search)");
+		return true;
 	}
 
 	/**

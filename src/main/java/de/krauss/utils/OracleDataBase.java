@@ -1,4 +1,4 @@
-package de.krauss;
+package de.krauss.utils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+import de.krauss.car.Car;
+import de.krauss.car.Reservierung;
 import oracle.jdbc.pool.OracleDataSource;
 
 public class OracleDataBase

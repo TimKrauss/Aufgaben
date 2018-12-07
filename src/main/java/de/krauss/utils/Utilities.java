@@ -1,7 +1,8 @@
-package de.krauss;
+package de.krauss.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,6 +11,9 @@ import java.util.TimeZone;
 
 import org.apache.log4j.Logger;
 
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
+import de.krauss.car.Reservierung;
 import de.krauss.gfx.ALLINONEFrameController;
 
 public class Utilities
@@ -128,6 +132,44 @@ public class Utilities
 			}
 		}
 
+	}
+
+	/**
+	 * 
+	 * @param inputReader Der InputStream, welchen der Reader lesen soll
+	 * @return Den funktionierende Reader
+	 */
+	public static BufferedReader createReader(Reader inputReader, Logger fileLogger)
+	{
+
+		// Überschreibe die Readline
+		class OverWrittenReader extends BufferedReader
+		{
+			BufferedReader reader = new BufferedReader(inputReader);
+
+			public OverWrittenReader(Reader inputReader)
+			{
+				super(inputReader);
+			}
+
+			@Override
+			public String readLine()
+			{
+				try
+				{
+					String zeile = reader.readLine();
+					fileLogger.info(zeile);
+					return zeile;
+				} catch (IOException e)
+				{
+					logger.warn(e.getLocalizedMessage());
+				}
+				return null;
+			}
+
+		}
+		OverWrittenReader test = new OverWrittenReader(inputReader);
+		return test;
 	}
 
 	/**

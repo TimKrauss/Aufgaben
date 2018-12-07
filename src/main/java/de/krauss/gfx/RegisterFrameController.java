@@ -145,13 +145,11 @@ public class RegisterFrameController
 				if (newValue.length() > 7)
 				{
 					safety += addLevel;
-					logger.info("L‰nge passt");
 				}
 
 				if (!newValue.equals(newValue.toLowerCase()))
 				{
 					safety += addLevel;
-					logger.info("Groﬂ / Klein");
 				}
 
 				Pattern digit = Pattern.compile("[0-9]");

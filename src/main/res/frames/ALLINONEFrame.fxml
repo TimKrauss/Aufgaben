@@ -248,6 +248,14 @@
                      </children></AnchorPane>
               </content>
             </Tab>
+             <Tab fx:id="tab_Admin" text="Konfiguration">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="171.0" layoutY="177.0" prefHeight="33.0" prefWidth="170.0" text="Hallo Admin :D" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
         </tabs>
       </TabPane>
       <Separator layoutX="191.0" layoutY="40.0" orientation="VERTICAL" prefHeight="525.0" prefWidth="12.0" />

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import de.krauss.Car;
-import de.krauss.CarList;
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
 
 public interface FileHandler
 {

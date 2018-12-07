@@ -1,10 +1,14 @@
-package de.krauss;
+package de.krauss.car;
 
 import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
+import de.krauss.utils.OracleDataBase;
 
 public class CarListTest
 {

@@ -1,4 +1,4 @@
-package de.krauss;
+package de.krauss.car;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +10,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.log4j.Logger;
+
+import de.krauss.utils.OracleDataBase;
+import de.krauss.utils.Utilities;
 
 @XmlRootElement(name = "Fuhrpark")
 @XmlAccessorType(XmlAccessType.NONE)

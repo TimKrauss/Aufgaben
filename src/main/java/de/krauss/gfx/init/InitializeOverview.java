@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import de.krauss.Car;
-import de.krauss.CarList;
-import de.krauss.Reservierung;
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
+import de.krauss.car.Reservierung;
 import de.krauss.gfx.ALLINONEFrameController;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -51,7 +51,7 @@ public class InitializeOverview
 	{
 		this.manager = manager;
 		this.carlist = carlist;
-		initListTabs();
+		initListTabs(controller);
 		initListAutos();
 		initBtnDeleteResv(controller);
 		initButtonLöschen(controller);
@@ -115,7 +115,7 @@ public class InitializeOverview
 	 * Initizalisiert die Liste mit der man zwischen den Tabs springen kann (zb
 	 * Übersicht, Suchen,...s
 	 */
-	private void initListTabs()
+	private void initListTabs(ALLINONEFrameController controller)
 	{
 		// LIST VIEW TAP
 		listView_Tabs.setCellFactory(param -> new ListCell<Tab>()
@@ -146,7 +146,17 @@ public class InitializeOverview
 					manager.getInitializerReservieren().getCb_PickCarForResv().getSelectionModel().select(0);
 				}
 
-				pane_Tabpane.getSelectionModel().select(newValue);
+				if (newValue.getText().equals("Konfiguration"))
+				{
+					if (manager.getUser().getRechteLvl() < 1)
+					{
+						controller.showErrorMessage("Unzureichende Berechtigungen");
+						return;
+					}
+				} else
+				{
+					pane_Tabpane.getSelectionModel().select(newValue);
+				}
 			}
 		});
 	}

@@ -2,10 +2,10 @@ package de.krauss.gfx.init;
 
 import java.io.File;
 
-import de.krauss.Car;
-import de.krauss.CarList;
-import de.krauss.FileManager;
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
 import de.krauss.gfx.ALLINONEFrameController;
+import de.krauss.utils.FileManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;

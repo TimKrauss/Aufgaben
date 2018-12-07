@@ -3,11 +3,11 @@ package de.krauss.gfx;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
-import de.krauss.CarList;
 import de.krauss.Launcher;
-import de.krauss.OracleDataBase;
+import de.krauss.car.CarList;
 import de.krauss.search.Searcher;
 import de.krauss.user.UserManager;
+import de.krauss.utils.OracleDataBase;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 

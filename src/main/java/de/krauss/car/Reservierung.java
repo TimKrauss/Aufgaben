@@ -1,4 +1,4 @@
-package de.krauss;
+package de.krauss.car;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
+
+import de.krauss.utils.Utilities;
 
 public class Reservierung implements Serializable
 {

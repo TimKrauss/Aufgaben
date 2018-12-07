@@ -10,9 +10,9 @@ import javax.activity.InvalidActivityException;
 
 import org.apache.log4j.Logger;
 
-import de.krauss.Car;
-import de.krauss.OracleDataBase;
-import de.krauss.Utilities;
+import de.krauss.car.Car;
+import de.krauss.utils.OracleDataBase;
+import de.krauss.utils.Utilities;
 
 public class Searcher
 {

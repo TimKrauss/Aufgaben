@@ -5,9 +5,9 @@ import java.io.File;
 import org.junit.Assert;
 import org.junit.Test;
 
-import de.krauss.Car;
-import de.krauss.CarList;
-import de.krauss.OracleDataBase;
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
+import de.krauss.utils.OracleDataBase;
 
 public class DumpFileHandlerTest
 {

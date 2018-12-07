@@ -1,4 +1,4 @@
-package de.krauss;
+package de.krauss.utils;
 
 import java.io.File;
 import java.util.Date;
@@ -7,6 +7,12 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
+import de.krauss.car.Reservierung;
+import de.krauss.utils.FileManager;
+import de.krauss.utils.OracleDataBase;
 
 public class FileManagerTest
 {

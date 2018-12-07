@@ -1,4 +1,4 @@
-package de.krauss;
+package de.krauss.car;
 
 import java.io.Serializable;
 import java.util.ArrayList;

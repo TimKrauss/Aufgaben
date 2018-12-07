@@ -15,9 +15,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
-import de.krauss.Car;
-import de.krauss.CarList;
 import de.krauss.Launcher;
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
 
 public class JSonFileHandler implements FileHandler
 {

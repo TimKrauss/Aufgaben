@@ -9,9 +9,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import de.krauss.Car;
-import de.krauss.CarList;
 import de.krauss.Launcher;
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
 
 public class DumpFileHandler implements FileHandler
 {

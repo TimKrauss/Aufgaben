@@ -1,4 +1,4 @@
-package de.krauss;
+package de.krauss.utils;
 
 import java.io.BufferedReader;
 import java.io.StringReader;
@@ -6,6 +6,11 @@ import java.util.Date;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import de.krauss.car.Car;
+import de.krauss.car.CarList;
+import de.krauss.car.Reservierung;
+import de.krauss.utils.Utilities;
 
 public class UtilitiesTest
 {
