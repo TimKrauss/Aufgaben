@@ -62,6 +62,31 @@ public class UserManager
 		return sha256hex;
 	}
 
+	public boolean existUsername(String username)
+	{
+		String query = "SELECT * FROM tim.benutzer WHERE name='" + username + "'";
+
+		try
+		{
+			Statement smt = connection.createStatement();
+			ResultSet resultSet = smt.executeQuery(query);
+
+			if (resultSet.next())
+			{
+				resultSet.close();
+				smt.close();
+				return true;
+			}
+			resultSet.close();
+			smt.close();
+		} catch (SQLException e)
+		{
+			logger.fatal(e.getMessage());
+		}
+
+		return false;
+	}
+
 	public User login(String username, String passwordHash)
 	{
 		String query = "SELECT * FROM tim.benutzer WHERE name='" + username + "'";
@@ -88,6 +113,7 @@ public class UserManager
 			{
 				user.setPasswordHash(passwordHash);
 				user.setBenutzerName(resultSet.getString("name"));
+				logger.info("Succesfull logged in: " + username);
 				user.setRechteLvl(resultSet.getInt("rechtelvl"));
 				user.setBenutzerID(resultSet.getInt("benutzerid"));
 				resultSet.close();
@@ -102,6 +128,20 @@ public class UserManager
 		}
 
 		return null;
+	}
+
+	public void deleteUser(String string)
+	{
+		try
+		{
+			Statement rsvdel = connection.createStatement();
+			rsvdel.executeQuery("DELETE FROM benutzer WHERE name='" + string + "'");
+			rsvdel.close();
+
+		} catch (Exception e)
+		{
+			logger.warn(e.getMessage());
+		}
 	}
 
 }

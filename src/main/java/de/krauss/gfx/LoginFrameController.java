@@ -7,9 +7,12 @@ import java.io.IOException;
 
 import org.apache.log4j.Logger;
 
+import de.krauss.CarList;
 import de.krauss.Launcher;
+import de.krauss.search.Searcher;
 import de.krauss.user.User;
 import de.krauss.user.UserManager;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -38,7 +41,7 @@ public class LoginFrameController
 	private Button btn_Login;
 
 	@FXML
-	private Label lbl_Registrieren;
+	private Label lbl_Registrieren, lbl_ErrorLogin;
 
 	private static Stage primaryStage;
 	private static Logger logger = Logger.getLogger("System");
@@ -50,7 +53,7 @@ public class LoginFrameController
 			FXMLLoader loader = new FXMLLoader();
 			primaryStage = new Stage();
 
-			File file = new File(Launcher.class.getResource("/de/krauss/gfx/LoginFrame.fxml").getFile());
+			File file = new File(Launcher.class.getResource("/frames/LoginFrame.fxml").getFile());
 			FileInputStream fis = new FileInputStream(file);
 			Pane pane = loader.load(fis);
 			Scene scene = new Scene(pane);
@@ -83,7 +86,7 @@ public class LoginFrameController
 		return null;
 	}
 
-	public void init(UserManager manager, Launcher launcher)
+	public void init(UserManager manager, Launcher launcher, CarList list, Searcher searcher)
 	{
 		btn_Login.setOnAction(new EventHandler<ActionEvent>()
 		{
@@ -115,7 +118,7 @@ public class LoginFrameController
 				}
 
 				launcher.setUser(user);
-				launcher.startAllInOneFrame();
+				launcher.startAllInOneFrame(list, searcher);
 				((Node) (event.getSource())).getScene().getWindow().hide();
 			}
 		});
@@ -134,6 +137,29 @@ public class LoginFrameController
 
 	public void showErrorMessage(String errorMsg)
 	{
-		logger.info(errorMsg);
+		logger.warn(errorMsg);
+		lbl_ErrorLogin.setText(errorMsg);
+		new Thread(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				try
+				{
+					Thread.sleep(5000);
+				} catch (InterruptedException e)
+				{
+					e.printStackTrace();
+				}
+				Platform.runLater(new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						lbl_ErrorLogin.setText("");
+					}
+				});
+			}
+		}).start();
 	}
 }

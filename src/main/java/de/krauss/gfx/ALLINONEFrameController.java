@@ -59,7 +59,7 @@ public class ALLINONEFrameController
 
 	@FXML
 	private Label label_Name, label_Marke, label_Tachostand, lbl_Res_start, lbl_Res_stop, lbl_SearchName,
-			lbl_SearchMarke, lbl_SearchTacho, lbl_ShowErrorMsg;
+			lbl_SearchMarke, lbl_SearchTacho, lbl_ShowErrorMsg, lbl_Benutzername, lbl_RechteLVL;
 
 	@FXML
 	private CheckBox rb_Name, rb_Marke, rb_Tacho;
@@ -144,6 +144,9 @@ public class ALLINONEFrameController
 
 		initer.init(this, orcb, carlist);
 
+		lbl_Benutzername.setText(user.getBenutzerName());
+		lbl_RechteLVL.setText(user.getRechteLvl() + "");
+
 		// ArrayList
 		list_Tabs = new ArrayList<>();
 
@@ -175,7 +178,7 @@ public class ALLINONEFrameController
 		{
 			FXMLLoader loader = new FXMLLoader();
 
-			File file = new File(Launcher.class.getResource("/de/krauss/gfx/ALLINONEFrame.fxml").getFile());
+			File file = new File(Launcher.class.getResource("/frames/ALLINONEFrame.fxml").getFile());
 			FileInputStream fis = new FileInputStream(file);
 			Pane pane = loader.load(fis);
 			primaryStage = new Stage();

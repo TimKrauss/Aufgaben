@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="218.0" prefWidth="310.0" style="-fx-background-color: lightgrey;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.krauss.gfx.LoginFrameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="269.0" prefWidth="310.0" style="-fx-background-color: lightgrey;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.krauss.gfx.LoginFrameController">
    <children>
       <TextField fx:id="txtf_Username" layoutX="152.0" layoutY="60.0" />
       <Label alignment="CENTER" layoutX="87.0" layoutY="14.0" prefHeight="31.0" prefWidth="137.0" text="Anmelden" underline="true">
@@ -25,8 +25,13 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btn_Login" layoutX="98.0" layoutY="154.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" text="Anmelden" />
-      <Label fx:id="lbl_Registrieren" alignment="CENTER" layoutY="196.0" prefHeight="17.0" prefWidth="310.0" text="Kein Konto? Klicken sie hier" />
+      <Button fx:id="btn_Login" layoutX="98.0" layoutY="185.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" text="Anmelden" />
+      <Label fx:id="lbl_Registrieren" alignment="CENTER" layoutY="233.0" prefHeight="17.0" prefWidth="310.0" text="Kein Konto? Klicken sie hier" />
       <PasswordField fx:id="pw_Password" layoutX="152.0" layoutY="102.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label fx:id="lbl_ErrorLogin" alignment="CENTER" layoutX="1.0" layoutY="135.0" prefHeight="25.0" prefWidth="310.0" textFill="RED">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

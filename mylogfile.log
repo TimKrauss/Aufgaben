@@ -1,3 +1,13 @@
-[INFO  | 05.12.2018 16:27:59 | de.krauss.Launcher$1 ] ==> [System] Hallo Lieber Kunde!
-[INFO  | 05.12.2018 16:27:59 | de.krauss.Launcher$1 ] ==> [System] Möchten sie ein Auto anlegen? (ja oder nein)
-[INFO  | 05.12.2018 16:27:59 | de.krauss.Launcher$1 ] ==> [System] Oder bereits hinzugefügte Autos ansehen? (list)
+[INFO  | 07.12.2018 12:06:45 | de.krauss.Launcher$1 ] ==> [System] Hallo Lieber Kunde!
+[INFO  | 07.12.2018 12:06:45 | de.krauss.Launcher$1 ] ==> [System] Möchten sie ein Auto anlegen? (ja oder nein)
+[INFO  | 07.12.2018 12:06:45 | de.krauss.Launcher$1 ] ==> [System] Oder bereits hinzugefügte Autos ansehen? (list)
+[WARN  | 07.12.2018 12:06:49 | de.krauss.gfx.RegisterFrameController ] ==> [System] Der Benutzername ist ungültig
+[WARN  | 07.12.2018 12:06:53 | de.krauss.gfx.RegisterFrameController ] ==> [System] Bitte ein Passwort angeben
+[INFO  | 07.12.2018 12:06:57 | de.krauss.gfx.RegisterFrameController ] ==> [System] Groß / Klein
+[INFO  | 07.12.2018 12:06:57 | de.krauss.gfx.RegisterFrameController ] ==> [System] Groß / Klein
+[INFO  | 07.12.2018 12:06:58 | de.krauss.gfx.RegisterFrameController ] ==> [System] Groß / Klein
+[INFO  | 07.12.2018 12:06:58 | de.krauss.gfx.RegisterFrameController ] ==> [System] Groß / Klein
+[WARN  | 07.12.2018 12:06:59 | de.krauss.gfx.RegisterFrameController ] ==> [System] Passwörter stimmen nicht über ein
+[WARN  | 07.12.2018 12:07:02 | de.krauss.gfx.RegisterFrameController ] ==> [System] Der Benutzername existiert schon
+[WARN  | 07.12.2018 12:07:12 | de.krauss.gfx.LoginFrameController ] ==> [System] Ungültige Angabe der LoginDaten
+[INFO  | 07.12.2018 12:07:15 | de.krauss.user.UserManager ] ==> [System] Succesfull logged in: Jonas123

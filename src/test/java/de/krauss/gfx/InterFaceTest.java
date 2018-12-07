@@ -5,8 +5,10 @@ import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
 import de.krauss.CarList;
+import de.krauss.Launcher;
 import de.krauss.OracleDataBase;
 import de.krauss.search.Searcher;
+import de.krauss.user.UserManager;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
@@ -14,11 +16,35 @@ public class InterFaceTest extends ApplicationTest
 {
 	private ALLINONEFrameController controller;
 	private OracleDataBase orcb;
+	private LoginFrameController loginFrameController;
+	private Launcher launcher = new Launcher();
+	private UserManager manager = new UserManager();
+	private String passwortForLogin = "Das5!tEinT";
+
+//	@Override
+//	public void start(Stage arg0) throws Exception
+//	{
+//		controller = ALLINONEFrameController.createWindow();
+//		orcb = new OracleDataBase();
+//
+//		CarList list = new CarList();
+//		list.setOrcb(orcb);
+//
+//		Searcher searcher = new Searcher();
+//		searcher.setOrcb(orcb);
+//
+//		controller.setOrcb(orcb);
+//		controller.init(list, searcher);
+//
+//		orcb.delteAllDataFromBase();
+//		arg0.toFront();
+//		arg0.requestFocus();
+//	}
 
 	@Override
 	public void start(Stage arg0) throws Exception
 	{
-		controller = ALLINONEFrameController.createWindow();
+		loginFrameController = LoginFrameController.createWindow();
 		orcb = new OracleDataBase();
 
 		CarList list = new CarList();
@@ -27,8 +53,9 @@ public class InterFaceTest extends ApplicationTest
 		Searcher searcher = new Searcher();
 		searcher.setOrcb(orcb);
 
-		controller.setOrcb(orcb);
-		controller.init(list, searcher);
+		loginFrameController.init(manager, launcher, list, searcher);
+
+		manager.deleteUser("JUnitTester");
 
 		orcb.delteAllDataFromBase();
 		arg0.toFront();
@@ -56,9 +83,59 @@ public class InterFaceTest extends ApplicationTest
 		}
 	}
 
+	private void registerAndLogin()
+	{
+		// Registrieren
+		clickOn("#lbl_Registrieren");
+
+		clickOn("#txtf_Username");
+		write("JUnitTester");
+
+		clickOn("#pw_Password");
+		write(passwortForLogin);
+
+		clickOn("#pw_CheckPassword");
+		write(passwortForLogin + "s");
+
+		clickOn("#btn_Registrieren");
+
+		clickOn("#pw_CheckPassword");
+		type(KeyCode.RIGHT);
+		type(KeyCode.RIGHT);
+		type(KeyCode.RIGHT);
+		type(KeyCode.RIGHT);
+		type(KeyCode.RIGHT);
+		type(KeyCode.RIGHT);
+		type(KeyCode.RIGHT);
+		type(KeyCode.BACK_SPACE);
+
+		clickOn("#btn_Registrieren");
+
+		// Einloggen
+		clickOn("#txtf_Username");
+		write("JUnitTester");
+
+		clickOn("#pw_Password");
+		write("123");
+
+		clickOn("#btn_Login"); // False Login
+
+		clickOn("#pw_Password");
+		type(KeyCode.RIGHT);
+		type(KeyCode.RIGHT);
+		type(KeyCode.RIGHT);
+		type(KeyCode.BACK_SPACE);
+		type(KeyCode.BACK_SPACE);
+		type(KeyCode.BACK_SPACE);
+		write(passwortForLogin);
+
+		clickOn("#btn_Login");
+	}
+
 	@Before
 	public void addCar()
 	{
+		registerAndLogin();
 
 		selectTabDown(1);
 
@@ -89,6 +166,7 @@ public class InterFaceTest extends ApplicationTest
 	@Test
 	public void testInterface()
 	{
+
 		/*
 		 * Reservieren
 		 */
@@ -118,6 +196,7 @@ public class InterFaceTest extends ApplicationTest
 		clickOn("#btn_AddResv");
 
 		// Für mehr CodeAbdeckung
+		controller = launcher.getAllInOneFrameController();
 		controller.updateListFomDatabase();
 		/*
 		 * Suchen

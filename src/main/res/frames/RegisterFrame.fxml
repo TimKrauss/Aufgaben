@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="314.0" style="-fx-background-color: lightgrey;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.krauss.gfx.RegisterFrameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="314.0" style="-fx-background-color: lightgrey;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.krauss.gfx.RegisterFrameController">
    <children>
       <Label alignment="CENTER" layoutX="74.0" layoutY="14.0" prefHeight="40.0" prefWidth="166.0" text="Registrieren">
          <font>
@@ -33,8 +33,13 @@
       <TextField fx:id="txtf_Username" layoutX="136.0" layoutY="67.0" prefHeight="25.0" prefWidth="166.0" style="-fx-background-color: grey;" />
       <PasswordField fx:id="pw_Password" layoutX="136.0" layoutY="113.0" prefHeight="25.0" prefWidth="166.0" style="-fx-background-color: grey;" />
       <PasswordField fx:id="pw_CheckPassword" layoutX="136.0" layoutY="211.0" prefHeight="25.0" prefWidth="166.0" style="-fx-background-color: grey;" />
-      <Button fx:id="btn_Registrieren" layoutX="95.0" layoutY="265.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="124.0" text="Registrieren" />
+      <Button fx:id="btn_Registrieren" layoutX="95.0" layoutY="305.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="124.0" text="Registrieren" />
       <ProgressBar fx:id="pb_PasswordSecure" layoutX="136.0" layoutY="153.0" prefHeight="18.0" prefWidth="166.0" progress="0.0" />
       <Label layoutX="72.0" layoutY="153.0" prefHeight="18.0" prefWidth="64.0" text="Sicherheit:" />
+      <Label fx:id="lbl_ErrorMsg" alignment="CENTER" layoutY="252.0" prefHeight="25.0" prefWidth="314.0" textFill="RED">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

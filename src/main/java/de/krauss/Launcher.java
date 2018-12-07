@@ -24,7 +24,9 @@ public class Launcher extends Application implements Serializable
 {
 	private static final long serialVersionUID = 1636324934042718631L;
 
-	// TODO Konfigurations-Seite
+	// TODO Konfigurations-Seite (Enorm Viel - KonfigKlasse+ObjektSerialisierung +
+	// TAB)
+	// TODO IMPORT / EXPORT überarbeiten
 
 	@XmlElement(name = "carlist")
 	private CarList carlist;
@@ -178,7 +180,7 @@ public class Launcher extends Application implements Serializable
 		// START & INIT WINDOW
 
 		LoginFrameController loginFrameController = LoginFrameController.createWindow();
-		loginFrameController.init(userManager, this);
+		loginFrameController.init(userManager, this, carlist, searcher);
 
 	}
 
@@ -192,16 +194,22 @@ public class Launcher extends Application implements Serializable
 		controller.updateList();
 	}
 
-	public void startAllInOneFrame()
+	public void startAllInOneFrame(CarList list, Searcher searcher2)
 	{
 		controller = ALLINONEFrameController.createWindow();
 		controller.setOrcb(dataBase);
 		controller.setUser(user);
-		controller.init(carlist, searcher);
+		controller.init(list, searcher2);
 	}
 
 	public void setUser(User user2)
 	{
 		user = user2;
 	}
+
+	public ALLINONEFrameController getAllInOneFrameController()
+	{
+		return controller;
+	}
+
 }

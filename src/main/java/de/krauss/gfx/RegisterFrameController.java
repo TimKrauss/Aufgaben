@@ -4,11 +4,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
 import de.krauss.Launcher;
 import de.krauss.user.UserManager;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,9 +19,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -36,6 +41,9 @@ public class RegisterFrameController
 	private Button btn_Registrieren;
 
 	@FXML
+	private Label lbl_ErrorMsg;
+
+	@FXML
 	private ProgressBar pb_PasswordSecure;
 
 	private static Logger logger = Logger.getLogger("System");
@@ -47,7 +55,7 @@ public class RegisterFrameController
 			FXMLLoader loader = new FXMLLoader();
 			Stage primaryStage = new Stage();
 
-			File file = new File(Launcher.class.getResource("/de/krauss/gfx/RegisterFrame.fxml").getFile());
+			File file = new File(Launcher.class.getResource("/frames/RegisterFrame.fxml").getFile());
 			FileInputStream fis = new FileInputStream(file);
 			Pane pane = loader.load(fis);
 			Scene scene = new Scene(pane);
@@ -82,7 +90,7 @@ public class RegisterFrameController
 
 	public void init(UserManager userManager, Stage toShowAfter)
 	{
-		double addLevel = 0.2;
+		double addLevel = 0.25;
 
 		btn_Registrieren.setOnAction(new EventHandler<ActionEvent>()
 		{
@@ -111,29 +119,58 @@ public class RegisterFrameController
 					return;
 				}
 
-				userManager.addUser(username, userManager.hashPasswort(password), 0);
-				toShowAfter.show();
-				((Node) (event.getSource())).getScene().getWindow().hide();
+				if (!userManager.existUsername(username))
+				{
+					userManager.addUser(username, userManager.hashPasswort(password), 0);
+					((Node) (event.getSource())).getScene().getWindow().hide();
+					toShowAfter.show();
+				} else
+				{
+					showErrorMessage("Der Benutzername existiert schon");
+				}
+
 			}
 		});
+
+		pw_Password.setTooltip(new Tooltip(
+				"Das Passwort muss beinhalten:\n1. Groﬂ- / Kleinbuchstaben\n2. Eine Zahl\n3.  Mehr als 7 Zeichen\n4. Ein Sonderzeichen"));
 
 		pw_Password.textProperty().addListener((observable, oldValue, newValue) ->
 		{
 			double safety = 0;
 
-			if (newValue.length() > 7)
+			if (!newValue.equals("")) // Sicherheitslevel = 0
 			{
-				safety += addLevel;
-			}
 
-			if (!newValue.equals(newValue.toLowerCase()))
-			{
-				safety += addLevel;
-			}
+				if (newValue.length() > 7)
+				{
+					safety += addLevel;
+					logger.info("L‰nge passt");
+				}
 
-			if (!newValue.matches("[a-zA-Z]"))
-			{
-				safety += addLevel;
+				if (!newValue.equals(newValue.toLowerCase()))
+				{
+					safety += addLevel;
+					logger.info("Groﬂ / Klein");
+				}
+
+				Pattern digit = Pattern.compile("[0-9]");
+				Pattern special = Pattern.compile("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
+				// Pattern eight = Pattern.compile (".{8}");
+
+				Matcher hasDigit = digit.matcher(newValue);
+				Matcher hasSpecial = special.matcher(newValue);
+
+				if (hasDigit.find())
+				{
+					safety += addLevel;
+				}
+
+				if (hasSpecial.find())
+				{
+					safety += addLevel;
+				}
+
 			}
 
 			pb_PasswordSecure.setProgress(safety);
@@ -143,6 +180,29 @@ public class RegisterFrameController
 
 	public void showErrorMessage(String message)
 	{
-		logger.info(message);
+		logger.warn(message);
+		lbl_ErrorMsg.setText(message);
+		new Thread(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				try
+				{
+					Thread.sleep(5000);
+				} catch (InterruptedException e)
+				{
+					e.printStackTrace();
+				}
+				Platform.runLater(new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						lbl_ErrorMsg.setText("");
+					}
+				});
+			}
+		}).start();
 	}
 }
